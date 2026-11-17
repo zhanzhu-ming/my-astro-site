@@ -28,74 +28,90 @@ const en = lang === "en";
   <script>
     import { createClient } from "@supabase/supabase-js";
 
-    const form = document.querySelector("#inquiryForm");
-    const status = document.querySelector("#formStatus");
-    const button = form?.querySelector("button[type='submit']");
 
-    const url = import.meta.env.PUBLIC_SUPABASE_URL;
-    const key = import.meta.env.PUBLIC_SUPABASE_ANON_KEY;
-    // Prefer the language from the Astro route; normalize it to the database values zh/en.
-    const pageLang = form?.dataset.lang || document.documentElement.lang || "zh";
-    const lang = pageLang.toLowerCase().startsWith("en") ? "en" : "zh";
-    const en = lang === "en";
+const form = document.querySelector("#inquiryForm");
+const status = document.querySelector("#formStatus");
+const button = form?.querySelector("button[type='submit']");
 
-    form?.addEventListener("submit", async (event) => {
-      event.preventDefault();
-      status.textContent = "";
+const url = import.meta.env.PUBLIC_SUPABASE_URL;
+const key = import.meta.env.PUBLIC_SUPABASE_ANON_KEY;
 
-      if (!url || !key) {
-        status.textContent = en
-          ? "The inquiry form is not connected yet. Please contact us by email."
-          : "表单尚未连接询盘数据库，请通过商务邮箱联系。";
-        status.dataset.state = "error";
-        return;
+const pageLang = form?.dataset.lang || document.documentElement.lang || "zh";
+const lang = pageLang.toLowerCase().startsWith("en") ? "en" : "zh";
+const en = lang === "en";
+
+form?.addEventListener("submit", async (event) => {
+  event.preventDefault();
+  status.textContent = "";
+
+  if (!url || !key) {
+    status.textContent = en
+      ? "The inquiry form is not connected yet. Please contact us by email."
+      : "表单尚未连接询盘数据库，请通过商务邮箱联系。";
+    status.dataset.state = "error";
+    return;
+  }
+
+  const data = new FormData(form);
+
+  const payload = {
+    name: String(data.get("name") || "").trim(),
+    company: String(data.get("company") || "").trim(),
+    email: String(data.get("email") || "").trim(),
+    phone: String(data.get("phone") || "").trim() || null,
+    interest: String(data.get("interest") || "").trim(),
+    quantity: String(data.get("quantity") || "").trim() || null,
+    market: String(data.get("market") || "").trim() || null,
+    message: String(data.get("message") || "").trim() || null,
+    language: lang,
+    consent: data.get("consent") === "on"
+  };
+
+  button.disabled = true;
+  button.textContent = en ? "Submitting…" : "正在提交…";
+
+  try {
+    const response = await fetch(
+      `${url.replace(/\/$/, "")}/rest/v1/inquiries`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "apikey": key,
+          "Authorization": `Bearer ${key}`,
+          "Prefer": "return=minimal"
+        },
+        body: JSON.stringify(payload)
       }
+    );
 
-      const data = new FormData(form);
+    if (!response.ok) {
+      const errorText = await response.text();
+      throw new Error(errorText);
+    }
 
-      const payload = {
-        name: String(data.get("name") || "").trim(),
-        company: String(data.get("company") || "").trim(),
-        email: String(data.get("email") || "").trim(),
-        phone: String(data.get("phone") || "").trim() || null,
-        interest: String(data.get("interest") || "").trim(),
-        quantity: String(data.get("quantity") || "").trim() || null,
-        market: String(data.get("market") || "").trim() || null,
-        message: String(data.get("message") || "").trim() || null,
-        language: lang,
-        consent: data.get("consent") === "on"
-      };
+    status.textContent = en
+      ? "Thank you. Your inquiry has been received."
+      : "提交成功，感谢您的询盘！我们会尽快与您联系。";
 
-      button.disabled = true;
-      button.textContent = en ? "Submitting…" : "正在提交…";
+    status.dataset.state = "success";
+    form.reset();
 
-      try {
-        const client = createClient(url, key);
-        const { error } = await client.from("inquiries").insert(payload);
+  } catch (err) {
+    console.error("Inquiry submission failed", err);
 
-        if (error) throw error;
+    status.textContent = en
+      ? "Submission failed. Please email us directly."
+      : "提交失败，请稍后重试或通过商务邮箱联系。";
 
-        status.textContent = en
-          ? "Thank you. Your inquiry has been received."
-          : "提交成功，感谢您的询盘！我们会尽快与您联系。";
+    status.dataset.state = "error";
 
-        status.dataset.state = "success";
-        form.reset();
+  } finally {
+    button.disabled = false;
+    button.textContent = en ? "Submit Inquiry ↗" : "提交询盘 ↗";
+  }
+});
 
-      } catch (err) {
-        console.error("Inquiry submission failed", err);
-
-        status.textContent = en
-          ? "Submission failed. Please email us directly."
-          : "提交失败，请稍后重试或通过商务邮箱联系。";
-
-        status.dataset.state = "error";
-
-      } finally {
-        button.disabled = false;
-        button.textContent = en ? "Submit Inquiry ↗" : "提交询盘 ↗";
-      }
-    });
   </script>
 
 </BaseLayout>
