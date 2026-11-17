@@ -1,0 +1,74 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { site } from "../../data/site";
+export function getStaticPaths() { return [{ params: { lang: "zh" } }, { params: { lang: "en" } }]; }
+const lang = Astro.params.lang as "zh" | "en";
+const t = site[lang];
+const en = lang === "en";
+---
+<BaseLayout lang={lang} title={en ? "Contact" : "联系我们"} description={t.contactLead}>
+  <main>
+    <section class="page-hero"><div class="container"><div class="eyebrow">CONTACT / B2B INQUIRY</div><h1>{t.contactTitle}</h1><p>{t.contactLead}</p><div class="breadcrumbs"><a href={`/${lang}/`}>{en ? "Home" : "首页"}</a> / {en ? "Contact" : "联系我们"}</div></div></section>
+    <section class="section"><div class="container contact-layout">
+      <div class="contact-copy"><div class="eyebrow">{en ? "LET'S TALK BUSINESS" : "商务合作沟通"}</div><h2>{en ? "A clear brief helps us source more effectively." : "清晰的需求信息，有助于更有效地开展寻源。"}</h2><p>{en ? "Please include the ingredient identity, application, target specification, estimated volume and destination market. Do not submit confidential formulas or sensitive personal information." : "请尽量提供原料身份、应用场景、目标规格、预计数量和目的市场。请勿提交配方机密或敏感个人信息。"}</p><div class="contact-detail"><small>{en ? "BUSINESS EMAIL" : "商务邮箱"}</small><strong id="businessEmail">sales@example.com</strong></div><div class="contact-detail"><small>{en ? "RESPONSE" : "沟通方式"}</small><strong>{en ? "B2B sourcing & trade coordination" : "B2B 原料寻源与贸易协作"}</strong></div></div>
+      <form class="inquiry-form" id="inquiryForm">
+        <div class="form-row"><label>{en ? "Name" : "姓名"} *<input name="name" required maxlength="120" autocomplete="name" /></label><label>{en ? "Company" : "公司名称"} *<input name="company" required maxlength="160" autocomplete="organization" /></label></div>
+        <div class="form-row"><label>{en ? "Work email" : "工作邮箱"} *<input name="email" type="email" required maxlength="254" autocomplete="email" /></label><label>{en ? "Phone / WhatsApp" : "电话 / WhatsApp"}<input name="phone" maxlength="80" /></label></div>
+        <div class="form-row"><label>{en ? "Ingredient / Product" : "关注原料 / 产品"} *<input name="interest" required maxlength="200" placeholder={en ? "e.g. phospholipid, botanical extract..." : "例如：磷脂、植物提取物……"} /></label><label>{en ? "Estimated quantity" : "预计需求量"}<input name="quantity" maxlength="120" placeholder={en ? "Sample / kg / MT / annual volume" : "样品 / kg / 吨 / 年需求量"} /></label></div>
+        <label>{en ? "Destination market" : "目的市场"}<input name="market" maxlength="120" placeholder={en ? "Country / region" : "国家 / 地区"} /></label>
+        <label>{en ? "Project details" : "项目需求"}<textarea name="message" rows="5" maxlength="4000" placeholder={en ? "Target specification, application, required documents, timeline..." : "目标规格、应用场景、所需文件、采购时间……"}></textarea></label>
+        <label class="consent"><input type="checkbox" name="consent" required /> <span>{en ? "I agree that my information may be used to respond to this business inquiry." : "我同意所提供的信息用于回复本次业务咨询。"} </span></label>
+        <button class="button form-submit" type="submit">{en ? "Submit Inquiry" : "提交询盘"} <span>↗</span></button>
+        <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
+        <p class="form-disclaimer">{en ? "Do not submit confidential formulas, trade secrets or sensitive personal data." : "请勿提交配方机密、商业秘密或敏感个人信息。"}</p>
+      </form>
+    </div></section>
+  </main>
+  <script>
+    import { createClient } from "@supabase/supabase-js";
+    const form = document.querySelector("#inquiryForm");
+    const status = document.querySelector("#formStatus");
+    const button = form?.querySelector("button[type='submit']");
+    const url = import.meta.env.PUBLIC_SUPABASE_URL;
+    const key = import.meta.env.PUBLIC_SUPABASE_ANON_KEY;
+    form?.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      status.textContent = "";
+      if (!url || !key) {
+        status.textContent = {en ? "'The inquiry form is not connected yet. Please contact us by email.'" : "'表单尚未连接询盘数据库，请通过商务邮箱联系。'"};
+        status.dataset.state = "error";
+        return;
+      }
+      const data = new FormData(form);
+      const payload = {
+        name: String(data.get("name") || "").trim(),
+        company: String(data.get("company") || "").trim(),
+        email: String(data.get("email") || "").trim(),
+        phone: String(data.get("phone") || "").trim() || null,
+        interest: String(data.get("interest") || "").trim(),
+        quantity: String(data.get("quantity") || "").trim() || null,
+        market: String(data.get("market") || "").trim() || null,
+        message: String(data.get("message") || "").trim() || null,
+        language: {JSON.stringify(lang)},
+        consent: data.get("consent") === "on"
+      };
+      button.disabled = true;
+      button.textContent = {en ? "'Submitting…'" : "'正在提交…'"};
+      try {
+        const client = createClient(url, key);
+        const { error } = await client.from("inquiries").insert(payload);
+        if (error) throw error;
+        status.textContent = {en ? "'Thank you. Your inquiry has been received.'" : "'提交成功，感谢您的询盘！我们会尽快与您联系。'"};
+        status.dataset.state = "success";
+        form.reset();
+      } catch (err) {
+        console.error("Inquiry submission failed", err);
+        status.textContent = {en ? "'Submission failed. Please email us directly.'" : "'提交失败，请稍后重试或通过商务邮箱联系。'"};
+        status.dataset.state = "error";
+      } finally {
+        button.disabled = false;
+        button.innerHTML = {en ? "'Submit Inquiry <span>↗</span>'" : "'提交询盘 <span>↗</span>'"};
+      }
+    });
+  </script>
+</BaseLayout>

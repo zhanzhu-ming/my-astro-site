@@ -1,162 +1,45 @@
-
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import { pages, languages } from "../../data/site";
-
+import { pages, pageSlugs, products } from "../../data/site";
 export function getStaticPaths() {
-  return languages.flatMap((lang) =>
-    Object.keys(pages[lang]).map((slug) => ({
-      params: { lang, slug },
-    }))
-  );
+  const paths = [];
+  for (const lang of ["zh", "en"]) {
+    for (const slug of pageSlugs) paths.push({ params: { lang, slug }, props: { slug } });
+    for (const slug of ["products/liposomal-ingredients", "products/botanical-extracts", "products/custom-sourcing"]) paths.push({ params: { lang, slug }, props: { slug } });
+  }
+  return paths;
 }
-
 const lang = Astro.params.lang as "zh" | "en";
-const slug = Astro.params.slug as keyof typeof pages.zh;
-
-const page = pages[lang][slug];
-
-const zh = lang === "zh";
-const inquiry = zh ? "立即询盘" : "Send Inquiry";
+const slug = Astro.props.slug as string;
+const en = lang === "en";
+const productDetail = slug.startsWith("products/");
+const productKey = slug.endsWith("liposomal-ingredients") ? "liposomal" : slug.endsWith("botanical-extracts") ? "extracts" : "custom";
+const detailCopy = {
+  zh: {
+    liposomal: ["脂质体相关原料", "围绕脂质体体系所需的脂质材料与配套原料开展供应沟通。", ["目标原料身份与组成", "纯度、酸价、过氧化值等适用指标（按产品类型确认）", "来源、等级、包装与储存条件", "COA、TDS、SDS 等文件可得性"]],
+    extracts: ["植物与功能性提取物", "依据植物来源、提取工艺和目标标志性成分，沟通适配的原料选项。", ["植物拉丁名、使用部位与来源", "提取溶剂、提取比例与载体", "标志性成分及检测方法", "目标市场适用文件与标签信息"]],
+    custom: ["定制化原料寻源", "针对指定成分或特殊规格，开展定向供应商寻源与采购协调。", ["目标成分名称、CAS / INCI / 植物拉丁名", "目标规格、检测标准与样品要求", "预计采购量、包装与交付地点", "目的市场、法规与文件要求"]]
+  },
+  en: {
+    liposomal: ["Liposomal-Related Ingredients", "Sourcing discussions for lipid materials and supporting ingredients used in liposomal systems.", ["Ingredient identity and composition", "Applicable indicators such as purity, acid value or peroxide value (product dependent)", "Origin, grade, packaging and storage conditions", "Availability of COA, TDS, SDS and related documents"]],
+    extracts: ["Botanical & Functional Extracts", "Discuss ingredient options based on botanical origin, extraction process and target marker compounds.", ["Botanical Latin name, plant part and origin", "Extraction solvent, extract ratio and carrier", "Marker compounds and analytical methods", "Destination-market documentation and label information"]],
+    custom: ["Custom Ingredient Sourcing", "Focused supplier sourcing and purchasing coordination for specified ingredients or special requirements.", ["Ingredient name, CAS / INCI / botanical Latin name", "Target specification, test standard and sample needs", "Estimated volume, packaging and delivery destination", "Destination market, regulatory and document requirements"]]
+  }
+};
+const copy = productDetail ? null : pages[slug as keyof typeof pages]?.[lang];
+const product = detailCopy[lang][productKey];
+const title = productDetail ? product[0] : copy?.title || (en ? "Information" : "信息");
+const intro = productDetail ? product[1] : copy?.intro || "";
 ---
-
-<BaseLayout
-  lang={lang}
-  title={page.title}
-  description={page.intro}
->
-  <section class="page-hero">
-    <div class="container">
-      <p class="eyebrow">
-        {zh ? "企业官网 / 业务中心" : "COMPANY / BUSINESS"}
-      </p>
-
-      <h1>{page.title}</h1>
-      <p>{page.intro}</p>
-    </div>
-  </section>
-
-  <div class="container page-content">
-    {page.sections.map((section, index) => (
-      <section class="content-section">
-        <h2>{section.title}</h2>
-
-        <div class="content-grid">
-          {section.items.map((item) => (
-            <div class="content-card">
-              <span class="number">
-                {String(index + 1).padStart(2, "0")}
-              </span>
-              <p>{item}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-    ))}
-
-    <section class="inquiry-box">
-      <h2>
-        {zh ? "有采购或定制需求？" : "Have a Sourcing Requirement?"}
-      </h2>
-
-      <p>
-        {zh
-          ? "欢迎联系我们，获取更多产品与采购信息。"
-          : "Contact our team for product and sourcing information."}
-      </p>
-
-      <a href={`/${lang}/contact/`}>
-        {inquiry} →
-      </a>
-    </section>
-  </div>
+<BaseLayout lang={lang} title={title} description={intro}>
+  <main>
+    <section class="page-hero"><div class="container"><div class="eyebrow">{en ? "CHENGYAN BIO / BUSINESS INFORMATION" : "澄研生物 / 商务信息"}</div><h1>{title}</h1><p>{intro}</p><div class="breadcrumbs"><a href={`/${lang}/`}>{en ? "Home" : "首页"}</a> / {title}</div></div></section>
+    <section class="section"><div class="container content-layout">
+      <article class="content-main">
+        {productDetail ? <><div class="content-callout"><strong>{en ? "Sourcing scope" : "寻源范围"}</strong><p>{product[1]}</p></div><h2>{en ? "Information to confirm" : "建议确认的信息"}</h2><ul class="check-list">{product[2].map(x=><li>{x}</li>)}</ul><h2>{en ? "How to request a quotation" : "如何提交询价"}</h2><p>{en ? "Send us your target specification, estimated volume, destination market and required documents. We will review the brief and confirm whether suitable sourcing options can be explored." : "请提供目标规格、预计数量、目的市场及所需文件。我们将先评估需求信息，再确认是否有合适的供应寻源方向。"}</p></> :
+          copy?.blocks.map((b,i)=><section class="content-block"><span>0{i+1}</span><div><h2>{b[0]}</h2><p>{b[1]}</p></div></section>)}
+      </article>
+      <aside class="content-aside"><div class="aside-card"><div class="eyebrow">{en ? "PROJECT INQUIRY" : "项目询盘"}</div><h3>{en ? "Have a specification in mind?" : "已有目标规格或产品资料？"}</h3><p>{en ? "Share your ingredient, application and purchasing plan. We will follow up with a sourcing review." : "告诉我们目标成分、应用场景和采购计划，我们将进一步沟通寻源方向。"}</p><a class="button" href={`/${lang}/contact/`}>{en ? "Send an Inquiry" : "提交采购需求"} ↗</a></div><div class="aside-links"><a href={`/${lang}/products/`}>{en ? "All Products" : "全部产品"} ↗</a><a href={`/${lang}/quality/`}>{en ? "Quality & Documents" : "质量与文件"} ↗</a></div></aside>
+    </div></section>
+  </main>
 </BaseLayout>
-
-<style>
-  .container {
-    max-width: 1180px;
-    margin: auto;
-    padding: 0 25px;
-  }
-
-  .page-hero {
-    background: #eff6ff;
-    padding: 85px 0;
-  }
-
-  .eyebrow {
-    color: #2563eb;
-    font-weight: 700;
-    font-size: 13px;
-  }
-
-  h1 {
-    font-size: clamp(34px, 5vw, 48px);
-    margin: 18px 0;
-  }
-
-  .page-hero p {
-    color: #64748b;
-    line-height: 1.8;
-  }
-
-  .page-content {
-    padding-top: 45px;
-  }
-
-  .content-section {
-    padding: 35px 0;
-  }
-
-  .content-section h2 {
-    font-size: 25px;
-    margin-bottom: 25px;
-  }
-
-  .content-grid {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 20px;
-  }
-
-  .content-card {
-    padding: 25px;
-    border: 1px solid #e5e7eb;
-    border-radius: 8px;
-    min-height: 110px;
-  }
-
-  .number {
-    color: #2563eb;
-    font-weight: 700;
-  }
-
-  .content-card p {
-    line-height: 1.7;
-  }
-
-  .inquiry-box {
-    margin: 50px 0;
-    padding: 45px 25px;
-    text-align: center;
-    background: #172554;
-    color: white;
-    border-radius: 10px;
-  }
-
-  .inquiry-box a {
-    display: inline-block;
-    margin-top: 15px;
-    padding: 13px 25px;
-    background: #2563eb;
-    color: white;
-    border-radius: 5px;
-    text-decoration: none;
-  }
-
-  @media (max-width: 700px) {
-    .content-grid {
-      grid-template-columns: 1fr;
-    }
-  }
-</style>
