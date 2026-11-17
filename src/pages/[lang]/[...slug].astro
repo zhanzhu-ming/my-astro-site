@@ -1,0 +1,162 @@
+
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { pages, languages } from "../../data/site";
+
+export function getStaticPaths() {
+  return languages.flatMap((lang) =>
+    Object.keys(pages[lang]).map((slug) => ({
+      params: { lang, slug },
+    }))
+  );
+}
+
+const lang = Astro.params.lang as "zh" | "en";
+const slug = Astro.params.slug as keyof typeof pages.zh;
+
+const page = pages[lang][slug];
+
+const zh = lang === "zh";
+const inquiry = zh ? "立即询盘" : "Send Inquiry";
+---
+
+<BaseLayout
+  lang={lang}
+  title={page.title}
+  description={page.intro}
+>
+  <section class="page-hero">
+    <div class="container">
+      <p class="eyebrow">
+        {zh ? "企业官网 / 业务中心" : "COMPANY / BUSINESS"}
+      </p>
+
+      <h1>{page.title}</h1>
+      <p>{page.intro}</p>
+    </div>
+  </section>
+
+  <div class="container page-content">
+    {page.sections.map((section, index) => (
+      <section class="content-section">
+        <h2>{section.title}</h2>
+
+        <div class="content-grid">
+          {section.items.map((item) => (
+            <div class="content-card">
+              <span class="number">
+                {String(index + 1).padStart(2, "0")}
+              </span>
+              <p>{item}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+    ))}
+
+    <section class="inquiry-box">
+      <h2>
+        {zh ? "有采购或定制需求？" : "Have a Sourcing Requirement?"}
+      </h2>
+
+      <p>
+        {zh
+          ? "欢迎联系我们，获取更多产品与采购信息。"
+          : "Contact our team for product and sourcing information."}
+      </p>
+
+      <a href={`/${lang}/contact/`}>
+        {inquiry} →
+      </a>
+    </section>
+  </div>
+</BaseLayout>
+
+<style>
+  .container {
+    max-width: 1180px;
+    margin: auto;
+    padding: 0 25px;
+  }
+
+  .page-hero {
+    background: #eff6ff;
+    padding: 85px 0;
+  }
+
+  .eyebrow {
+    color: #2563eb;
+    font-weight: 700;
+    font-size: 13px;
+  }
+
+  h1 {
+    font-size: clamp(34px, 5vw, 48px);
+    margin: 18px 0;
+  }
+
+  .page-hero p {
+    color: #64748b;
+    line-height: 1.8;
+  }
+
+  .page-content {
+    padding-top: 45px;
+  }
+
+  .content-section {
+    padding: 35px 0;
+  }
+
+  .content-section h2 {
+    font-size: 25px;
+    margin-bottom: 25px;
+  }
+
+  .content-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 20px;
+  }
+
+  .content-card {
+    padding: 25px;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    min-height: 110px;
+  }
+
+  .number {
+    color: #2563eb;
+    font-weight: 700;
+  }
+
+  .content-card p {
+    line-height: 1.7;
+  }
+
+  .inquiry-box {
+    margin: 50px 0;
+    padding: 45px 25px;
+    text-align: center;
+    background: #172554;
+    color: white;
+    border-radius: 10px;
+  }
+
+  .inquiry-box a {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 13px 25px;
+    background: #2563eb;
+    color: white;
+    border-radius: 5px;
+    text-decoration: none;
+  }
+
+  @media (max-width: 700px) {
+    .content-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
