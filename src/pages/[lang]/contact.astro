@@ -26,15 +26,15 @@ const en = lang === "en";
   </main>
   
   <script>
-    import { createClient } from "@supabase/supabase-js";
-
-
 const form = document.querySelector("#inquiryForm");
 const status = document.querySelector("#formStatus");
 const button = form?.querySelector("button[type='submit']");
 
-const url = import.meta.env.PUBLIC_SUPABASE_URL;
-const key = import.meta.env.PUBLIC_SUPABASE_ANON_KEY;
+// 优先读构建期的环境变量；如果部署环境没配置，就用下面这组兜底值（与 .env.example 一致）。
+// anon / publishable key 本来就是公开给浏览器用的，写在前端不算泄密；
+// 但绝不能把 service_role 或 secret key 放到这里。
+const url = import.meta.env.PUBLIC_SUPABASE_URL || "https://juabwnoemnrhansayzpp.supabase.co";
+const key = import.meta.env.PUBLIC_SUPABASE_ANON_KEY || "sb_publishable_iOGjI9dSo6_tSkEguN_QbQ_ts45FGww";
 
 const pageLang = form?.dataset.lang || document.documentElement.lang || "zh";
 const lang = pageLang.toLowerCase().startsWith("en") ? "en" : "zh";
@@ -71,19 +71,20 @@ form?.addEventListener("submit", async (event) => {
   button.textContent = en ? "Submitting…" : "正在提交…";
 
   try {
-    const response = await fetch(
-      `${url.replace(/\/$/, "")}/rest/v1/inquiries`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "apikey": key,
-          "Authorization": `Bearer ${key}`,
-          "Prefer": "return=minimal"
-        },
-        body: JSON.stringify(payload)
-      }
-    );
+    // 旧版 anon key 是 JWT（eyJ 开头），需同时放进 Authorization；
+    // 新版 sb_publishable_ 键只能走 apikey 头，否则网关会返回 Invalid JWT。
+    const headers = {
+      "Content-Type": "application/json",
+      "apikey": key,
+      "Prefer": "return=minimal"
+    };
+    if (key.startsWith("eyJ")) headers.Authorization = `Bearer ${key}`;
+
+    const response = await fetch(`${url.replace(/\/$/, "")}/rest/v1/inquiries`, {
+      method: "POST",
+      headers,
+      body: JSON.stringify(payload)
+    });
 
     if (!response.ok) {
       const errorText = await response.text();
