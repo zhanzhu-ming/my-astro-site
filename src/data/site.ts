@@ -91,6 +91,12 @@ const commonPages = {
       ["供应商资料初审", "根据项目要求收集并核对可获得的企业资料、产品规格、检验文件及相关声明；资料范围以供应商实际提供为准。"],
       ["样品与规格确认", "协调样品、测试反馈、规格偏差和包装要求。样品结果及商业规格应由买卖双方书面确认。"],
       ["报价与订单协调", "在供应可行性确认后沟通价格、贸易术语、付款方式、交期、运输和订单文件。"]
+    ]},
+    en: { title: "Custom Sourcing & Purchasing Coordination", intro: "For B2B purchasing projects with defined ingredient targets, specification requirements or supply-chain development needs.", blocks: [
+      ["Requirement Definition", "Confirm the target ingredient, intended use, destination market, regulatory context, quality indicators, packaging, estimated volume and purchasing timeline."],
+      ["Initial Supplier Review", "Collect and review available company information, product specifications, inspection documents and relevant declarations according to project needs. The scope of information depends on what the supplier can provide."],
+      ["Sample & Specification Confirmation", "Coordinate samples, testing feedback, specification differences and packaging requirements. Sample results and commercial specifications should be confirmed in writing by both parties."],
+      ["Quotation & Order Coordination", "After sourcing feasibility is reviewed, coordinate pricing, trade terms, payment methods, lead time, transportation and order documents."]
     ]}
   },
   industries: {
@@ -99,6 +105,12 @@ const commonPages = {
       ["营养与健康产品", "关注原料身份、食品或膳食补充剂适用性、目标市场要求、污染物及微生物等检测项目。"],
       ["制药与生物医药研发", "如涉及药用或临床相关用途，必须单独确认法规路径、质量体系、生产资质和完整文件要求；不应仅凭普通原料资料判断适用性。"],
       ["科研与实验室", "可沟通小样需求、研究级规格、包装和分析资料。科研用途不代表可直接用于人体或商业产品。"]
+    ]},
+    en: { title: "Application Areas", intro: "We discuss ingredient supply information and purchasing conditions according to each customer's product positioning and destination market.", blocks: [
+      ["Cosmetics & Personal Care", "Review INCI identity, ingredient specifications, formulation compatibility, cosmetics regulations in the target market and supporting supplier documents."],
+      ["Nutrition & Health Products", "Review ingredient identity, suitability for food or dietary supplement applications, destination-market requirements, and testing items such as contaminants and microbiological parameters."],
+      ["Pharmaceutical & Biopharmaceutical R&D", "For pharmaceutical or clinical-related applications, the regulatory pathway, quality system, manufacturing qualifications and full documentation requirements must be assessed separately. Ordinary ingredient documents alone are not sufficient to determine suitability."],
+      ["Research & Laboratories", "We can discuss small-quantity samples, research-grade specifications, packaging and analytical information. Research use does not imply suitability for human use or commercial products."]
     ]}
   },
   quality: {
@@ -107,6 +119,12 @@ const commonPages = {
       ["检测与验收标准", "在报价或下单前确认检测项目、方法、限度、取样方式、复检安排及不合格处理方式。"],
       ["法规与市场适配", "不同国家和用途对原料身份、标签、声明、注册或备案要求不同。客户应与当地法规顾问确认最终用途的合规性。"],
       ["供应链透明度", "可根据项目需求沟通生产商信息、原产地、批次追溯和运输条件；不对未经核实的认证或生产能力作承诺。"]
+    ]},
+    en: { title: "Quality, Documentation & Compliance", intro: "In trading cooperation, quality management starts with clear standards, document verification and traceable batch- and order-related communication records.", blocks: [
+      ["Documents Confirmed per Project", "COA, TDS, SDS, product specifications, certificates of origin and other applicable documents may be requested from suppliers. Availability, version and applicable batch must be confirmed individually."],
+      ["Testing & Acceptance Standards", "Before quotation or order placement, confirm test items, methods, limits, sampling procedures, retesting arrangements and procedures for handling non-conforming products."],
+      ["Regulatory & Market Suitability", "Ingredient identity, labeling, claims, registration and filing requirements vary by country and intended use. Customers should consult local regulatory advisers to confirm compliance for the final application."],
+      ["Supply-Chain Transparency", "Supplier or manufacturer information, origin, batch traceability and transportation conditions can be discussed according to project needs. We do not make claims about unverified certifications or manufacturing capabilities."]
     ]}
   },
   about: {
@@ -114,6 +132,11 @@ const commonPages = {
       ["贸易与寻源定位", "围绕脂质体相关原料、植物提取物及功能性原材料，协助客户整理需求、匹配供应选项并推进商务沟通。"],
       ["以需求为中心", "我们重视规格澄清、样品协调、文件收集、订单跟进和跨境沟通，帮助买卖双方减少信息差。"],
       ["审慎表达承诺", "我们不将贸易服务描述为自有工厂生产或自有研发能力。具体供应商、产地、认证、检测能力和交付条件以核实后的文件为准。"]
+    ]},
+    en: { title: "About Us", intro: "We position ourselves as an ingredient trading and supply-chain coordination partner serving business customers worldwide.", blocks: [
+      ["Trading & Sourcing Focus", "We work with liposomal-related ingredients, botanical extracts and functional raw materials, helping customers clarify requirements, identify potential supply options and move business discussions forward."],
+      ["Requirements-Driven Cooperation", "We value specification clarification, sample coordination, document collection, order follow-up and cross-border communication to help reduce information gaps between buyers and sellers."],
+      ["Careful & Transparent Commitments", "We do not present trading services as in-house manufacturing or proprietary R&D capabilities. Specific suppliers, origins, certifications, testing capabilities and delivery conditions are subject to verification and supporting documents."]
     ]}
   },
   factory: {
@@ -121,6 +144,11 @@ const commonPages = {
       ["供应商匹配", "依据产品身份、规格、应用和目的市场筛选潜在供应来源。"],
       ["订单跟进", "协调样品、包装、批次文件、交期和运输信息，并跟进双方确认事项。"],
       ["交付前确认", "在发货前核对订单规格、标签、包装、文件和运输安排；实际流程依具体供应商和合同执行。"]
+    ]},
+    en: { title: "Supply Chain & Delivery Coordination", intro: "As a trading company, we support purchasing projects through supplier communication and order coordination rather than claiming to operate our own manufacturing facility.", blocks: [
+      ["Supplier Matching", "Identify potential supply sources according to ingredient identity, specifications, application and destination market."],
+      ["Order Follow-up", "Coordinate samples, packaging, batch documents, lead times and shipping information, and follow up on items requiring confirmation by both parties."],
+      ["Pre-delivery Confirmation", "Before shipment, check order specifications, labels, packaging, documents and transportation arrangements. Actual procedures depend on the supplier and contract."]
     ]}
   },
   certifications: {
@@ -128,6 +156,11 @@ const commonPages = {
       ["供应商证书", "如项目要求 ISO、GMP、HACCP、有机或其他认证，应核对证书持有人、认证范围、签发机构和有效期。"],
       ["产品文件", "COA、TDS、SDS 等文件应与具体产品、规格和批次对应。不能将单一供应商或单一产品文件泛化为全站承诺。"],
       ["索取文件", "请在询盘中列明目标市场、用途和所需文件，我们将确认供应商是否能够提供。"]
+    ]},
+    en: { title: "Certifications & Quality Documentation", intro: "Certification and quality-system claims must be supported by verifiable entities, scopes, validity periods and applicable products. Common industry practices are not a substitute for evidence.", blocks: [
+      ["Supplier Certificates", "If a project requires ISO, GMP, HACCP, organic or other certifications, verify the certificate holder, scope, issuing body and validity period."],
+      ["Product Documentation", "COA, TDS, SDS and other documents should correspond to the specific product, specification and batch. A document for one supplier or product must not be presented as a site-wide commitment."],
+      ["Requesting Documents", "Please specify the destination market, intended use and required documents in your inquiry. We will check whether the supplier can provide them."]
     ]}
   },
   cases: {
@@ -135,6 +168,11 @@ const commonPages = {
       ["指定成分寻源", "客户提供成分名称、目标规格和采购量，我们协助沟通供应选项与文件可得性。"],
       ["样品评估协调", "根据客户测试计划协调样品与供应商反馈，记录规格差异和后续要求。"],
       ["长期采购协作", "对重复采购项目，协助建立规格版本、批次文件、交期和订单沟通记录。"]
+    ]},
+    en: { title: "Project Cooperation", intro: "We do not display fictional customer names, project results or purchasing data without customer authorization and supporting evidence suitable for public disclosure.", blocks: [
+      ["Specified Ingredient Sourcing", "The customer provides the ingredient name, target specifications and purchasing volume. We help discuss supply options and document availability."],
+      ["Sample Evaluation Coordination", "Coordinate samples and supplier feedback according to the customer's testing plan, and record specification differences and follow-up requirements."],
+      ["Ongoing Purchasing Cooperation", "For repeat purchasing projects, help maintain records of specification versions, batch documents, lead times and order communications."]
     ]}
   },
   resources: {
@@ -142,6 +180,11 @@ const commonPages = {
       ["建议提供的原料信息", "产品名称、INCI/CAS/植物拉丁名、目标规格、关键成分、检测方法、应用场景和目的市场。"],
       ["建议提供的商务信息", "样品或批量需求、预计年用量、包装要求、交付地点、目标交期和贸易条款偏好。"],
       ["建议提前确认的问题", "原料是否适用于目标用途、所需证书是否覆盖该产品、检测标准是否一致、标签和进口要求由谁负责。"]
+    ]},
+    en: { title: "Purchasing Guide & Resources", intro: "Well-prepared purchasing information can shorten the sourcing cycle and reduce misunderstandings about specifications.", blocks: [
+      ["Recommended Ingredient Information", "Product name, INCI/CAS/botanical Latin name, target specifications, key components, test methods, intended application and destination market."],
+      ["Recommended Commercial Information", "Sample or bulk requirements, estimated annual volume, packaging requirements, delivery destination, target delivery date and preferred trade terms."],
+      ["Questions to Confirm in Advance", "Whether the ingredient is suitable for the intended use, whether required certificates cover the product, whether testing standards are aligned, and who is responsible for labeling and import requirements."]
     ]}
   },
   contact: {
@@ -149,6 +192,11 @@ const commonPages = {
       ["邮箱", "请将下方配置项中的 sales@example.com 替换为企业正式商务邮箱。"],
       ["询盘建议", "如有规格书、COA 样本或目标产品链接，可在后续邮件中补充。"],
       ["隐私提示", "请勿在网站表单中提交配方机密、个人敏感信息或未经授权的第三方资料。"]
+    ]},
+    en: { title: "Contact Us", intro: "Share the product, specification, quantity and destination-market information so we can follow up on your business inquiry.", blocks: [
+      ["Email", "Replace sales@example.com in the relevant site configuration with your company's official business email address."],
+      ["Inquiry Suggestions", "If available, you may provide a specification sheet, sample COA or target product link in a follow-up email."],
+      ["Privacy Notice", "Please do not submit confidential formulas, sensitive personal information or third-party materials that you are not authorized to share through the website form."]
     ]}
   },
   privacy: {
@@ -157,6 +205,12 @@ const commonPages = {
       ["使用目的", "信息仅用于回复业务咨询、评估采购需求和开展必要的商务沟通。"],
       ["保存与共享", "应由网站运营方明确保存期限、访问权限、服务商及跨境传输安排；未完成评估前不要发布为最终法律声明。"],
       ["联系与权利", "请在正式上线前补充企业法定名称、隐私联系邮箱、适用法律及用户行使权利的方式。"]
+    ]},
+    en: { title: "Privacy Policy", intro: "This page is a basic pre-launch template and should be reviewed against actual data-processing practices and applicable laws before the website goes live.", blocks: [
+      ["Information Collected", "The inquiry form may collect your name, company, work email, telephone number, purchasing requirements and message content."],
+      ["Purpose of Use", "Information is used to respond to business inquiries, assess purchasing requirements and conduct necessary business communications."],
+      ["Retention & Sharing", "The website operator should define retention periods, access permissions, service providers and cross-border data-transfer arrangements. Do not publish this as a final legal statement until these matters have been assessed."],
+      ["Contact & User Rights", "Before launch, add the company's legal name, privacy contact email, applicable law and procedures for users to exercise their rights."]
     ]}
   },
   terms: {
@@ -165,6 +219,12 @@ const commonPages = {
       ["法规责任", "买方应确认原料在其目的市场和最终用途下的进口、注册、标签、广告和使用要求。"],
       ["知识产权", "未经许可不得复制网站内容、商标、图片或文件。"],
       ["责任限制", "正式交易权利义务以双方签署的合同及适用法律为准。请在上线前由法律顾问审阅本条款。"]
+    ]},
+    en: { title: "Legal Notice & Terms of Use", intro: "Website information is provided for general B2B business communication and does not guarantee product quality, regulatory suitability or supply capability.", blocks: [
+      ["Product Information", "Product categories and descriptions indicate sourcing areas only. Specific product identity, parameters, prices, inventory and lead times are subject to formal quotations, specification documents and contracts."],
+      ["Regulatory Responsibility", "Buyers are responsible for confirming import, registration, labeling, advertising and use requirements for the ingredient in the destination market and intended application."],
+      ["Intellectual Property", "Website content, trademarks, images and documents may not be reproduced without permission."],
+      ["Limitation of Liability", "Rights and obligations in formal transactions are governed by the contract signed by both parties and applicable law. These terms should be reviewed by legal counsel before launch."]
     ]}
   }
 } as const;
