@@ -1,7 +1,17 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { site, products, industries, processSteps } from "../../data/site";
-export function getStaticPaths() { return [{ params: { lang: "zh" } }, { params: { lang: "en" } }]; }
+export function getStaticPaths() {
+  return [
+    { params: { lang: 'en' } },
+    { params: { lang: 'zh' } },
+    { params: { lang: 'de' } },
+    { params: { lang: 'ja' } },
+    { params: { lang: 'es' } },
+    { params: { lang: 'ru' } },
+    { params: { lang: 'it' } },
+  ];
+}
 const lang = Astro.params.lang as "zh" | "en";
 const t = site[lang];
 const p = products[lang];
