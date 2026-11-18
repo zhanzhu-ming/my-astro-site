@@ -1,3 +1,58 @@
 ---
-return Astro.redirect("/zh/", 302);
+// src/pages/index.astro (直接作为默认的英文首页)
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { site, products, industries, processSteps } from "../data/site";
+
+const lang = "en";
+const t = site[lang];
+const p = products[lang];
+const en = true;
 ---
+<BaseLayout lang={lang} title={t.brand} description={t.homeLead}>
+  <main>
+    <section class="hero">
+      <div class="hero-glow"></div>
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <div class="eyebrow"><i></i>{t.homeEyebrow}</div>
+          <h1>{t.homeTitle}</h1>
+          <p class="hero-lead">{t.homeLead}</p>
+          <div class="hero-actions"><a class="button" href={`/${lang}/contact/`}>{t.homePrimary} <span>↗</span></a><a class="text-link" href={`/${lang}/products/`}>{t.homeSecondary} <span>→</span></a></div>
+          <div class="hero-meta"><span>01 / SOURCING</span><span>02 / DOCUMENTATION</span><span>03 / TRADE SUPPORT</span></div>
+        </div>
+        <div class="hero-visual" aria-label="Abstract ingredient and molecular illustration">
+          <div class="visual-orbit orbit-one"></div><div class="visual-orbit orbit-two"></div><div class="visual-core"><div class="core-inner"><span>INGREDIENT</span><b>SUPPLY</b><small>GLOBAL B2B</small></div></div>
+          <span class="float-chip chip-a">BOTANICAL EXTRACTS</span><span class="float-chip chip-b">LIPID MATERIALS</span><span class="visual-index">CY / 2026</span>
+        </div>
+      </div>
+      <div class="container hero-bottom"><span>{t.trustLine}</span><span>SCROLL TO EXPLORE ↓</span></div>
+    </section>
+    <section class="section">
+      <div class="container">
+        <div class="section-heading"><div><div class="eyebrow">01 / PRODUCT PORTFOLIO</div><h2>{t.sectionProducts}</h2></div><p>{t.sectionProductsLead}</p></div>
+        <div class="product-grid">
+          {p.map((item, i) => <a class="product-card" href={`/products/${item[0] === "liposomal" ? "liposomal-ingredients" : item[0] === "extracts" ? "botanical-extracts" : "custom-sourcing"}/`}><div class="product-number">0{i+1}</div><div class="product-symbol">{["◌","✳","↗"][i]}</div><h3>{item[1]}</h3><p>{item[2]}</p><span class="product-tag">{item[3]}</span><span class="card-arrow">↗</span></a>)}
+        </div>
+      </div>
+    </section>
+    <section class="section section-dark">
+      <div class="container split-section">
+        <div><div class="eyebrow eyebrow-light">02 / OUR APPROACH</div><h2>{t.sectionWhy}</h2><p class="dark-lead">{t.sectionWhyLead}</p><a class="button button-light" href={`/about/`}>About our approach ↗</a></div>
+        <div class="approach-list">
+          {[["01","Requirement-led sourcing","Start with the ingredient identity, use case and target-market requirements."],["02","Document-aware coordination","Request and review supplier documents relevant to the product and batch."],["03","Clear commercial follow-through","Align samples, specifications, quotations and delivery details in writing."]].map((x) => <div class="approach-item"><b>{x[0]}</b><div><h3>{x[1]}</h3><p>{x[2]}</p></div><span>↗</span></div>)}
+        </div>
+      </div>
+    </section>
+    <section class="section">
+      <div class="container"><div class="section-heading"><div><div class="eyebrow">03 / MARKETS</div><h2>{t.sectionIndustries}</h2></div><p>Ingredient requirements differ by application and destination market. We help clarify the sourcing brief before supplier engagement.</p></div>
+        <div class="industry-grid">{industries[lang].map((x,i)=><div class="industry-card"><span>0{i+1}</span><h3>{x[0]}</h3><small>{x[1]}</small></div>)}</div>
+      </div>
+    </section>
+    <section class="section section-soft">
+      <div class="container"><div class="section-heading"><div><div class="eyebrow">04 / PROCESS</div><h2>{t.sectionProcess}</h2></div><p>{t.sectionProcessLead}</p></div>
+        <div class="process-grid">{processSteps[lang].map((x)=><div class="process-step"><span>{x[0]}</span><h3>{x[1]}</h3><p>{x[2]}</p></div>)}</div>
+      </div>
+    </section>
+    <section class="cta-band"><div class="container cta-inner"><div><div class="eyebrow eyebrow-light">LET'S START A CONVERSATION</div><h2>{t.contactTitle}</h2><p>{t.contactLead}</p></div><a class="button button-light" href={`/contact/`}>{t.cta} ↗</a></div></section>
+  </main>
+</BaseLayout>
