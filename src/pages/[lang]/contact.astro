@@ -91,6 +91,14 @@ form?.addEventListener("submit", async (event) => {
       throw new Error(errorText);
     }
 
+    window.dataLayer = window.dataLayer || [];
+
+    window.dataLayer.push({
+      event: "inquiry_submit_success",
+      inquiry_language: lang,
+      inquiry_type: "B2B inquiry"
+    });
+
     status.textContent = en
       ? "Thank you. Your inquiry has been received."
       : "提交成功，感谢您的询盘！我们会尽快与您联系。";
