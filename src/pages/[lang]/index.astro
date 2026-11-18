@@ -12,7 +12,7 @@ export function getStaticPaths() {
     { params: { lang: 'it' } },
   ];
 }
-const lang = Astro.params.lang as "zh" | "en";
+const lang = Astro.params.lang as "zh" | "en" | "de" | "ja" | "es" | "ru" | "it";
 const t = site[lang];
 const p = products[lang];
 const en = lang === "en";
