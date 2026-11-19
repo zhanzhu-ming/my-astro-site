@@ -1,0 +1,154 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import { guides, getGuide, guideCategories } from "../../../data/guides";
+import GuideCard from "../../../components/GuideCard.astro";
+
+export function getStaticPaths() {
+  return guides.map((guide) => ({
+    params: { lang: "zh", slug: guide.slug },
+    props: { slug: guide.slug },
+  }));
+}
+
+const lang = "zh" as const;
+const slug = Astro.params.slug as string;
+const guide = getGuide(slug);
+if (!guide) throw new Error(`Unknown guide: ${slug}`);
+const category = guideCategories[guide.category];
+const canonicalPath = `/zh/resources/${guide.slug}/`;
+const breadcrumbs = [
+  { name: "采购知识", url: "https://sheerherb.cn/zh/resources/" },
+  { name: guide.title, url: `https://sheerherb.cn${canonicalPath}` },
+];
+const relatedGuides = guide.relatedGuides.map((item) => getGuide(item)).filter(Boolean);
+const toc = guide.blocks
+  .map((block, index) => (block.type === "h2" ? { text: block.text, id: `section-${index}` } : null))
+  .filter(Boolean) as { text: string; id: string }[];
+const inquiryHref = `/zh/contact/?interest=${encodeURIComponent(guide.targetKeyword)}&source=${guide.slug}&type=guide`;
+---
+<BaseLayout
+  lang={lang}
+  title={guide.seoTitle}
+  description={guide.description}
+  canonicalPath={canonicalPath}
+  breadcrumbs={breadcrumbs}
+  pageType="article"
+  alternateLanguages={["zh"]}
+  article={{ headline: guide.title, datePublished: guide.published, dateModified: guide.updated, section: category.label }}
+  faq={guide.faq}
+>
+  <main>
+    <section class="page-hero article-hero">
+      <div class="container">
+        <div class="eyebrow">SHEERHERB / {category.short}</div>
+        <h1>{guide.title}</h1>
+        <p>{guide.description}</p>
+        <div class="article-meta">
+          <span>{category.label}</span>
+          <span>更新于 <time datetime={guide.updated}>{guide.updated}</time></span>
+          <span>{guide.readingMinutes} 分钟阅读</span>
+        </div>
+        <div class="breadcrumbs"><a href="/zh/">首页</a> / <a href="/zh/resources/">采购知识</a> / {guide.title}</div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container content-layout">
+        <article class="content-main article-body">
+          <div class="article-takeaways">
+            <strong>本文要点</strong>
+            <ul>{guide.summary.map((item) => <li>{item}</li>)}</ul>
+          </div>
+
+          <nav class="article-toc" aria-label="文章目录">
+            <strong>目录</strong>
+            <ol>{toc.map((item) => <li><a href={`#${item.id}`}>{item.text.replace(/^\d+\.\s*/, "")}</a></li>)}</ol>
+          </nav>
+
+          {guide.blocks.map((block, index) => {
+            if (block.type === "p") return <p>{block.text}</p>;
+            if (block.type === "h2") return <h2 id={`section-${index}`}>{block.text}</h2>;
+            if (block.type === "ul") return <ul class="check-list">{block.items.map((item) => <li>{item}</li>)}</ul>;
+            if (block.type === "table") return (
+              <div class="table-wrap">
+                <table class="data-table">
+                  <thead><tr>{block.head.map((cell) => <th scope="col">{cell}</th>)}</tr></thead>
+                  <tbody>{block.rows.map((row) => <tr>{row.map((cell) => <td>{cell}</td>)}</tr>)}</tbody>
+                </table>
+                {block.caption && <p class="table-caption">{block.caption}</p>}
+              </div>
+            );
+            if (block.type === "note") return (
+              <div class="article-note"><strong>{block.title}</strong><p>{block.text}</p></div>
+            );
+            if (block.type === "links") return (
+              <div class="article-links">
+                <strong>{block.title}</strong>
+                <div class="article-link-grid">
+                  {block.items.map((item) => (
+                    <a href={item.href}>
+                      <span>{item.label}</span>
+                      {item.note && <small>{item.note}</small>}
+                    </a>
+                  ))}
+                </div>
+              </div>
+            );
+            return null;
+          })}
+
+          <section class="article-faq">
+            <h2>常见问题</h2>
+            <div class="faq-list">
+              {guide.faq.map((item, index) => (
+                <details class="faq-item" open={index === 0}>
+                  <summary>{item.q}</summary>
+                  <p>{item.a}</p>
+                </details>
+              ))}
+            </div>
+          </section>
+
+          <div class="content-callout">
+            <strong>需要确认具体原料或规格？</strong>
+            <p>把目标成分、应用、数量、目的市场和需要的文件发给我们，先判断还缺哪些参数，再讨论供应选项。本文是采购沟通参考，不构成法规意见、检测结论或质量承诺。</p>
+            <a class="button" href={inquiryHref}>提交采购需求 ↗</a>
+          </div>
+
+          <section class="article-related">
+            <h2>相关采购页面</h2>
+            <div class="article-link-grid">
+              {guide.related.map((item) => <a href={item.href}><span>{item.label}</span></a>)}
+            </div>
+          </section>
+
+          <section class="article-related">
+            <h2>继续阅读</h2>
+            <div class="guide-grid guide-grid-two">
+              {relatedGuides.map((item) => <GuideCard guide={item!} compact />)}
+            </div>
+          </section>
+        </article>
+
+        <aside class="content-aside">
+          <div class="aside-card">
+            <div class="eyebrow">SOURCING INQUIRY</div>
+            <h3>正在准备这类原料的采购？</h3>
+            <p>提交目标成分、规格、应用和数量，我们会按项目确认可获得的资料与供应选项。</p>
+            <a class="button" href={inquiryHref}>提交采购需求 ↗</a>
+          </div>
+          <div class="aside-links">
+            <a href="/zh/resources/">全部采购指南 ↗</a>
+            <a href="/zh/products/">产品与原料 ↗</a>
+            <a href="/zh/quality/">质量与文件 ↗</a>
+            <a href="/zh/custom-sourcing/">定制寻源 ↗</a>
+          </div>
+          <div class="aside-guides">
+            <strong>相关指南</strong>
+            {relatedGuides.map((item) => <a href={`/zh/resources/${item!.slug}/`}>{item!.title} ↗</a>)}
+          </div>
+        </aside>
+      </div>
+    </section>
+  </main>
+</BaseLayout>

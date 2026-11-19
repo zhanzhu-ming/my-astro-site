@@ -1,0 +1,32 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+<BaseLayout
+  lang="zh"
+  title="页面未找到"
+  description="您访问的页面可能已移动或不存在。可返回 Sheerherb 中文站首页，或查看产品与采购指南。"
+  canonicalPath="/404.html"
+  alternateLanguages={["zh"]}
+  noindex
+>
+  <main>
+    <section class="page-hero">
+      <div class="container">
+        <div class="eyebrow">SHEERHERB / 404</div>
+        <h1>页面未找到</h1>
+        <p>您访问的链接可能已移动、拼写有误或页面已下线。可以返回首页，或直接查看产品与采购指南。</p>
+        <div class="breadcrumbs"><a href="/zh/">首页</a> / 404</div>
+      </div>
+    </section>
+    <section class="section">
+      <div class="container">
+        <div class="article-link-grid">
+          <a href="/zh/"><span>返回中文站首页</span><small>植物提取物、脂质体原料与功能性原料</small></a>
+          <a href="/zh/products/"><span>产品与原料</span><small>按原料类别浏览</small></a>
+          <a href="/zh/resources/"><span>采购知识中心</span><small>规格、COA、供应商评估与寻源</small></a>
+          <a href="/zh/contact/"><span>提交采购需求</span><small>成分、规格、数量与目的市场</small></a>
+        </div>
+      </div>
+    </section>
+  </main>
+</BaseLayout>

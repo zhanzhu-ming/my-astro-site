@@ -3,12 +3,22 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 import { pages, pageSlugs, products as productCategories } from "../../data/site";
 import { getBrandCopy } from "../../data/brand";
 import { getSeo } from "../../data/seo";
+import { getProductDetail } from "../../data/product-details";
+import { qualityContent } from "../../data/quality";
+import ProductDetailBody from "../../components/ProductDetailBody.astro";
+import QualityBody from "../../components/QualityBody.astro";
+import ResourceHub from "../../components/ResourceHub.astro";
 
 const langs = ["zh", "en", "de", "ja", "es", "ru", "it"] as const;
 const featured = ["liposomal-vitamin-c", "urolithin-a", "shilajit-resin", "berberine-hcl"];
 const categorySlugs = ["products/liposomal-ingredients", "products/botanical-extracts", "products/custom-sourcing"];
 
 export function getStaticPaths() {
+  // Astro 会把 getStaticPaths 提升到模块作用域，因此这里必须自包含，
+  // 不能引用 frontmatter 中定义的 langs / featured / categorySlugs。
+  const langs = ["zh", "en", "de", "ja", "es", "ru", "it"] as const;
+  const featured = ["liposomal-vitamin-c", "urolithin-a", "shilajit-resin", "berberine-hcl"];
+  const categorySlugs = ["products/liposomal-ingredients", "products/botanical-extracts", "products/custom-sourcing"];
   const paths = [];
   for (const lang of langs) {
     for (const slug of pageSlugs) paths.push({ params: { lang, slug }, props: { slug } });
@@ -27,40 +37,71 @@ const featuredProduct = productDetail ? c.products.find((item) => item[0] === pr
 const copy = pages[slug as keyof typeof pages]?.[lang] || pages[slug as keyof typeof pages]?.zh;
 const isAbout = slug === "about";
 const isProducts = slug === "products";
-const isTechnology = slug === "custom-sourcing";
 const categoryKey: "liposomal" | "extracts" | "custom" | "" = slug === "products/liposomal-ingredients" ? "liposomal" : slug === "products/botanical-extracts" ? "extracts" : slug === "products/custom-sourcing" ? "custom" : "";
 const categoryData = {
   liposomal: {
-    zh: { title: "脂质体相关原料", intro: "围绕脂质体体系涉及的磷脂、脂质材料及配套原料开展 B2B 采购沟通。具体原料身份、等级、组成、来源和规格均按项目核实。", sections: [["可沟通的原料方向", "包括磷脂、脂质材料及配套原料等方向。请提供目标 INCI、CAS、商品名或现有规格书，便于明确采购对象。"], ["采购规格需要确认的内容", "建议提供原料身份、目标等级、关键指标、检测方法、应用场景、目的市场、包装和预计采购数量。"], ["质量文件与样品", "可根据项目需求沟通 COA、TDS、SDS 等文件的可获得性、适用批次及样品安排；文件状态以供应方实际提供内容为准。"]] },
+    zh: { title: "脂质体相关原料", intro: "本分类聚焦脂质体原料及脂质体原料采购沟通，围绕脂质体体系涉及的磷脂、脂质材料及配套原料开展 B2B 采购沟通。具体原料身份、等级、组成、来源和规格均按项目核实。", sections: [["可沟通的原料方向", "包括磷脂、脂质材料及配套原料等方向。请提供目标 INCI、CAS、商品名或现有规格书，便于明确采购对象。"], ["采购规格需要确认的内容", "建议提供原料身份、目标等级、关键指标、检测方法、应用场景、目的市场、包装和预计采购数量。"], ["质量文件与样品", "可根据项目需求沟通 COA、TDS、SDS 等文件的可获得性、适用批次及样品安排；文件状态以供应方实际提供内容为准。"]] },
     en: { title: "Liposomal-Related Ingredients", intro: "B2B sourcing discussions for phospholipids, lipid materials and supporting ingredients used in liposomal systems. Ingredient identity, grade, composition, origin and specifications are reviewed per project.", sections: [["Ingredient scope", "Share an INCI name, CAS number, trade name or existing specification to clarify the target material."], ["Specification review", "Useful details include identity, grade, key parameters, test methods, application, destination market, packaging and estimated volume."], ["Documents and samples", "COA, TDS, SDS and sample availability can be discussed per project and must be confirmed against supplier records."]] }
   },
   extracts: {
-    zh: { title: "植物提取物与功能性提取物", intro: "面向品牌方、制造商和原料采购团队，围绕植物来源提取物及功能性成分开展供应寻源沟通。具体产品身份和可供规格以供应商资料及项目确认为准。", sections: [["植物来源与提取信息", "建议明确植物中文名、拉丁学名、使用部位、提取溶剂、提取比例及目标标志性成分，避免仅凭俗名判断原料身份。"], ["规格与检测要求", "请提供目标含量、检测方法、关键质量指标、污染物或残留限度要求，以及目的市场适用要求。"], ["文件与采购条件", "可沟通 COA、TDS、SDS、样品、包装、采购数量和交期等事项。具体文件、批次和商务条件需要逐项确认。"]] },
+    zh: { title: "植物提取物与功能性提取物", intro: "本分类面向植物提取物采购与植物提取物供应合作，围绕植物来源提取物及功能性成分开展供应寻源沟通。具体产品身份和可供规格以供应商资料及项目确认为准。", sections: [["植物来源与提取信息", "建议明确植物中文名、拉丁学名、使用部位、提取溶剂、提取比例及目标标志性成分，避免仅凭俗名判断原料身份。"], ["规格与检测要求", "请提供目标含量、检测方法、关键质量指标、污染物或残留限度要求，以及目的市场适用要求。"], ["文件与采购条件", "可沟通 COA、TDS、SDS、样品、包装、采购数量和交期等事项。具体文件、批次和商务条件需要逐项确认。"]] },
     en: { title: "Botanical & Functional Extracts", intro: "B2B sourcing discussions for botanical extracts and functional ingredients. Product identity and available specifications are subject to supplier documentation and project confirmation.", sections: [["Botanical identity and extraction", "Share the botanical name, Latin name, plant part, extraction solvent, extract ratio and target marker compounds."], ["Specifications and testing", "Provide target assay, analytical method, key quality parameters, contaminant or residue limits and destination-market requirements."], ["Documents and purchasing terms", "COA, TDS, SDS, samples, packaging, order volume and lead time can be discussed and confirmed per project."]] }
   },
   custom: {
-    zh: { title: "功能性原料定制寻源", intro: "针对已有明确目标成分、质量规格、采购数量或目的市场的企业项目，开展供应商寻源与采购协作。", sections: [["第一步：明确需求", "提供目标成分、CAS 或 INCI、目标规格、应用场景、采购数量和目的市场。"], ["第二步：评估供应选项", "围绕供应来源、规格匹配、资料可得性和项目条件进行初步沟通，不对未经核实的库存或供货能力作承诺。"], ["第三步：样品与商务确认", "根据可行性协调样品、检测反馈、报价、包装、交期及贸易条款，最终以双方书面确认为准。"]] },
+    zh: { title: "功能性原料定制寻源", intro: "针对已有明确目标成分、质量规格、采购数量或目的市场的企业项目，开展功能性原料定制寻源与原料定制采购协作。", sections: [["第一步：明确需求", "提供目标成分、CAS 或 INCI、目标规格、应用场景、采购数量和目的市场。"], ["第二步：评估供应选项", "围绕供应来源、规格匹配、资料可得性和项目条件进行初步沟通，不对未经核实的库存或供货能力作承诺。"], ["第三步：样品与商务确认", "根据可行性协调样品、检测反馈、报价、包装、交期及贸易条款，最终以双方书面确认为准。"]] },
     en: { title: "Custom Functional Ingredient Sourcing", intro: "Supplier sourcing and purchasing coordination for B2B projects with defined ingredient targets, quality specifications, volumes or destination markets.", sections: [["Step 1: Define requirements", "Share the ingredient name, CAS or INCI, target specification, application, estimated volume and destination market."], ["Step 2: Review sourcing options", "Discuss source options, specification fit and document availability without assuming unverified inventory or supply capacity."], ["Step 3: Samples and commercial review", "Where feasible, coordinate samples, testing feedback, quotation, packaging, lead time and trade terms for written confirmation."]] }
   }
 };
 const category = categoryKey ? (categoryData[categoryKey]?.[lang === "zh" ? "zh" : "en"] || categoryData[categoryKey].en) : null;
-const title = category?.title || (featuredProduct ? featuredProduct[1] : isAbout ? c.aboutTitle : isTechnology ? c.technologyTitle : isProducts ? c.productsTitle : copy?.title || "Sheerherb");
-const intro = category?.intro || (featuredProduct ? featuredProduct[3] : isAbout ? c.aboutLead : isTechnology ? c.technologyLead : isProducts ? c.productsLead : copy?.intro || "");
-const blocks = isAbout ? c.aboutBlocks : isTechnology ? c.technology : copy?.blocks || [];
+const title = category?.title || (featuredProduct ? featuredProduct[1] : isAbout ? c.aboutTitle : isProducts ? c.productsTitle : copy?.title || "Sheerherb");
+const intro = category?.intro || (featuredProduct ? featuredProduct[3] : isAbout ? c.aboutLead : isProducts ? c.productsLead : copy?.intro || "");
+const blocks = isAbout ? c.aboutBlocks : copy?.blocks || [];
 const seoKey = slug;
-const seo = getSeo(lang, seoKey, title, intro);
+// 非中文页面的分类/产品标题在数据层可能共用英文名称，
+// 用本地化后缀区分 Title，避免不同语言页面出现完全相同的标题。
+const productTitleSuffix: Record<string, string> = {
+  en: "Ingredient Sourcing",
+  de: "Rohstoffbeschaffung",
+  ja: "原料調達",
+  es: "Abastecimiento de ingredientes",
+  ru: "Поставки ингредиентов",
+  it: "Approvvigionamento ingredienti",
+};
+const categoryTitleSuffix: Record<string, string> = {
+  en: "Ingredient Category",
+  de: "Rohstoffkategorie",
+  ja: "原料カテゴリ",
+  es: "Categoría de ingredientes",
+  ru: "Категория сырья",
+  it: "Categoria di ingredienti",
+};
+const seoFallbackTitle = lang !== "zh"
+  ? category
+    ? `${title} — ${categoryTitleSuffix[lang] || "Ingredients"}`
+    : featuredProduct
+      ? `${title} — ${productTitleSuffix[lang] || "Sourcing"}`
+      : title
+  : title;
+const seo = getSeo(lang, seoKey, seoFallbackTitle, intro);
 const canonicalPath = `/${lang}/${slug}/`;
-const breadcrumbs = [{ name: title, url: `https://sheerherb.cn${canonicalPath}` }];
+const zhProductDetail = featuredProduct && lang === "zh" ? getProductDetail(productSlug) : null;
+const isQualityZh = slug === "quality" && lang === "zh";
+const isResourcesZh = slug === "resources" && lang === "zh";
+const faq = zhProductDetail ? zhProductDetail.faq : isQualityZh ? qualityContent.faq : [];
+const breadcrumbItems = slug.startsWith("products/")
+  ? [{ name: lang === "zh" ? "产品与原料" : "Products", url: `https://sheerherb.cn/${lang}/products/` }, { name: title, url: `https://sheerherb.cn${canonicalPath}` }]
+  : [{ name: title, url: `https://sheerherb.cn${canonicalPath}` }];
+const sectionLabel = category ? "PRODUCT CATEGORY" : featuredProduct ? "PRODUCT INFORMATION" : isProducts ? "PRODUCTS" : isAbout ? "COMPANY" : slug === "quality" || slug === "certifications" ? "QUALITY" : slug === "resources" ? "KNOWLEDGE" : slug === "custom-sourcing" ? "SOURCING" : "INFORMATION";
 const categoryCards = productCategories[lang] || productCategories.en;
 ---
-<BaseLayout lang={lang} title={seo.title} description={seo.description} canonicalPath={canonicalPath} breadcrumbs={breadcrumbs} pageType={featuredProduct ? "product" : "website"} productName={featuredProduct ? featuredProduct[1] : ""}>
+<BaseLayout lang={lang} title={seo.title} description={seo.description} canonicalPath={canonicalPath} breadcrumbs={breadcrumbItems} pageType={featuredProduct ? "product" : "website"} productName={featuredProduct ? featuredProduct[1] : ""} productSlug={productSlug} faq={faq}>
   <main>
-    <section class="page-hero"><div class="container"><div class="eyebrow">SHEERHERB / {category ? "PRODUCT CATEGORY" : featuredProduct ? "PRODUCT INFORMATION" : isTechnology ? "SOURCING" : isAbout ? "COMPANY" : "INFORMATION"}</div><h1>{title}</h1><p>{intro}</p><div class="breadcrumbs"><a href={`/${lang}/`}>{lang === "zh" ? "首页" : "Home"}</a> / <a href={`/${lang}/products/`}>{lang === "zh" ? "产品与原料" : "Products"}</a> / {title}</div></div></section>
+    <section class="page-hero"><div class="container"><div class="eyebrow">SHEERHERB / {sectionLabel}</div><h1>{title}</h1><p>{intro}</p><div class="breadcrumbs"><a href={`/${lang}/`}>{lang === "zh" ? "首页" : "Home"}</a> / {slug.startsWith("products/") && <><a href={`/${lang}/products/`}>{lang === "zh" ? "产品与原料" : "Products"}</a> / </>}{title}</div></div></section>
     <section class="section"><div class="container content-layout">
       <article class="content-main">
         {isProducts ? <>
           <h2>{lang === "zh" ? "按原料方向浏览" : "Browse by Ingredient Category"}</h2>
-          <div class="product-grid product-grid-four">
+          <div class="product-grid">
             {categoryCards.map((item, i) => <a class="product-card featured-product" href={`/${lang}/products/${item[0] === "liposomal" ? "liposomal-ingredients" : item[0] === "extracts" ? "botanical-extracts" : "custom-sourcing"}/`}>
               <div class="product-number">0{i+1}</div><h3>{item[1]}</h3><p>{item[2]}</p><span class="product-tag">{item[3]}</span><span class="card-arrow">↗</span>
             </a>)}
@@ -76,14 +117,16 @@ const categoryCards = productCategories[lang] || productCategories.en;
           <div class="content-callout"><strong>{lang === "zh" ? "提交采购需求时建议提供" : "Information to Include in Your Inquiry"}</strong><p>{lang === "zh" ? "目标原料名称或 CAS / INCI、规格书、应用场景、目的市场、预计采购数量和所需质量文件。信息越明确，越便于开展供应可行性沟通。" : "Ingredient name or CAS / INCI, specification, application, destination market, estimated volume and required quality documents."}</p><a class="button" href={`/${lang}/contact/?interest=${encodeURIComponent(title)}`}>{c.primary} ↗</a></div>
           <h2>{lang === "zh" ? "相关产品方向" : "Related Product Directions"}</h2>
           <ul>{c.products.map((item) => <li><a href={`/${lang}/products/${item[0]}/`}>{item[1]}</a></li>)}</ul>
-        </> : featuredProduct ? <>
-          <div class="content-callout"><strong>{lang === "zh" ? "产品身份与规格" : "Product Identity & Specifications"}</strong><p>{featuredProduct[3]} {lang === "zh" ? "产品含量、纯度、外观、检测方法、来源、包装和起订量请以对应产品的正式规格书及批次资料为准。" : "Assay, purity, appearance, test method, origin, packaging and MOQ must be confirmed against the applicable product specification and batch documents."}</p></div>
-          <section class="content-block"><span>01</span><div><h2>{lang === "zh" ? "规格与质量要求" : "Specifications & Quality Requirements"}</h2><p>{lang === "zh" ? "请在询盘中说明目标含量或纯度、检测方法、关键指标、外观要求及目的市场。我们将根据项目沟通可匹配的规格和资料。" : "Include target assay or purity, analytical method, key parameters, appearance requirements and destination market so the specification can be reviewed."}</p></div></section>
-          <section class="content-block"><span>02</span><div><h2>{lang === "zh" ? "质量文件与样品" : "Quality Documents & Samples"}</h2><p>{lang === "zh" ? "可按项目沟通 COA、TDS、SDS 等文件及样品安排。文件是否可提供、对应批次及具体内容需以供应方实际资料为准。" : "COA, TDS, SDS and sample arrangements can be discussed per project and are subject to supplier documentation and batch applicability."}</p></div></section>
-          <section class="content-block"><span>03</span><div><h2>{lang === "zh" ? "包装、采购数量与供货" : "Packaging, Volume & Supply"}</h2><p>{lang === "zh" ? "请提供样品需求、预计采购数量、包装偏好和采购时间。MOQ、交期、库存和运输方式均需在项目沟通后确认。" : "Share sample needs, estimated volume, packaging preference and timeline. MOQ, lead time, stock and shipping arrangements require project confirmation."}</p></div></section>
-          <section class="content-block"><span>04</span><div><h2>{lang === "zh" ? "常见采购问题" : "Purchasing Questions"}</h2><p>{lang === "zh" ? "如何获取报价？请提交目标规格、数量和目的市场。能否提供样品或 COA？请在询盘中注明需求，我们将核实对应产品和批次资料。" : "For a quotation, provide the target specification, volume and destination market. Sample and COA availability must be checked for the relevant product and batch."}</p></div></section>
-          <div class="content-callout"><strong>{lang === "zh" ? `咨询 ${featuredProduct[1]} 采购` : `Discuss ${featuredProduct[1]} Sourcing`}</strong><p>{lang === "zh" ? "提交目标规格、应用、数量和目的市场，便于进一步确认产品资料与供应选项。" : "Share your target specification, application, volume and destination market to review product documentation and sourcing options."}</p><a class="button" href={`/${lang}/contact/?interest=${encodeURIComponent(featuredProduct[1])}`}>{c.primary} ↗</a></div>
-        </> : <>
+        </> : isResourcesZh ? <ResourceHub /> : isQualityZh ? <QualityBody /> : featuredProduct ? (
+          zhProductDetail ? <ProductDetailBody product={featuredProduct} /> : <>
+            <div class="content-callout"><strong>{lang === "zh" ? "产品身份与规格" : "Product Identity & Specifications"}</strong><p>{featuredProduct[3]} {lang === "zh" ? "产品含量、纯度、外观、检测方法、来源、包装和起订量请以对应产品的正式规格书及批次资料为准。" : "Assay, purity, appearance, test method, origin, packaging and MOQ must be confirmed against the applicable product specification and batch documents."}</p></div>
+            <section class="content-block"><span>01</span><div><h2>{lang === "zh" ? "规格与质量要求" : "Specifications & Quality Requirements"}</h2><p>{lang === "zh" ? "请在询盘中说明目标含量或纯度、检测方法、关键指标、外观要求及目的市场。我们将根据项目沟通可匹配的规格和资料。" : "Include target assay or purity, analytical method, key parameters, appearance requirements and destination market so the specification can be reviewed."}</p></div></section>
+            <section class="content-block"><span>02</span><div><h2>{lang === "zh" ? "质量文件与样品" : "Quality Documents & Samples"}</h2><p>{lang === "zh" ? "可按项目沟通 COA、TDS、SDS 等文件及样品安排。文件是否可提供、对应批次及具体内容需以供应方实际资料为准。" : "COA, TDS, SDS and sample arrangements can be discussed per project and are subject to supplier documentation and batch applicability."}</p></div></section>
+            <section class="content-block"><span>03</span><div><h2>{lang === "zh" ? "包装、采购数量与供货" : "Packaging, Volume & Supply"}</h2><p>{lang === "zh" ? "请提供样品需求、预计采购数量、包装偏好和采购时间。MOQ、交期、库存和运输方式均需在项目沟通后确认。" : "Share sample needs, estimated volume, packaging preference and timeline. MOQ, lead time, stock and shipping arrangements require project confirmation."}</p></div></section>
+            <section class="content-block"><span>04</span><div><h2>{lang === "zh" ? "常见采购问题" : "Purchasing Questions"}</h2><p>{lang === "zh" ? "如何获取报价？请提交目标规格、数量和目的市场。能否提供样品或 COA？请在询盘中注明需求，我们将核实对应产品和批次资料。" : "For a quotation, provide the target specification, volume and destination market. Sample and COA availability must be checked for the relevant product and batch."}</p></div></section>
+            <div class="content-callout"><strong>{lang === "zh" ? `咨询 ${featuredProduct[1]} 采购` : `Discuss ${featuredProduct[1]} Sourcing`}</strong><p>{lang === "zh" ? "提交目标规格、应用、数量和目的市场，便于进一步确认产品资料与供应选项。" : "Share your target specification, application, volume and destination market to review product documentation and sourcing options."}</p><a class="button" href={`/${lang}/contact/?interest=${encodeURIComponent(featuredProduct[1])}`}>{c.primary} ↗</a></div>
+          </>
+        ) : <>
           {blocks.map((b,i)=><section class="content-block"><span>0{i+1}</span><div><h2>{b[0]}</h2><p>{b[1]}</p></div></section>)}
           {slug === "quality" && <div class="content-callout"><strong>{lang === "zh" ? "文件核验提示" : "Document Review"}</strong><p>{lang === "zh" ? "COA 应对应具体产品和批次；TDS 用于了解产品技术参数；SDS 用于了解安全与操作信息。证书和检测报告应核对出具主体、适用范围、有效期及产品对应关系。" : "Check the product and batch on a COA, technical details on a TDS, and safety information on an SDS. Verify issuer, scope, validity and product applicability for certificates and reports."}</p></div>}
         </>}

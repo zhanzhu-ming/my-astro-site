@@ -1,1 +1,11 @@
-/ /zh/ 301
+# Cloudflare Pages redirects
+# 统一首页与语言入口，避免重复 URL 分散权重。
+/            /zh/  301
+/index.html  /zh/  301
+/zh          /zh/  301
+/en          /en/  301
+/de          /de/  301
+/ja          /ja/  301
+/es          /es/  301
+/ru          /ru/  301
+/it          /it/  301

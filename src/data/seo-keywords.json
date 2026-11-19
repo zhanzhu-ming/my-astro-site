@@ -262,7 +262,7 @@
         "询盘 CTA"
       ],
       "notes": "避免与 /zh/products/custom-sourcing/ 使用完全相同的页面标题和主关键词。",
-      "titleFocus": "功能性原料定制寻源与采购协作",
+      "titleFocus": "原料供应商寻源服务与采购协作",
       "h1Focus": "定制寻源与采购协作"
     },
     {
@@ -345,11 +345,12 @@
       "priority": "P1",
       "primaryKeywords": [
         "植物提取物采购询价",
-        "功能性原料供应联系"
+        "功能性原料供应咨询"
       ],
       "secondaryKeywords": [
         "原料供应商联系方式",
-        "原料采购需求提交"
+        "原料采购需求提交",
+        "功能性原料供应咨询"
       ],
       "contentChecklist": [
         "表单字段清晰",
@@ -451,6 +452,136 @@
       "notes": "适合后续扩展成独立的采购知识文章。",
       "titleFocus": "植物提取物采购指南与原料资源",
       "h1Focus": "采购指南与资源"
+    },
+    {
+      "path": "/zh/resources/botanical-extract-purchasing-parameters/",
+      "pageName": "植物提取物采购参数指南",
+      "pageType": "采购指南",
+      "searchIntent": "准备植物提取物询价，需要知道应提供和核对哪些参数",
+      "priority": "P1",
+      "primaryKeywords": ["植物提取物采购需要确认哪些参数"],
+      "secondaryKeywords": ["植物提取物采购", "植物提取物供应商", "植物提取物规格", "植物提取物检测方法"],
+      "contentChecklist": ["原料身份", "标志性成分与检测方法", "质量与安全指标", "文件与商务条件", "询价清单", "内链与询盘入口"],
+      "notes": "长尾文章，承接植物提取物采购参数类搜索，并与分类页、COA 文章和联系页互链。",
+      "titleFocus": "植物提取物采购需要确认哪些参数？",
+      "h1Focus": "植物提取物采购需要确认哪些参数？"
+    },
+    {
+      "path": "/zh/resources/how-to-read-botanical-extract-coa/",
+      "pageName": "植物提取物 COA 阅读指南",
+      "pageType": "采购指南",
+      "searchIntent": "收到供应商 COA，需要判断文件能否用于批次验收",
+      "priority": "P1",
+      "primaryKeywords": ["植物提取物 COA"],
+      "secondaryKeywords": ["原料COA", "COA怎么看", "批次检测报告"],
+      "contentChecklist": ["报告与批次对应", "检测项目覆盖", "方法与限度", "未检出与符合的边界", "文件归档", "COA 核对表"],
+      "notes": "与质量页、COA/TDS/SDS 区别文章和植物提取物分类页互链。",
+      "titleFocus": "如何阅读植物提取物 COA？",
+      "h1Focus": "如何阅读植物提取物 COA？"
+    },
+    {
+      "path": "/zh/resources/coa-tds-sds-differences/",
+      "pageName": "COA、TDS、SDS 区别",
+      "pageType": "采购指南",
+      "searchIntent": "采购人员需要区分三类原料质量文件及其使用阶段",
+      "priority": "P1",
+      "primaryKeywords": ["原料质量文件"],
+      "secondaryKeywords": ["COA TDS SDS 区别", "原料TDS", "原料SDS"],
+      "contentChecklist": ["三类文件对比表", "批次与产品对应", "SDS 不能替代 COA", "采购阶段组合使用", "版本与语言"],
+      "notes": "承接质量文件类搜索，链接质量页、COA 阅读和规格确认文章。",
+      "titleFocus": "COA、TDS 和 SDS 有什么区别？",
+      "h1Focus": "COA、TDS 和 SDS 有什么区别？"
+    },
+    {
+      "path": "/zh/resources/what-is-standardized-botanical-extract/",
+      "pageName": "植物提取物标准化解释",
+      "pageType": "采购指南",
+      "searchIntent": "理解标准化、提取比例与标志性成分的实际含义",
+      "priority": "P2",
+      "primaryKeywords": ["标准化植物提取物"],
+      "secondaryKeywords": ["植物提取物提取比例", "植物提取物标准化", "标志性成分"],
+      "contentChecklist": ["标准化方式", "提取比例不等于含量", "标准化不等于纯度", "批次一致性", "采购确认清单"],
+      "notes": "解释型长尾内容，链接植物提取物分类和采购参数文章。",
+      "titleFocus": "植物提取物标准化是什么意思？",
+      "h1Focus": "植物提取物标准化是什么意思？"
+    },
+    {
+      "path": "/zh/resources/liposomal-ingredient-purchasing-parameters/",
+      "pageName": "脂质体原料采购指标指南",
+      "pageType": "采购指南",
+      "searchIntent": "准备脂质体原料询价，需要知道技术指标与检测方法",
+      "priority": "P1",
+      "primaryKeywords": ["脂质体原料采购需要关注哪些指标"],
+      "secondaryKeywords": ["脂质体原料采购", "脂质体原料", "脂质体维生素C原料", "包封率", "粒径分布"],
+      "contentChecklist": ["采购对象定义", "活性物含量与包封率", "粒径与 Zeta 电位", "分散性与水分", "安全与残留", "应用匹配"],
+      "notes": "与脂质体分类页、脂质体维生素 C 产品页和质量页互链。",
+      "titleFocus": "脂质体原料采购需要关注哪些指标？",
+      "h1Focus": "脂质体原料采购需要关注哪些指标？"
+    },
+    {
+      "path": "/zh/resources/how-to-evaluate-functional-ingredient-suppliers/",
+      "pageName": "功能性原料供应商评估指南",
+      "pageType": "采购指南",
+      "searchIntent": "筛选或复核功能性原料供应商，需要评估清单",
+      "priority": "P1",
+      "primaryKeywords": ["评估功能性原料供应商"],
+      "secondaryKeywords": ["功能性原料供应商", "原料供应商审核", "供应商评估", "原料供应商资质核验"],
+      "contentChecklist": ["主体与范围", "产品文件", "批次一致性", "样品与响应", "商务透明度", "风险信号", "评估记录"],
+      "notes": "与定制寻源服务、质量页和样品测试文章互链。",
+      "titleFocus": "如何评估功能性原料供应商？",
+      "h1Focus": "如何评估功能性原料供应商？"
+    },
+    {
+      "path": "/zh/resources/ingredient-sample-testing-preparation/",
+      "pageName": "原料样品测试准备指南",
+      "pageType": "采购指南",
+      "searchIntent": "准备索取原料样品并安排内部测试",
+      "priority": "P2",
+      "primaryKeywords": ["原料样品采购"],
+      "secondaryKeywords": ["原料样品测试", "样品评估", "原料留样"],
+      "contentChecklist": ["测试目的", "样品与批次信息", "测试方案与对照", "样品量与留样", "记录与结论", "样品到大货"],
+      "notes": "与产品目录、规格确认和质量页互链，承接样品类长尾搜索。",
+      "titleFocus": "原料样品测试前应该准备什么？",
+      "h1Focus": "原料样品测试前应该准备什么？"
+    },
+    {
+      "path": "/zh/resources/how-to-define-ingredient-purchasing-specification/",
+      "pageName": "原料采购规格制定指南",
+      "pageType": "采购指南",
+      "searchIntent": "制定可执行的原料采购规格与验收标准",
+      "priority": "P1",
+      "primaryKeywords": ["如何确定原料采购规格"],
+      "secondaryKeywords": ["原料规格确认", "原料采购规格", "规格书", "验收标准"],
+      "contentChecklist": ["从应用倒推", "规格书字段", "关键指标与参考指标", "与供应商规格对齐", "版本管理"],
+      "notes": "与定制寻源、植物提取物参数和 COA 文章互链。",
+      "titleFocus": "如何确定原料采购规格？",
+      "h1Focus": "如何确定原料采购规格？"
+    },
+    {
+      "path": "/zh/resources/ingredient-moq-packaging-lead-time/",
+      "pageName": "原料 MOQ、包装与交期指南",
+      "pageType": "采购指南",
+      "searchIntent": "确认起订量、包装和交付条件，准备下单",
+      "priority": "P2",
+      "primaryKeywords": ["原料 MOQ"],
+      "secondaryKeywords": ["原料采购", "原料包装", "原料交期", "采购条件"],
+      "contentChecklist": ["MOQ 构成", "包装与标签", "交期计算", "贸易条款", "询价问题清单"],
+      "notes": "承接采购条件类长尾搜索，链接联系页和定制寻源。",
+      "titleFocus": "原料 MOQ、包装和交期应该如何确认？",
+      "h1Focus": "原料 MOQ、包装和交期应该如何确认？"
+    },
+    {
+      "path": "/zh/resources/how-to-run-custom-ingredient-sourcing/",
+      "pageName": "定制原料寻源流程指南",
+      "pageType": "采购指南",
+      "searchIntent": "已有明确成分或规格，需要系统化开展供应商寻源",
+      "priority": "P1",
+      "primaryKeywords": ["定制原料寻源"],
+      "secondaryKeywords": ["功能性原料寻源", "原料供应商寻源服务", "原料定制采购"],
+      "contentChecklist": ["需求包", "供应来源初筛", "样品与文件", "商务条件", "订单复盘", "失败原因"],
+      "notes": "与定制寻源服务页、分类页和供应商评估文章互链。",
+      "titleFocus": "如何进行定制原料寻源？",
+      "h1Focus": "如何进行定制原料寻源？"
     },
     {
       "path": "/zh/privacy/",

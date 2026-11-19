@@ -7,6 +7,7 @@ export const site = {
       ["custom-sourcing", "定制寻源"],
       ["industries", "应用领域"],
       ["quality", "质量与文件"],
+      ["resources", "采购知识"],
       ["about", "关于我们"],
       ["contact", "联系我们"],
     ],
@@ -36,6 +37,7 @@ export const site = {
       ["custom-sourcing", "Custom Sourcing"],
       ["industries", "Industries"],
       ["quality", "Quality & Documents"],
+      ["resources", "Resources"],
       ["about", "About"],
       ["contact", "Contact"],
     ],
@@ -65,6 +67,7 @@ export const site = {
       ["custom-sourcing", "Individuelle Beschaffung"],
       ["industries", "Branchen"],
       ["quality", "Qualität & Dokumente"],
+      ["resources", "Ressourcen"],
       ["about", "Über uns"],
       ["contact", "Kontakt"],
     ],
@@ -94,6 +97,7 @@ export const site = {
       ["custom-sourcing", "カスタム調達"],
       ["industries", "応用分野"],
       ["quality", "品質と文書"],
+      ["resources", "購買ガイド"],
       ["about", "企業情報"],
       ["contact", "お問い合わせ"],
     ],
@@ -123,6 +127,7 @@ export const site = {
       ["custom-sourcing", "Abastecimiento a Medida"],
       ["industries", "Industrias"],
       ["quality", "Calidad y Documentos"],
+      ["resources", "Recursos"],
       ["about", "Acerca de"],
       ["contact", "Contacto"],
     ],
@@ -152,6 +157,7 @@ export const site = {
       ["custom-sourcing", "Под заказ"],
       ["industries", "Отрасли"],
       ["quality", "Качество и документы"],
+      ["resources", "Ресурсы"],
       ["about", "О нас"],
       ["contact", "Контакты"],
     ],
@@ -181,6 +187,7 @@ export const site = {
       ["custom-sourcing", "Approvvigionamento Personalizzato"],
       ["industries", "Settori"],
       ["quality", "Qualità e Documenti"],
+      ["resources", "Risorse"],
       ["about", "Chi Siamo"],
       ["contact", "Contatti"],
     ],
@@ -231,13 +238,11 @@ const productCards = {
     ["extracts", "Extractos Botánicos y Funcionales", "Discusiones para extractos botánicos e ingredientes funcionales, incluyendo origen y requisitos de prueba.", "Extractos botánicos / Activos"],
     ["custom", "Abastecimiento Personalizado", "Búsqueda de proveedores y coordinación comercial basada en ingredientes objetivo y mercados de destino.", "Especificaciones personalizadas / Muestras / Granel"],
   ],
-  ru: {
-    de: [
-      ["liposomal", "Липосомальные ингредиенты", "Обсуждение поставок фосфолипидов и липидных материалов для липосомальных систем. Состав и спецификации подтверждаются для каждого проекта.", "Фосфолипиды / Липидные системы / Вспомогательные вещества"],
-      ["extracts", "Ботанические и функциональные экстракты", "Обсуждение поставок растительных экстрактов, включая происхождение, коэффициент экстракции и требования к испытаниям.", "Растительные экстракты / Активные вещества"],
-      ["custom", "Индивидуальный подбор сырья", "Поиск поставщиков и коммерческая координация на основе целевых ингредиентов, рынков сбыта и объемов закупок.", "Спецификации под заказ / Образцы / Опт"],
-    ]
-  }.de,
+  ru: [
+    ["liposomal", "Липосомальные ингредиенты", "Обсуждение поставок фосфолипидов и липидных материалов для липосомальных систем. Состав и спецификации подтверждаются для каждого проекта.", "Фосфолипиды / Липидные системы / Вспомогательные вещества"],
+    ["extracts", "Ботанические и функциональные экстракты", "Обсуждение поставок растительных экстрактов, включая происхождение, коэффициент экстракции и требования к испытаниям.", "Растительные экстракты / Активные вещества"],
+    ["custom", "Индивидуальный подбор сырья", "Поиск поставщиков и коммерческая координация на основе целевых ингредиентов, рынков сбыта и объемов закупок.", "Спецификации под заказ / Образцы / Опт"],
+  ],
   it: [
     ["liposomal", "Ingredienti Liposomali", "Discussioni di approvvigionamento per fosfolipidi e materiali lipidici utilizzati nei sistemi liposomali.", "Fosfolipidi / Sistemi lipidici / Eccipienti"],
     ["extracts", "Estratti Botanici e Funzionali", "Discussioni di approvvigionamento per estratti botanici e ingredienti funzionali, inclusi origine e requisiti di test.", "Estratti botanici / Principi attivi"],
@@ -248,7 +253,7 @@ const productCards = {
 // 基础页面通用翻译映射
 const commonPages = {
   products: {
-    zh: { title: "产品与原料", intro: "以采购需求为起点，逐项确认成分身份、规格、来源、应用和文件要求。", blocks: [["脂质体相关原料", "可围绕磷脂、脂质材料及相关辅料开展寻源沟通。"], ["植物与功能性提取物", "可根据植物来源、提取部位、溶剂等筛选供应选项。"], ["其他功能性原材料", "如您已有明确的 INCI、CAS 或规格书，可提交资料。"]] },
+    zh: { title: "产品与原料", intro: "本页是植物提取物和脂质体原料的产品目录，并按功能性原料目录整理可沟通的原料方向。请以采购需求为起点，逐项确认成分身份、规格、来源、应用和文件要求。", blocks: [["脂质体相关原料", "可围绕磷脂、脂质材料及相关辅料开展寻源沟通。"], ["植物与功能性提取物", "可根据植物来源、提取部位、溶剂等筛选供应选项。"], ["其他功能性原材料", "如您已有明确的 INCI、CAS 或规格书，可提交资料。"]] },
     en: { title: "Products & Ingredients", intro: "We start with your purchasing requirements and clarify ingredient identity, specifications, origin, application and documentation item by item.", blocks: [["Liposomal-Related Ingredients", "We can discuss sourcing phospholipids and lipid materials."], ["Botanical & Functional Extracts", "Options can be screened according to botanical source and extraction method."], ["Other Functional Raw Materials", "If you have an INCI name or CAS number, share it for focused sourcing."]] },
     de: { title: "Produkte & Inhaltsstoffe", intro: "Wir beginnen mit Ihren Einkaufsanforderungen und klären Identität, Spezifikationen und Dokumentation.", blocks: [["Liposomale Inhaltsstoffe", "Wir besprechen die Beschaffung von Phospholipiden und Lipidmaterialien."], ["Botanische & Funktionelle Extrakte", "Optionen können nach Pflanzenquelle und Extraktionsmethode gefiltert werden."], ["Andere funktionelle Rohstoffe", "Teilen Sie uns INCI-Namen oder CAS-Nummern für die gezielte Beschaffung mit."]] },
     ja: { title: "製品と原料", intro: "お客様の購買要件を起点とし、成分の身元、仕様、原産地、用途、および文書要件を1つずつ明確にします。", blocks: [["リポソーム関連原料", "リン脂質や脂質材料の調達について協議できます。"], ["植物および機能性抽出物", "植物の出所や抽出方法に基づいてオプションを絞り込むことができます。"], ["その他の機能性原料", "INCI名やCAS番号をお持ちの場合は、ターゲットを絞った調達のために共有してください。"]] },
@@ -257,7 +262,7 @@ const commonPages = {
     it: { title: "Prodotti e Ingredienti", intro: "Iniziamo con i vostri requisiti d'acquisto per chiarire identità, specifiche e documentazione.", blocks: [["Ingredienti Liposomali", "Possiamo discutere l'approvvigionamento di fosfolipidi."], ["Estratti Botanici e Funzionali", "Le opzioni possono essere filtrate in base alla fonte botanica."], ["Altre Materie Prime Funzionali", "Se disponete di un nome INCI o numero CAS, condividetelo."]] }
   },
   "custom-sourcing": {
-    zh: { title: "定制寻源与采购协作", intro: "适用于已有明确原料目标、规格要求或供应链开发任务的企业采购项目。", blocks: [["需求定义", "确认目标成分、用途、目标市场等。"], ["供应商资料初审", "收集并核对可获得的企业资料与文件。"], ["样品与规格确认", "协调样品与测试反馈。"], ["报价与订单协调", "在供应可行性确认后沟通价格与条款。"]] },
+    zh: { title: "定制寻源与采购协作", intro: "面向已有明确原料目标、规格要求或供应链开发任务的企业采购项目，提供功能性原料寻源与原料供应商寻源服务，并围绕原料定制采购开展商务协作。", blocks: [["需求定义", "确认目标成分、用途、目标市场等，形成可用于寻源的原料需求包。"], ["供应商资料初审", "收集并核对可获得的企业资料、质量文件与资质范围。"], ["样品与规格确认", "协调样品、测试反馈和规格书对齐，确认原料定制采购的技术条件。"], ["报价与订单协调", "在供应可行性确认后沟通价格、包装、交期与贸易条款。"]] },
     en: { title: "Custom Sourcing & Purchasing Coordination", intro: "For B2B purchasing projects with defined ingredient targets or supply-chain development needs.", blocks: [["Requirement Definition", "Confirm the target ingredient and use case."], ["Initial Supplier Review", "Collect and review available company information and documents."], ["Sample & Specification Confirmation", "Coordinate samples and testing feedback."], ["Quotation & Order Coordination", "Coordinate pricing and trade terms after feasibility review."]] },
     de: { title: "Individuelle Beschaffung", intro: "Für B2B-Einkaufsprojekte mit definierten Zielen und Lieferkettenanforderungen.", blocks: [["Anforderungsdefinition", "Zielzutat und Verwendungszweck bestätigen."], ["Erste Lieferantenprüfung", "Verfügbare Firmeninformationen und Dokumente prüfen."], ["Muster- & Spezifikationsbestätigung", "Muster und Testfeedback koordinieren."], ["Angebot & Bestellkoordinierung", "Preise und Handelskonditionen abstimmen."]] },
     ja: { title: "カスタム調達と購買協調", intro: "明確な原料ターゲットやサプライチェーン開発ニーズを持つB2B購買プロジェクト向けです。", blocks: [["要件の定義", "目標成分、用途、市場を確認します。"], ["サプライヤー初期審査", "入手可能な企業情報と文書を収集・確認します。"], ["サンプルと仕様の確認", "サンプルとテストフィードバックを調整します。"], ["見積もりと注文の調整", "供給の実現可能性を確認した後、価格や取引条件を調整します。"]] },
@@ -266,7 +271,7 @@ const commonPages = {
     it: { title: "Approvvigionamento Personalizzato", intro: "Per progetti di acquisto B2B con obiettivi definiti.", blocks: [["Definizione dei Requisiti", "Confermare l'ingrediente target."], ["Revisione Iniziale", "Raccogliere e verificare le informazioni."], ["Conferma dei Campioni", "Coordinare campioni e feedback."], ["Coordinamento dell'Ordine", "Coordinare prezzi e termini commerciali."]] }
   },
   industries: {
-    zh: { title: "应用领域", intro: "根据客户产品定位与目的市场，开展原料供应信息和采购条件沟通。", blocks: [["化妆品与个人护理", "关注 INCI 身份、规格与配方兼容性。"], ["营养与健康产品", "关注食品或膳食补充剂适用性及检测项目。"], ["制药与生物医药研发", "必须单独确认法规路径与完整文件要求。"], ["科研与实验室", "可沟通小样需求与研究级规格。"]] },
+    zh: { title: "功能性原料应用领域", intro: "功能性原料应用领域不同，规格、检测和法规要求也不同。本页按应用场景说明采购时需要确认的重点。", blocks: [["化妆品与个人护理", "关注 INCI 身份、规格与配方兼容性。"], ["营养与健康产品", "关注食品或膳食补充剂适用性及检测项目。"], ["制药与生物医药研发", "必须单独确认法规路径与完整文件要求。"], ["科研与实验室", "可沟通小样需求与研究级规格。"]] },
     en: { title: "Application Areas", intro: "We discuss ingredient supply information and purchasing conditions according to each customer's product positioning.", blocks: [["Cosmetics & Personal Care", "Review INCI identity and formulation compatibility."], ["Nutrition & Health Products", "Review suitability for food or supplement applications."], ["Pharmaceutical & Biopharmaceutical R&D", "Regulatory pathways and full documentation must be assessed separately."], ["Research & Laboratories", "We can discuss small-quantity samples and research-grade specs."]] },
     de: { title: "Anwendungsbereiche", intro: "Wir besprechen Rohstoffinformationen je nach Produktpositionierung.", blocks: [["Kosmetik & Körperpflege", "Überprüfung von INCI-Identität und Formulierungskompatibilität."], ["Ernährung & Gesundheit", "Eignung für Lebensmittel oder Nahrungsergänzungsmittel."], ["Pharma & Biotech", "Regulatorische Wege müssen separat bewertet werden."], ["Forschung & Labor", "Kleinmengen und forschungsqualitative Spezifikationen."]] },
     ja: { title: "応用分野", intro: "顧客の製品ポジショニングや向け先市場に応じて、原料供給情報と購買条件について協議します。", blocks: [["化粧品・パーソナルケア", "INCIの身元、原料仕様、処方の適合性を確認します。"], ["栄養・健康製品", "食品やサプリメントへの適合性、微生物等のテスト項目を確認します。"], ["製薬・バイオ医薬品研究開発", "規制のパス、品質システム、完全な文書要件を個別に確認する必要があります。"], ["研究・実験室", "小ロットのサンプル、研究用グレードの仕様、分析データについて協議可能です。"]] },
@@ -275,7 +280,7 @@ const commonPages = {
     it: { title: "Aree di Applicazione", intro: "Discutiamo le informazioni sulla fornitura in base al posizionamento del cliente.", blocks: [["Cosmetica e Cura Personale", "Revisione dell'identità INCI e compatibilità."], ["Nutrizione e Salute", "Idoneità per integratori alimentari."], ["R&D Farmaceutico e Biotecnologico", "I percorsi normativi devono essere valutati separatamente."], ["Ricerca e Laboratori", "Campioni in piccoli quantitativi."]] }
   },
   quality: {
-    zh: { title: "质量、文件与合规沟通", intro: "贸易合作中的质量管理，首先是明确标准、核验文件并保留批次记录。", blocks: [["按项目确认文件", "可向供应商询问 COA、TDS、SDS 等文件。"], ["检测与验收标准", "在报价或下单前确认检测项目与方法。"], ["法规与市场适配", "客户应与当地法规顾问确认最终合规性。"], ["供应链透明度", "可根据项目需求沟通生产商信息与批次追溯。"]] },
+    zh: { title: "质量、文件与合规沟通", intro: "贸易合作中的质量管理，首先是明确标准、核验文件并保留批次记录。本页说明原料COA、TDS、SDS等植物提取物质量文件的使用方式。", blocks: [["按项目确认文件", "可向供应商询问 COA、TDS、SDS 等文件。"], ["检测与验收标准", "在报价或下单前确认检测项目与方法。"], ["法规与市场适配", "客户应与当地法规顾问确认最终合规性。"], ["供应链透明度", "可根据项目需求沟通生产商信息与批次追溯。"]] },
     en: { title: "Quality, Documentation & Compliance", intro: "Quality management starts with clear standards, document verification and traceable records.", blocks: [["Documents Confirmed per Project", "COA, TDS, SDS and other documents may be requested."], ["Testing & Acceptance Standards", "Confirm test items, methods, and limits before quotation."], ["Regulatory & Market Suitability", "Customers should consult local regulatory advisers."], ["Supply-Chain Transparency", "Supplier information and batch traceability can be discussed."]] },
     de: { title: "Qualität & Dokumentation", intro: "Qualitätsmanagement beginnt mit klaren Standards und Dokumentenprüfung.", blocks: [["Projektbezogene Dokumente", "COA, TDS, SDS und andere Dokumente können angefragt werden."], ["Prüf- & Abnahmetests", "Testmethoden und Grenzwerte vor der Bestellung bestätigen."], ["Regulatorische Eignung", "Kunden sollten lokale Berater konsultieren."], ["Lieferkettentransparenz", "Lieferanteninformationen und Rückverfolgbarkeit besprechen."]] },
     ja: { title: "品質・文書・コンプライアンス", intro: "貿易協力における品質管理は、基準の明確化、文書の検証、およびバッチ記録の保持から始まります。", blocks: [["プロジェクトごとに確認される文書", "COA、TDS、SDSなどの文書をサプライヤーに要求できます。"], ["検査および受入基準", "見積もりまたは発注の前に、テスト項目、方法、サンプリング手順を確認します。"], ["規制および市場への適合性", "お客様は現地の規制アドバイザーと最終用途のコンプライアンスを確認する必要があります。"], ["サプライチェーンの透明性", "プロジェクトのニーズに応じて、メーカー情報やバッチトレーサビリティを協議できます。"]] },
@@ -302,7 +307,7 @@ const commonPages = {
     it: { title: "Contatti", intro: "Condividi le informazioni su prodotto, specifiche e quantità.", blocks: [["Email", "Sostituisci l'email con quella aziendale ufficiale."], ["Suggerimenti", "Puoi fornire una scheda tecnica o un COA."], ["Privacy", "Si prega di non inviare formule riservate."]] }
   },
   factory: {
-    zh: { title: "供应链与交付协作", intro: "作为贸易公司，我们通过供应商沟通和订单协调支持采购项目。", blocks: [["供应商匹配", "依据产品身份、规格筛选潜在供应来源。"], ["订单跟进", "协调样品、包装、批次文件与交期。"], ["交付前确认", "在发货前核对订单规格与包装。"]] },
+    zh: { title: "工厂与供应链合作", intro: "本页说明原料供应商审核与生产协作中的核验事项。作为贸易与供应链协作方，我们不将贸易服务描述为自有工厂。", blocks: [["贸易与生产边界", "明确哪些环节由供应方生产、哪些由 Sheerherb 协调，避免把贸易协作误认为自有生产。"], ["原料供应商审核", "根据项目要求核对供应来源、经营范围、质量文件与实际供货主体。"], ["样品与批次文件", "协调样品、COA、TDS、SDS 等资料，并核对批次对应关系。"], ["交付前确认", "在发货前确认规格、包装、标签、批次和运输安排。"]] },
     en: { title: "Supply Chain & Delivery Coordination", intro: "As a trading company, we support purchasing projects through supplier communication.", blocks: [["Supplier Matching", "Identify potential supply sources according to specifications."], ["Order Follow-up", "Coordinate samples, packaging, and lead times."], ["Pre-delivery Confirmation", "Check order specifications and packaging before shipment."]] },
     de: { title: "Lieferketten- & Lieferungskoordination", intro: "Als Handelsunternehmen unterstützen wir Einkaufsprojekte.", blocks: [["Lieferantenauswahl", "Identifizierung potenzieller Quellen."], ["Bestellverfolgung", "Muster, Verpackung und Vorlaufzeiten koordinieren."], ["Vorab-Bestätigung", "Spezifikationen vor dem Versand prüfen."]] },
     ja: { title: "サプライチェーンと納品協調", intro: "貿易会社として、サプライヤーとのコミュニケーションと注文調整を通じて購買プロジェクトをサポートします。", blocks: [["サプライヤーマッチング", "製品の身元や仕様に基づいて潜在的な供給元を特定します。"], ["注文の追跡", "サンプル、パッケージ、バッチ文書、納期を調整します。"], ["出荷前確認", "出荷前に注文仕様、パッケージ、文書を確認します。"]] },
@@ -311,7 +316,7 @@ const commonPages = {
     it: { title: "Catena di Approvvigionamento", intro: "Come società di trading, supportiamo i progetti tramite la comunicazione con i fornitori.", blocks: [["Abbinamento Fornitori", "Identificare fonti potenziali."], ["Follow-up degli Ordini", "Coordinare campioni e tempi."], ["Conferma Pre-consegna", "Controllare le specifiche prima della spedizione."]] }
   },
   certifications: {
-    zh: { title: "认证与质量文件说明", intro: "认证与体系声明必须有可核验的主体、范围和有效期。", blocks: [["供应商证书", "如项目要求 ISO、GMP 等，应核对证书持有人与范围。"], ["产品文件", "COA、TDS 等文件应与具体产品和批次对应。"], ["索取文件", "请在询盘中列明目标市场与所需文件。"]] },
+    zh: { title: "认证与资质", intro: "认证与体系声明必须有可核验的主体、范围和有效期。本页说明原料供应商资质核验的核对方法。", blocks: [["供应商证书", "如项目要求 ISO、GMP 等，应核对证书持有人、认证范围、有效期与发证机构。"], ["产品文件", "COA、TDS 等文件应与具体产品和批次对应，不能仅凭文件标题判断。"], ["原料供应商资质核验", "按项目索取可核验文件，并确认证书是否覆盖实际生产地址与产品范围。"], ["索取文件", "请在询盘中列明目标市场与所需文件，便于确认可获得性。"]] },
     en: { title: "Certifications & Quality Documentation", intro: "Certification claims must be supported by verifiable entities and scopes.", blocks: [["Supplier Certificates", "Verify certificate holders and scopes if ISO or GMP is required."], ["Product Documentation", "COA and TDS should correspond to specific products and batches."], ["Requesting Documents", "Specify the destination market and required documents in your inquiry."]] },
     de: { title: "Zertifizierungen & Qualitätsdokumente", intro: "Zertifizierungsansprüche müssen durch verifizierbare Geltungsbereiche gestützt werden.", blocks: [["Lieferantenzertifikate", "Überprüfen Sie Inhaber und Geltungsbereiche."], ["Produktdokumentation", "COA und TDS sollten spezifischen Chargen entsprechen."], ["Dokumente anfordern", "Geben Sie Zielmärkte in Ihrer Anfrage an."]] },
     ja: { title: "認証と品質文書の説明", intro: "認証およびシステムの宣言には、検証可能な主体、範囲、有効期限が必要です。", blocks: [["サプライヤー証明書", "ISO、GMPなどの要件がある場合は、保有者と範囲を確認してください。"], ["製品文書", "COAやTDSなどの文書は、特定の製品およびバッチに対応している必要があります。"], ["文書の請求", "お問い合わせの際に、向け先市場と必要な文書を指定してください。"]] },
@@ -320,7 +325,7 @@ const commonPages = {
     it: { title: "Certificazioni e Documentazione", intro: "Le dichiarazioni di certificazione devono essere supportate da entità verificabili.", blocks: [["Certificati dei Fornitori", "Verificare i titolari se sono richiesti ISO o GMP."], ["Documentazione del Prodotto", "COA e TDS devono corrispondere a lotti specifici."], ["Richiesta di Documenti", "Specificare il mercato di destinazione nella richiesta."]] }
   },
   cases: {
-    zh: { title: "项目协作方式", intro: "在未取得客户授权前，我们不展示虚构客户名称或项目成果。", blocks: [["指定成分寻源", "客户提供成分名称与数量，我们协助沟通供应选项。"], ["样品评估协调", "根据客户测试计划协调样品与反馈。"], ["长期采购协作", "建立规格版本、批次文件与沟通记录。"]] },
+    zh: { title: "项目合作", intro: "本页说明原料采购项目合作方式。在未取得客户授权前，我们不展示虚构客户名称或项目成果。", blocks: [["指定成分寻源", "客户提供成分名称与数量，我们协助沟通供应选项。"], ["样品评估协调", "根据客户测试计划协调样品与反馈。"], ["长期采购协作", "建立规格版本、批次文件与沟通记录，支持重复采购。"]] },
     en: { title: "Project Cooperation", intro: "We do not display fictional customer names or project results without authorization.", blocks: [["Specified Ingredient Sourcing", "We help discuss supply options based on your target specs."], ["Sample Evaluation Coordination", "Coordinate samples and feedback according to your testing plan."], ["Ongoing Purchasing Cooperation", "Maintain records of specifications and batch documents for repeat projects."]] },
     de: { title: "Projektkooperation", intro: "Wir zeigen keine fiktiven Kundennamen oder Projektergebnisse ohne Genehmigung.", blocks: [["Spezifizierte Rohstoffbeschaffung", "Wir helfen bei der Diskussion von Lieferoptionen."], ["Musterbewertung", "Muster und Feedback gemäß Ihrem Testplan koordinieren."], ["Laufende Zusammenarbeit", "Aufzeichnungen über Spezifikationen führen."]] },
     ja: { title: "プロジェクト協力", intro: "顧客の承認がない限り、架空の顧客名やプロジェクト成果を掲載することはありません。", blocks: [["指定成分調達", "顧客が成分名と数量を提供し、供給オプションの協議を支援します。"], ["サンプル評価の調整", "テスト計画に従ってサンプルとフィードバックを調整します。"], ["長期的な購買協調", "定期的な購買プロジェクトについて、仕様バージョンやバッチ文書の記録を維持します。"]] },
@@ -329,7 +334,7 @@ const commonPages = {
     it: { title: "Cooperazione di Progetto", intro: "Non mostriamo nomi di clienti fittizi senza autorizzazione.", blocks: [["Approvvigionamento Specificato", "Aiutiamo a discutere le opzioni di fornitura."], ["Coordinamento della Valutazione", "Coordinare campioni secondo il piano."], ["Cooperazione Continua", "Mantenere registri delle specifiche."]] }
   },
   resources: {
-    zh: { title: "采购指南与资源", intro: "准备充分的采购信息有助于缩短寻源周期，也能减少规格误解。", blocks: [["建议提供的原料信息", "产品名称、INCI/CAS、目标规格与应用场景。"], ["建议提供的商务信息", "样品或批量需求、预计年用量与交付地点。"], ["建议提前确认的问题", "原料是否适用于目标用途及进口要求。"]] },
+    zh: { title: "采购指南与资源", intro: "植物提取物采购指南与原料规格确认资源。准备充分的采购信息有助于缩短寻源周期，也能减少规格误解。", blocks: [["建议提供的原料信息", "产品名称、INCI/CAS、目标规格与应用场景。"], ["建议提供的商务信息", "样品或批量需求、预计年用量与交付地点。"], ["建议提前确认的问题", "原料是否适用于目标用途及进口要求。"]] },
     en: { title: "Purchasing Guide & Resources", intro: "Well-prepared purchasing information can shorten the sourcing cycle.", blocks: [["Recommended Ingredient Information", "Product name, INCI/CAS, target specifications, and application."], ["Recommended Commercial Information", "Sample or bulk requirements and annual volume."], ["Questions to Confirm", "Whether the ingredient is suitable for the intended use and import requirements."]] },
     de: { title: "Einkaufsführer & Ressourcen", intro: "Gut vorbereitete Informationen können den Beschaffungszyklus verkürzen.", blocks: [["Empfohlene Inhaltsstoffinformationen", "Produktname, INCI/CAS und Zielspezifikationen."], ["Empfohlene kommerzielle Informationen", "Musterbedarf, Jahresmenge und Lieferort."], ["Vorab zu klärende Fragen", "Eignung für den Verwendungszweck und Importanforderungen."]] },
     ja: { title: "購買ガイドとリソース", intro: "十分に準備された購買情報は、調達サイクルの短縮や仕様上の誤解を減らすのに役立ちます。", blocks: [["推奨される原料情報", "製品名、INCI/CAS番号、目標仕様、用途。"], ["推奨される商用情報", "サンプルまたはバルクの要件、年間予想使用量、納入先。"], ["事前に確認すべき質問", "意図した用途への適合性、輸入要件の責任所在。"]] },
@@ -359,7 +364,8 @@ const commonPages = {
 
 export const products = productCards;
 export const pages = commonPages;
-export const pageSlugs = Object.keys(commonPages);
+// contact 由独立的 contact.astro 渲染（含表单），不再由 [...slug] 重复生成。
+export const pageSlugs = Object.keys(commonPages).filter((slug) => slug !== "contact");
 
 export const industries = {
   zh: [["化妆品与个人护理", "COSMETICS & PERSONAL CARE"], ["营养与健康", "NUTRITION & WELLNESS"], ["制药与生物医药研发", "PHARMA & BIOTECH"], ["科研与实验室", "RESEARCH & LABS"]],

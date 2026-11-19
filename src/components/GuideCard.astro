@@ -1,0 +1,13 @@
+---
+import { guideCategories, type Guide } from "../data/guides";
+
+const { guide, compact = false } = Astro.props as { guide: Guide; compact?: boolean };
+const category = guideCategories[guide.category];
+const href = `/zh/resources/${guide.slug}/`;
+---
+<a class:list={["guide-card", { "guide-card-compact": compact }]} href={href}>
+  <div class="guide-card-top"><span class="guide-card-category">{category.short}</span><span class="guide-card-time">{guide.readingMinutes} 分钟阅读</span></div>
+  <h3>{guide.title}</h3>
+  <p>{guide.description}</p>
+  <div class="guide-card-bottom"><span>{category.label}</span><span class="card-arrow">↗</span></div>
+</a>

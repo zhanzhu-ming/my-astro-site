@@ -1,9 +1,10 @@
 ---
 import "../styles/global.css";
 import { site } from "../data/site";
-import { getBrandCopy } from "../data/brand";
+import { getBrandCopy, languages, type Lang } from "../data/brand";
+
 const {
-  lang = "zh",
+  lang = "zh" as Lang,
   title,
   description,
   canonicalPath,
@@ -11,43 +12,133 @@ const {
   breadcrumbs = [],
   pageType = "website",
   productName = "",
-} = Astro.props;
+  productSlug = "",
+  alternateLanguages = languages,
+  article = null,
+  faq = [],
+} = Astro.props as {
+  lang?: Lang;
+  title?: string;
+  description?: string;
+  canonicalPath?: string;
+  noindex?: boolean;
+  breadcrumbs?: { name: string; url: string }[];
+  pageType?: string;
+  productName?: string;
+  productSlug?: string;
+  alternateLanguages?: readonly Lang[];
+  article?: { headline: string; datePublished: string; dateModified: string; section?: string } | null;
+  faq?: { q: string; a: string }[];
+};
+
 const t = site[lang] || site.zh;
 const copy = getBrandCopy(lang);
-const languageLabels = [["zh","中文"],["en","English"],["de","Deutsch"],["ja","日本語"],["es","Español"],["ru","Русский"],["it","Italiano"]];
+const languageLabels: Record<string, string> = {
+  zh: "中文",
+  en: "English",
+  de: "Deutsch",
+  ja: "日本語",
+  es: "Español",
+  ru: "Русский",
+  it: "Italiano",
+};
 const pathRaw = Astro.url.pathname.replace(/^\/(zh|en|de|ja|es|ru|it)(?=\/|$)/, "") || "/";
 const path = pathRaw.endsWith("/") ? pathRaw : `${pathRaw}/`;
-const languageName = languageLabels.find(([code]) => code === lang)?.[1] || lang.toUpperCase();
+const languageName = languageLabels[lang] || lang.toUpperCase();
 const htmlLang = ({ zh: "zh-CN", en: "en", de: "de", ja: "ja", es: "es", ru: "ru", it: "it" })[lang] || "zh-CN";
 const canonicalUrlPath = canonicalPath || (Astro.url.pathname.endsWith("/") ? Astro.url.pathname : `${Astro.url.pathname}/`);
 const canonical = `https://sheerherb.cn${canonicalUrlPath}`;
-const pageTitle = title ? `${title} | Sheerherb` : "Sheerherb";
+const pageTitle = title ? (title.includes("Sheerherb") ? title : `${title} | Sheerherb`) : "Sheerherb";
 const desc = description || copy.heroLead;
-const breadcrumbItems = breadcrumbs.length ? breadcrumbs : (Astro.url.pathname.replace(/\/$/, "").split("/").filter(Boolean).slice(1).map((part) => ({ name: part, url: `https://sheerherb.cn/${lang}/${part}/` })));
-const structuredData = [
+const availableLanguages = languages.filter((code) => alternateLanguages.includes(code));
+const defaultLanguage = availableLanguages.includes("zh") ? "zh" : availableLanguages[0] || "zh";
+const emitAlternates = !canonicalUrlPath.endsWith(".html");
+const alternateUrls = availableLanguages.map((code) => ({
+  code,
+  href: `https://sheerherb.cn/${code}${path === "/" ? "/" : path}`,
+}));
+
+const organizationId = "https://sheerherb.cn/#organization";
+const websiteId = "https://sheerherb.cn/#website";
+const structuredData: Record<string, unknown>[] = [
   {
     "@type": "Organization",
-    "@id": "https://sheerherb.cn/#organization",
+    "@id": organizationId,
     name: "Sheerherb",
+    legalName: "Xi'an Sheerherb Biological Technology Co., Ltd.",
     url: "https://sheerherb.cn/zh/",
+    logo: "https://sheerherb.cn/favicon.svg",
     email: "sales@sheerherb.com",
+    telephone: "+86-19591570368",
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: "雁塔区万科汇智中心 1204 室",
+      addressLocality: "西安市",
+      addressRegion: "陕西省",
+      addressCountry: "CN",
+    },
+    contactPoint: [
+      {
+        "@type": "ContactPoint",
+        contactType: "sales",
+        email: "sales@sheerherb.com",
+        telephone: "+86-19591570368",
+        availableLanguage: ["zh-CN", "en"],
+      },
+    ],
   },
   {
     "@type": "WebSite",
-    "@id": "https://sheerherb.cn/#website",
+    "@id": websiteId,
     url: "https://sheerherb.cn/zh/",
     name: "Sheerherb",
-    publisher: { "@id": "https://sheerherb.cn/#organization" },
+    alternateName: "Sheerherb 植物提取物与功能性原料",
+    publisher: { "@id": organizationId },
     inLanguage: htmlLang,
   },
-  ...(breadcrumbItems.length ? [{
+];
+
+if (breadcrumbs.length) {
+  structuredData.push({
     "@type": "BreadcrumbList",
     itemListElement: [
       { "@type": "ListItem", position: 1, name: lang === "zh" ? "首页" : "Home", item: `https://sheerherb.cn/${lang}/` },
-      ...breadcrumbItems.map((item, index) => ({ "@type": "ListItem", position: index + 2, name: item.name, item: item.url })),
+      ...breadcrumbs.map((item, index) => ({
+        "@type": "ListItem",
+        position: index + 2,
+        name: item.name,
+        item: item.url,
+      })),
     ],
-  }] : []),
-];
+  });
+}
+
+if (article) {
+  structuredData.push({
+    "@type": "Article",
+    headline: article.headline,
+    description: desc,
+    datePublished: article.datePublished,
+    dateModified: article.dateModified,
+    inLanguage: htmlLang,
+    mainEntityOfPage: canonical,
+    articleSection: article.section || undefined,
+    author: { "@id": organizationId },
+    publisher: { "@id": organizationId },
+  });
+}
+
+if (faq.length) {
+  structuredData.push({
+    "@type": "FAQPage",
+    mainEntity: faq.map((item) => ({
+      "@type": "Question",
+      name: item.q,
+      acceptedAnswer: { "@type": "Answer", text: item.a },
+    })),
+  });
+}
+
 const jsonLd = JSON.stringify({ "@context": "https://schema.org", "@graph": structuredData }).replace(/</g, "\\u003c");
 ---
 <!doctype html>
@@ -68,19 +159,22 @@ const jsonLd = JSON.stringify({ "@context": "https://schema.org", "@graph": stru
   <meta name="theme-color" content="#102b3a" />
   <meta name="robots" content={noindex ? "noindex,follow" : "index,follow,max-image-preview:large"} />
   <meta name="twitter:card" content="summary" />
-  <meta property="og:type" content="website" />
+  <meta property="og:type" content={article ? "article" : pageType === "product" ? "product" : "website"} />
   <meta property="og:site_name" content="Sheerherb" />
   <meta property="og:title" content={pageTitle} />
   <meta property="og:description" content={desc} />
   <meta property="og:url" content={canonical} />
   <meta property="og:locale" content={htmlLang} />
+  {article && <meta property="article:published_time" content={article.datePublished} />}
+  {article && <meta property="article:modified_time" content={article.dateModified} />}
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
   <title>{pageTitle}</title>
   <link rel="canonical" href={canonical} />
-  {languageLabels.map(([code]) => <link rel="alternate" hreflang={code === "zh" ? "zh-CN" : code} href={`https://sheerherb.cn/${code}${path === "/" ? "/" : path}`} />)}
-  <link rel="alternate" hreflang="x-default" href={`https://sheerherb.cn/zh${path === "/" ? "/" : path}`} />
+  {emitAlternates && alternateUrls.map((item) => <link rel="alternate" hreflang={item.code === "zh" ? "zh-CN" : item.code} href={item.href} />)}
+  {emitAlternates && <link rel="alternate" hreflang="x-default" href={`https://sheerherb.cn/${defaultLanguage}${path === "/" ? "/" : path}`} />}
   <script type="application/ld+json" set:html={jsonLd}></script>
 </head>
-<body data-page-type={pageType} data-product-name={productName}>
+<body data-page-type={pageType} data-product-name={productName} data-product-slug={productSlug}>
   <!-- Google Tag Manager (noscript) -->
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-ND9Z73J6"
   height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
@@ -96,12 +190,16 @@ const jsonLd = JSON.stringify({ "@context": "https://schema.org", "@graph": stru
         {t.nav.map(([slug, label]) => <a href={`/${lang}/${slug}/`}>{label}</a>)}
       </nav>
       <div class="nav-actions">
-        <details class="language-menu">
-          <summary aria-label="Select language">{languageName} ▾</summary>
-          <ul class="language-options">
-            {languageLabels.map(([code, label]) => <li><a href={`/${code}${path}`} aria-current={code === lang ? "page" : undefined}>{label}{code === lang ? " ✓" : ""}</a></li>)}
-          </ul>
-        </details>
+        {availableLanguages.length > 1 ? (
+          <details class="language-menu">
+            <summary aria-label="Select language">{languageName} ▾</summary>
+            <ul class="language-options">
+              {availableLanguages.map((code) => <li><a href={`/${code}${path}`} aria-current={code === lang ? "page" : undefined}>{languageLabels[code]}{code === lang ? " ✓" : ""}</a></li>)}
+            </ul>
+          </details>
+        ) : (
+          <span class="language-current">{languageName}</span>
+        )}
         <a class="button button-small" href={`/${lang}/contact/`}>{t.cta}</a>
       </div>
     </div>
@@ -112,7 +210,11 @@ const jsonLd = JSON.stringify({ "@context": "https://schema.org", "@graph": stru
       const body = document.body;
       window.dataLayer = window.dataLayer || [];
       if (body?.dataset.pageType === "product") {
-        window.dataLayer.push({ event: "product_view", product_name: body.dataset.productName || "" });
+        window.dataLayer.push({
+          event: "product_view",
+          product_name: body.dataset.productName || "",
+          product_slug: body.dataset.productSlug || ""
+        });
       }
       document.addEventListener("click", (event) => {
         const target = event.target;

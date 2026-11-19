@@ -1,0 +1,115 @@
+---
+import { getGuide } from "../data/guides";
+import { getProductDetail } from "../data/product-details";
+
+const { product } = Astro.props as { product: readonly [string, string, string, string, string] };
+const [slug, name, englishName, shortDescription, ctaLabel] = product;
+const detail = getProductDetail(slug);
+const inquiryHref = `/zh/contact/?interest=${encodeURIComponent(name)}&source=${slug}&type=product`;
+const guides = (detail?.relatedGuides || []).map((item) => getGuide(item)).filter(Boolean);
+---
+{detail ? (
+  <>
+    <div class="content-callout">
+      <strong>产品概述</strong>
+      <p>{detail.overview}</p>
+    </div>
+
+    <section class="content-block">
+      <span>01</span>
+      <div>
+        <h2>原料身份</h2>
+        <p>先确认原料的化学身份、形态和来源，再讨论规格与价格。以下信息用于询盘沟通，具体参数以正式规格书和批次文件为准。</p>
+        <table class="data-table">
+          <tbody>
+            {detail.identity.map((item) => <tr><th scope="row">{item.label}</th><td>{item.value}</td></tr>)}
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="content-block">
+      <span>02</span>
+      <div>
+        <h2>规格与指标：需要核实哪些参数</h2>
+        <p>不同供应商的规格口径可能不同。询价时建议逐项确认以下参数，并要求写明检测方法和限度。</p>
+        <ul class="check-list">{detail.specChecks.map((item) => <li>{item}</li>)}</ul>
+      </div>
+    </section>
+
+    <section class="content-block">
+      <span>03</span>
+      <div>
+        <h2>检测方法</h2>
+        <p>{detail.testMethods}</p>
+      </div>
+    </section>
+
+    <section class="content-block">
+      <span>04</span>
+      <div>
+        <h2>应用方向</h2>
+        <p>应用是否适合取决于剂型、工艺、添加量和目的市场法规。以下仅为常见沟通方向，不构成法规或功效结论。</p>
+        <ul class="check-list">{detail.applications.map((item) => <li>{item}</li>)}</ul>
+      </div>
+    </section>
+
+    <section class="content-block">
+      <span>05</span>
+      <div>
+        <h2>质量文件</h2>
+        <p>可按项目沟通以下文件。文件是否可提供、对应批次和具体检测项目，以供应方实际资料为准。</p>
+        <ul class="check-list">{detail.documents.map((item) => <li>{item}</li>)}</ul>
+      </div>
+    </section>
+
+    <section class="content-block">
+      <span>06</span>
+      <div>
+        <h2>包装与采购</h2>
+        <p>样品、包装、MOQ、交期和运输方式需要按项目确认。询价时请一并说明预计数量、包装偏好和目的市场。</p>
+        <ul class="check-list">{detail.packaging.map((item) => <li>{item}</li>)}</ul>
+      </div>
+    </section>
+
+    <section class="content-block">
+      <span>07</span>
+      <div>
+        <h2>常见采购问题</h2>
+        <div class="faq-list">
+          {detail.faq.map((item, index) => (
+            <details class="faq-item" open={index === 0}>
+              <summary>{item.q}</summary>
+              <p>{item.a}</p>
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    {guides.length > 0 && (
+      <section class="content-block">
+        <span>08</span>
+        <div>
+          <h2>相关采购指南</h2>
+          <ul class="related-guide-list">
+            {guides.map((guide) => <li><a href={`/zh/resources/${guide!.slug}/`}>{guide!.title} ↗</a></li>)}
+          </ul>
+        </div>
+      </section>
+    )}
+
+    <div class="content-callout">
+      <strong>咨询 {name} 采购</strong>
+      <p>提交目标规格、应用、数量和目的市场，便于确认可匹配的规格、质量文件与供应选项。具体含量、纯度、MOQ、库存和认证不在页面中作未经核实的承诺。</p>
+      <a class="button" href={inquiryHref}>{ctaLabel} ↗</a>
+    </div>
+
+    <div class="mobile-inquiry-bar">
+      <div><strong>{name}</strong><small>规格 / 样品 / 报价</small></div>
+      <a class="button button-small" href={inquiryHref}>提交询价 ↗</a>
+    </div>
+  </>
+) : (
+  <p>{shortDescription}</p>
+)}

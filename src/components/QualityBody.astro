@@ -1,0 +1,69 @@
+---
+import { qualityContent } from "../data/quality";
+import { getGuide } from "../data/guides";
+
+const relatedGuides = [
+  "how-to-read-botanical-extract-coa",
+  "coa-tds-sds-differences",
+  "how-to-define-ingredient-purchasing-specification",
+].map((slug) => getGuide(slug)).filter(Boolean);
+---
+<p class="page-lead">{qualityContent.intro}</p>
+
+<div class="quality-doc-grid">
+  {qualityContent.documents.map((doc) => (
+    <article class="quality-doc-card">
+      <div class="quality-doc-code">{doc.code}</div>
+      <h2>{doc.title}</h2>
+      <p class="quality-doc-question">{doc.question}</p>
+      <ul class="check-list">
+        {doc.points.map((point) => <li>{point}</li>)}
+      </ul>
+      <a href={doc.link.href}>{doc.link.label} ↗</a>
+    </article>
+  ))}
+</div>
+
+{qualityContent.sections.map((section, index) => (
+  <section class="content-block">
+    <span>0{index + 1}</span>
+    <div>
+      <h2>{section.title}</h2>
+      {section.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
+    </div>
+  </section>
+))}
+
+<div class="content-callout">
+  <strong>询价时请附上文件需求</strong>
+  <p>把目标市场、用途和需要的文件一次说明，可以减少反复确认。以下信息越完整，越容易判断文件是否可提供。</p>
+  <ul class="check-list">
+    {qualityContent.checklist.map((item) => <li>{item}</li>)}
+  </ul>
+  <a class="button" href="/zh/contact/?interest=质量文件&type=quality">提交文件需求 ↗</a>
+</div>
+
+<section class="content-block">
+  <span>04</span>
+  <div>
+    <h2>常见文件问题</h2>
+    <div class="faq-list">
+      {qualityContent.faq.map((item, index) => (
+        <details class="faq-item" open={index === 0}>
+          <summary>{item.q}</summary>
+          <p>{item.a}</p>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>
+
+<section class="content-block">
+  <span>05</span>
+  <div>
+    <h2>延伸阅读</h2>
+    <ul class="related-guide-list">
+      {relatedGuides.map((guide) => <li><a href={`/zh/resources/${guide!.slug}/`}>{guide!.title} ↗</a></li>)}
+    </ul>
+  </div>
+</section>

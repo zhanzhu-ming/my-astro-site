@@ -18,7 +18,7 @@ const lang = Astro.params.lang as "zh" | "en" | "de" | "ja" | "es" | "ru" | "it"
 const t = site[lang] || site.zh;
 const copy = getBrandCopy(lang);
 const en = lang !== "zh";
-const seo = getSeo(lang, "contact", en ? "Contact Sheerherb" : "联系我们", copy.contactIntro);
+const seo = getSeo(lang, "contact", en ? t.contactTitle : "联系我们", copy.contactIntro);
 ---
 <BaseLayout lang={lang} title={seo.title} description={seo.description} canonicalPath={`/${lang}/contact/`} breadcrumbs={[{ name: en ? "Contact" : "联系我们", url: `https://sheerherb.cn/${lang}/contact/` }]}>
   <main>
@@ -30,8 +30,12 @@ const seo = getSeo(lang, "contact", en ? "Contact Sheerherb" : "联系我们", c
         <div class="form-row"><label>{en ? "Name" : "姓名"} *<input name="name" required maxlength="120" autocomplete="name" /></label><label>{en ? "Company" : "公司名称"} *<input name="company" required maxlength="160" autocomplete="organization" /></label></div>
         <div class="form-row"><label>{en ? "Work email" : "工作邮箱"} *<input name="email" type="email" required maxlength="254" autocomplete="email" /></label><label>{en ? "Phone / WhatsApp" : "电话 / WhatsApp"}<input name="phone" maxlength="80" /></label></div>
         <div class="form-row"><label>{en ? "Product / Ingredient" : "关注产品 / 原料"} *<input name="interest" required maxlength="200" placeholder={en ? "e.g. liposomal vitamin C, Urolithin A..." : "例如：脂质体维生素 C、尿石素 A……"} /></label><label>{en ? "Estimated quantity" : "预计采购数量"}<input name="quantity" maxlength="120" placeholder={en ? "Sample / kg / MT / annual volume" : "样品 / kg / 吨 / 年需求量"} /></label></div>
-        <label>{en ? "Destination market" : "目的市场"}<input name="market" maxlength="120" placeholder={en ? "Country / region" : "国家 / 地区"} /></label>
-        <label>{en ? "Project details" : "项目需求"}<textarea name="message" rows="5" maxlength="4000" placeholder={en ? "Target specification, application, required documents, timeline..." : "目标规格、应用场景、所需文件、采购时间……"}></textarea></label>
+        <div class="form-row"><label>{en ? "Target specification" : "目标规格"} <span class="optional">{en ? "Optional" : "选填"}</span><input name="specification" maxlength="300" placeholder={en ? "Assay, purity, particle size, grade..." : "含量、纯度、粒径、等级、检测方法……"} /></label><label>{en ? "Application" : "应用方向"} <span class="optional">{en ? "Optional" : "选填"}</span><input name="application" maxlength="200" placeholder={en ? "Supplement, food, cosmetic..." : "膳食补充剂、食品、化妆品……"} /></label></div>
+        <div class="form-row"><label>{en ? "Destination market" : "目的市场"}<input name="market" maxlength="120" placeholder={en ? "Country / region" : "国家 / 地区"} /></label><label>{en ? "Required documents" : "需要的文件"} <span class="optional">{en ? "Optional" : "选填"}</span><input name="documents" maxlength="200" placeholder={en ? "COA, TDS, SDS, specification..." : "COA、TDS、SDS、规格书……"} /></label></div>
+        <label>{en ? "Project details" : "项目需求"}<textarea name="message" rows="5" maxlength="4000" placeholder={en ? "Required documents, target market, timeline, testing plan..." : "所需文件、目标市场、采购时间、测试计划……"}></textarea></label>
+        <div class="form-honeypot" aria-hidden="true"><label>Website<input name="website" tabindex="-1" autocomplete="off" /></label></div>
+        <input type="hidden" name="source_page" id="sourcePage" value="" />
+        <input type="hidden" name="inquiry_type" id="inquiryType" value="general" />
         <label class="consent"><input type="checkbox" name="consent" required /> <span>{en ? "I agree that my information may be used to respond to this business inquiry." : "我同意所提供的信息用于回复本次业务咨询。"} </span></label>
         <button class="button form-submit" type="submit">{en ? "Submit Inquiry" : "提交询盘"} <span>↗</span></button>
         <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
@@ -56,12 +60,18 @@ const lang = pageLang.toLowerCase().split("-")[0] || "en";
 const params = new URLSearchParams(window.location.search);
 const interestField = form?.querySelector("[name='interest']");
 if (interestField && params.get("interest") && !interestField.value) interestField.value = params.get("interest").slice(0, 200);
+const sourcePage = params.get("source") || `${window.location.pathname}${window.location.search}`;
+const inquiryType = params.get("type") || "general";
+const sourceField = document.querySelector("#sourcePage");
+const typeField = document.querySelector("#inquiryType");
+if (sourceField) sourceField.value = sourcePage.slice(0, 300);
+if (typeField) typeField.value = inquiryType.slice(0, 40);
 let inquiryStarted = false;
 form?.addEventListener("input", () => {
   if (!inquiryStarted) {
     inquiryStarted = true;
     window.dataLayer = window.dataLayer || [];
-    window.dataLayer.push({ event: "inquiry_start", inquiry_language: lang });
+    window.dataLayer.push({ event: "inquiry_start", inquiry_language: lang, source_page: sourcePage, inquiry_type: inquiryType });
   }
 }, { once: true });
 const en = lang !== "zh";
@@ -80,6 +90,13 @@ form?.addEventListener("submit", async (event) => {
 
   const data = new FormData(form);
 
+  // 简单蜜罐：正常访客看不到该字段，填写后直接拒绝。
+  if (String(data.get("website") || "").trim()) {
+    status.textContent = en ? "Submission failed. Please email us directly." : "提交失败，请稍后重试或通过商务邮箱联系。";
+    status.dataset.state = "error";
+    return;
+  }
+
   const payload = {
     name: String(data.get("name") || "").trim(),
     company: String(data.get("company") || "").trim(),
@@ -87,8 +104,13 @@ form?.addEventListener("submit", async (event) => {
     phone: String(data.get("phone") || "").trim() || null,
     interest: String(data.get("interest") || "").trim(),
     quantity: String(data.get("quantity") || "").trim() || null,
+    specification: String(data.get("specification") || "").trim() || null,
+    application: String(data.get("application") || "").trim() || null,
     market: String(data.get("market") || "").trim() || null,
+    documents: String(data.get("documents") || "").trim() || null,
     message: String(data.get("message") || "").trim() || null,
+    source_page: String(data.get("source_page") || "").trim() || null,
+    inquiry_type: String(data.get("inquiry_type") || "general").trim() || "general",
     language: lang,
     consent: data.get("consent") === "on"
   };
@@ -122,7 +144,10 @@ form?.addEventListener("submit", async (event) => {
     window.dataLayer.push({
       event: "inquiry_submit_success",
       inquiry_language: lang,
-      inquiry_type: "B2B inquiry"
+      inquiry_type: payload.inquiry_type,
+      inquiry_scope: "B2B",
+      product_name: payload.interest,
+      source_page: payload.source_page
     });
 
     status.textContent = en
@@ -131,6 +156,9 @@ form?.addEventListener("submit", async (event) => {
 
     status.dataset.state = "success";
     form.reset();
+    // reset() 会把隐藏字段恢复成 HTML 初始值，成功提示后重新写回来源信息。
+    if (sourceField) sourceField.value = sourcePage.slice(0, 300);
+    if (typeField) typeField.value = inquiryType.slice(0, 40);
 
   } catch (err) {
     console.error("Inquiry submission failed", err);
