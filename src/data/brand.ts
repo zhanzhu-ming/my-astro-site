@@ -3,8 +3,8 @@ export type Lang = typeof languages[number];
 
 export const brandCopy = {
   zh: {
-    tagline: "活性物质载体系统 · 微球与纳米脂质体技术",
-    nav: [["products","产品中心"],["custom-sourcing","创新技术"],["about","关于 Sheerherb"],["industries","应用领域"],["contact","联系我们"]],
+    tagline: "植物提取物 · 脂质体相关原料 · 功能性原料 B2B 采购协作",
+    nav: [["products","产品与原料"],["custom-sourcing","定制寻源"],["industries","应用领域"],["quality","质量与文件"],["about","关于我们"],["contact","联系我们"]],
     heroEyebrow: "ACTIVE CARRIER SYSTEMS · RESEARCH & MANUFACTURING",
     heroTitle: "以创新载体技术，释放活性成分的应用潜力",
     heroLead: "西安 Sheerherb 生物科技有限公司专注于活性物质载体系统的研究与生产，围绕微球技术和纳米脂质体技术，为个人护理、食品及营养补充剂等领域提供应用解决方案。",
@@ -18,7 +18,7 @@ export const brandCopy = {
     aboutLead: "西安 Sheerherb 生物科技有限公司是一家专注于活性物质载体系统研究与生产的科技企业，致力于为个人护理、食品和营养补充剂行业提供创新应用方案。",
     ctaTitle: "与 Sheerherb 开启项目沟通",
     ctaLead: "告诉我们您的产品方向、目标成分和应用需求，进一步沟通适合的产品与技术方案。",
-    primary: "提交询盘", secondary: "了解产品",
+    primary: "提交采购需求", secondary: "浏览原料类别",
     products: [
       ["liposomal-vitamin-c","脂质体维生素 C 粉末","Liposomal Vitamin C Powder","脂质体产品方向。规格、含量、剂型及检测方法以正式产品资料为准。","了解产品"],
       ["urolithin-a","尿石素 A","Urolithin A","国际站展示的热门产品方向之一。具体纯度、规格和供货情况请提交询盘确认。","了解产品"],

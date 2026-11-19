@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import ChinaB2BHome from "../../components/ChinaB2BHome.astro";
 import { site, industries, processSteps } from "../../data/site";
 import { getBrandCopy } from "../../data/brand";
 export function getStaticPaths() {
@@ -9,7 +10,7 @@ const lang = Astro.params.lang as "zh" | "en" | "de" | "ja" | "es" | "ru" | "it"
 const t = site[lang] || site.zh;
 const c = getBrandCopy(lang);
 ---
-<BaseLayout lang={lang} title={c.aboutTitle} description={c.heroLead}>
+{lang === "zh" ? <ChinaB2BHome /> : <BaseLayout lang={lang} title={c.aboutTitle} description={c.heroLead}>
   <main>
     <section class="hero sheer-hero">
       <div class="hero-glow"></div>
@@ -76,4 +77,4 @@ const c = getBrandCopy(lang);
     </section>
     <section class="cta-band"><div class="container cta-inner"><div><div class="eyebrow eyebrow-light">LET'S WORK TOGETHER</div><h2>{c.ctaTitle}</h2><p>{c.ctaLead}</p></div><a class="button button-light" href={`/${lang}/contact/`}>{c.primary} ↗</a></div></section>
   </main>
-</BaseLayout>
+</BaseLayout>}
