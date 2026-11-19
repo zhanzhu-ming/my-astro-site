@@ -18,7 +18,7 @@ npm run build
 npm run seo:check
 ```
 
-- [ ] `npm run build` 输出 152 个页面，无错误。
+- [ ] `npm run build` 输出 165 个页面，无错误。
 - [ ] `npm run seo:audit` 退出码 0，主词缺失 0。
 - [ ] `npm run seo:site-audit` 退出码 0，Canonical/死链/hreflang/JSON-LD 均为 0。
 - [ ] 检查 `dist/_redirects`、`dist/robots.txt`、`dist/sitemap-index.xml` 存在。
@@ -63,10 +63,10 @@ Cloudflare Pages 配置：
 部署后检查：
 
 - [ ] `/` 返回 301 到 `/zh/`。
-- [ ] `/zh/`、`/zh/products/`、三个分类页、四个产品页、`/zh/quality/`、`/zh/resources/`、10 篇文章、`/zh/contact/` 均 200。
+- [ ] `/zh/`、`/zh/products/`、三个分类页、11 个产品页、`/zh/quality/`、`/zh/resources/`、15 篇文章、`/zh/capabilities/`、`/zh/products/liposomal-curcumin-powder/`、`/zh/products/liposomal-vitamin-c-liquid/`、`/zh/products/sustained-release-micropellets/`、`/zh/contact/` 均 200。
 - [ ] 不存在的 URL 返回 404，页面为 noindex。
 - [ ] `https://sheerherb.cn/robots.txt` 内容正确。
-- [ ] `https://sheerherb.cn/sitemap-index.xml` 可访问，子 sitemap 包含 150 个 URL。
+- [ ] `https://sheerherb.cn/sitemap-index.xml` 可访问，子 sitemap 包含 163 个 URL。
 - [ ] 页面 HTML 中 Canonical、hreflang 与预览一致。
 - [ ] 移动端真机检查：导航、产品固定询价条、表单、文章目录。
 - [ ] PageSpeed Insights / Lighthouse 移动端跑一次，记录 LCP、CLS、INP。

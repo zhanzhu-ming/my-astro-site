@@ -26,7 +26,7 @@ python scripts/build_keyword_workbook.py
 ### 采购知识中心
 
 - `/zh/resources/`：按规格、质量、供应商、脂质体四类组织。
-- `/zh/resources/<slug>/`：10 篇采购指南，含目录、FAQ、内链、Article/FAQPage 结构化数据。
+- `/zh/resources/<slug>/`：15 篇采购指南（第一批 10 篇 + 脂质体/微丸专题 5 篇），含目录、FAQ、内链、Article/FAQPage 结构化数据。
 - 首页新增「采购知识中心」区块；顶部导航和页脚新增「采购知识」。
 - 文章只生成中文版本，hreflang 只输出 `zh-CN` 和 `x-default`。
 
@@ -42,7 +42,8 @@ python scripts/build_keyword_workbook.py
 
 - 修复 `getStaticPaths` 构建失败。
 - 修复俄语产品卡片数据错位。
-- 统一 30 个中文页面的 Title / Description / H1 / 关键词表。
+- 统一 43 个中文页面的 Title / Description / H1 / 关键词表。
+- 新增 7 个脂质体/微丸产品页和 1 个能力页，补齐国际站已有的产品矩阵。
 - 新增 404、favicon、根路径 301 兜底页。
 - 移除 Google Fonts 外链，改用系统中文字体栈。
 - 新增 `scripts/seo-site-audit.mjs`，检查 Canonical、hreflang、内部链接、JSON-LD、sitemap 和重复 Title。
@@ -56,13 +57,15 @@ src/
     GuideCard.astro          采购指南卡片
     ResourceHub.astro        知识中心分类页
     ProductDetailBody.astro  四个重点产品详情正文
+    ZhProductDetail.astro    新增脂质体/微丸产品详情正文
     QualityBody.astro        质量文件说明中心
   data/
-    guides.ts                10 篇采购指南内容
-    product-details.ts       四个产品的中文采购资料
+    guides.ts                15 篇采购指南内容
+    product-details.ts       四个重点产品的中文采购资料
+    zh-products.ts           7 个新增脂质体/微丸产品资料
     quality.ts               质量页内容与 FAQ
     seo.ts                   中文页面 Title / Description
-    seo-keywords.json        30 个中文页面关键词规划
+    seo-keywords.json        43 个中文页面关键词规划
     site.ts / brand.ts       站点结构与品牌文案
   layouts/BaseLayout.astro   Canonical、hreflang、Schema、GTM
   pages/
@@ -70,12 +73,16 @@ src/
     [lang]/resources/[slug].astro  采购指南文章页
     [lang]/index.astro       首页
     [lang]/contact.astro     询盘表单
+    zh/products/[slug].astro 新增脂质体/微丸产品页
+    zh/capabilities.astro    脂质体与微丸能力页
     404.astro                404
     index.astro              根路径 301 兜底
 scripts/
   seo-keyword-audit.mjs      关键词覆盖审计
   seo-site-audit.mjs         技术 SEO 审计
   build_keyword_workbook.py  生成 Excel 关键词表
+  package_release.py         打包源码与 dist
+  verify_release.py          发布包自检
 docs/preview/                最终构建截图
 ```
 

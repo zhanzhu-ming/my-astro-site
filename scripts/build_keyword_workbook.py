@@ -106,8 +106,8 @@ def build_summary_sheet(workbook: Workbook, registry: dict, coverage: dict[str, 
 
     rows = [
         ("已登记中文页面", str(len(registry["pages"]))),
-        ("构建生成页面总数", "152（含根路径与 404；150 个 sitemap URL）"),
-        ("Sitemap URL 数", "150（不含根路径与 404）"),
+        ("构建生成页面总数", "165（含根路径与 404；163 个 sitemap URL）"),
+        ("Sitemap URL 数", "163（不含根路径与 404）"),
         ("关键词覆盖通过", f"{sum(1 for value in coverage.values() if value == '当前检查通过')} / {len(coverage)}"),
         ("主关键词未覆盖", "0"),
         ("Title / H1 目标未匹配", "0"),
@@ -300,8 +300,8 @@ def build_instructions_sheet(workbook: Workbook) -> None:
         ("p", "审计是字面匹配工具，不判断语义质量、关键词堆砌、内容原创性或询盘质量。"),
         ("p", "上线后用百度搜索资源平台、Google Search Console 和 GA4 的真实数据迭代，不承诺固定排名或流量。"),
         ("h", "文件结构"),
-        ("p", "关键词总表：30 个中文页面的关键词、Title/H1 目标、内容清单与检查状态。"),
-        ("p", "采购指南规划：10 篇采购知识文章的选题、关键词、内链与转化入口。"),
+        ("p", "关键词总表：43 个中文页面的关键词、Title/H1 目标、内容清单与检查状态。"),
+        ("p", "采购指南规划：15 篇采购知识文章的选题、关键词、内链与转化入口。"),
         ("p", "审计摘要：本轮构建与审计结果。"),
     ]
     row = 1

@@ -1,0 +1,108 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { zhProducts } from "../../data/zh-products";
+
+const canonicalPath = "/zh/capabilities/";
+const breadcrumbs = [{ name: "脂质体与微丸能力", url: `https://sheerherb.cn${canonicalPath}` }];
+const liposomalPowders = zhProducts.filter((product) => product.category === "脂质体粉末");
+const liquid = zhProducts.find((product) => product.slug === "liposomal-vitamin-c-liquid");
+const pellets = zhProducts.find((product) => product.slug === "sustained-release-micropellets");
+---
+<BaseLayout
+  lang="zh"
+  title="脂质体粉末与缓释微丸能力"
+  description="Sheerherb 国内站脂质体粉末、脂质体液体、缓释微丸与白标定制能力说明，覆盖剂型、检测、质量文件和采购沟通流程。"
+  canonicalPath={canonicalPath}
+  breadcrumbs={breadcrumbs}
+  alternateLanguages={["zh"]}
+>
+  <main>
+    <section class="page-hero">
+      <div class="container">
+        <div class="eyebrow">SHEERHERB / CAPABILITIES</div>
+        <h1>脂质体粉末与缓释微丸能力</h1>
+        <p>围绕脂质体粉末、液体剂型和缓释微丸，提供从原料规格、样品测试到质量文件与商务条件的中文采购沟通。</p>
+        <div class="breadcrumbs"><a href="/zh/">首页</a> / <a href="/zh/products/">产品与原料</a> / 脂质体与微丸能力</div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container content-layout">
+        <article class="content-main">
+          <div class="content-callout">
+            <strong>三种剂型，不同采购逻辑</strong>
+            <p>粉末适合胶囊、粉剂和固体饮料；液体适合饮料和口服液；缓释微丸适合需要包衣、掩味或释放控制的定制项目。剂型不同，规格、检测、包装和 MOQ 都不同。</p>
+          </div>
+
+          <section class="content-block">
+            <span>01</span>
+            <div>
+              <h2>脂质体粉末</h2>
+              <p>以磷脂载体包埋活性物，形成可复溶/分散的粉末。采购重点：活性物含量、包封率、粒径、外观、水分、流动性和固体饮料适配性。</p>
+              <ul class="related-guide-list">
+                {liposomalPowders.map((product) => <li><a href={`/zh/products/${product.slug}/`}>{product.name}｜{product.englishName} ↗</a></li>)}
+              </ul>
+            </div>
+          </section>
+
+          <section class="content-block">
+            <span>02</span>
+            <div>
+              <h2>脂质体液体</h2>
+              <p>液体剂型适合饮料、口服液和条装液体。采购重点：活性物含量、包封率、粒径、pH、防腐体系、微生物、分层/沉淀和运输条件。</p>
+              {liquid && <a class="text-link" href={`/zh/products/${liquid.slug}/`}>{liquid.name} 参考规格 ↗</a>}
+            </div>
+          </section>
+
+          <section class="content-block">
+            <span>03</span>
+            <div>
+              <h2>缓释微丸</h2>
+              <p>通过包衣和微丸结构保护活性物、调节释放曲线，适合胶囊填充和需要掩味/缓释的配方。采购重点：载药量、释放曲线、包衣增重、粒径、流动性和胶囊适配性。</p>
+              {pellets && <a class="text-link" href={`/zh/products/${pellets.slug}/`}>{pellets.name} 定制说明 ↗</a>}
+            </div>
+          </section>
+
+          <section class="content-block">
+            <span>04</span>
+            <div>
+              <h2>OEM / 白标与配方协作</h2>
+              <p>可按项目沟通配方开发、定制生产、技术支持和品牌包装。具体合作主体、最小批量、开发周期、标签审核和法规责任需在项目开始前书面确认。</p>
+              <p>不把“可定制”理解为无条件承接；活性物合法性、目的市场法规和标签要求仍是前置条件。</p>
+            </div>
+          </section>
+
+          <section class="content-block">
+            <span>05</span>
+            <div>
+              <h2>质量文件与检测</h2>
+              <p>按产品与批次沟通 COA、TDS、SDS、规格书、重金属、微生物和残留溶剂资料。文件是否可提供、对应批次和检测方法以供应方实际文件为准。</p>
+              <a class="text-link" href="/zh/quality/">了解质量与文件 ↗</a>
+            </div>
+          </section>
+
+          <div class="content-callout">
+            <strong>提交剂型与采购需求</strong>
+            <p>请说明终端剂型、活性物、目标规格、添加量、包装、数量和目的市场。我们会先确认剂型与文件，再讨论样品和报价。</p>
+            <a class="button" href="/zh/contact/?interest=脂质体与微丸能力&type=capability">提交采购需求 ↗</a>
+          </div>
+        </article>
+
+        <aside class="content-aside">
+          <div class="aside-card">
+            <div class="eyebrow">CAPABILITY REVIEW</div>
+            <h3>先确认剂型，再确认价格</h3>
+            <p>粉末、液体和微丸的规格、检测、包装和 MOQ 不同。提供终端产品信息，才能给出可比方案。</p>
+            <a class="button" href="/zh/contact/?interest=剂型咨询&type=capability">提交剂型需求 ↗</a>
+          </div>
+          <div class="aside-links">
+            <a href="/zh/products/">全部产品与原料 ↗</a>
+            <a href="/zh/products/liposomal-ingredients/">脂质体相关原料 ↗</a>
+            <a href="/zh/resources/">采购知识中心 ↗</a>
+            <a href="/zh/custom-sourcing/">定制寻源 ↗</a>
+          </div>
+        </aside>
+      </div>
+    </section>
+  </main>
+</BaseLayout>

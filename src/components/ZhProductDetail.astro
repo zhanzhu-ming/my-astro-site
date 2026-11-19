@@ -1,0 +1,124 @@
+---
+import { getGuide } from "../data/guides";
+import { zhProducts, type ZhProduct } from "../data/zh-products";
+
+const { product } = Astro.props as { product: ZhProduct };
+const inquiryHref = `/zh/contact/?interest=${encodeURIComponent(product.name)}&source=${product.slug}&type=product`;
+const guides = product.relatedGuides.map((slug) => getGuide(slug)).filter(Boolean);
+const otherProducts = zhProducts.filter((item) => item.slug !== product.slug).slice(0, 4);
+---
+<div class="content-callout">
+  <strong>产品概述</strong>
+  <p>{product.summary}</p>
+  <p class="reference-note">{product.referenceNote}</p>
+</div>
+
+<section class="content-block">
+  <span>01</span>
+  <div>
+    <h2>参考规格</h2>
+    <p>以下为国际站公开参考参数，用于国内采购沟通。正式报价、规格书和批次 COA 以项目确认文件为准。</p>
+    <table class="data-table">
+      <tbody>
+        {product.specTable.map((item) => <tr><th scope="row">{item.label}</th><td>{item.value}</td></tr>)}
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section class="content-block">
+  <span>02</span>
+  <div>
+    <h2>需要核实的指标</h2>
+    <p>不同供应商的规格口径可能不同。询价时建议逐项确认以下参数，并要求写明检测方法和限度。</p>
+    <ul class="check-list">{product.specChecks.map((item) => <li>{item}</li>)}</ul>
+  </div>
+</section>
+
+<section class="content-block">
+  <span>03</span>
+  <div>
+    <h2>检测方法</h2>
+    <p>{product.testMethods}</p>
+  </div>
+</section>
+
+<section class="content-block">
+  <span>04</span>
+  <div>
+    <h2>应用方向</h2>
+    <p>应用是否适合取决于剂型、工艺、添加量和目的市场法规。以下仅为常见沟通方向，不构成法规或功效结论。</p>
+    <ul class="check-list">{product.applications.map((item) => <li>{item}</li>)}</ul>
+  </div>
+</section>
+
+<section class="content-block">
+  <span>05</span>
+  <div>
+    <h2>质量文件</h2>
+    <p>可按项目沟通以下文件。文件是否可提供、对应批次和具体检测项目，以供应方实际资料为准。</p>
+    <ul class="check-list">{product.documents.map((item) => <li>{item}</li>)}</ul>
+  </div>
+</section>
+
+<section class="content-block">
+  <span>06</span>
+  <div>
+    <h2>包装与采购</h2>
+    <p>样品、包装、MOQ、交期和运输方式需要按项目确认。询价时请一并说明预计数量、包装偏好和目的市场。</p>
+    <ul class="check-list">{product.packaging.map((item) => <li>{item}</li>)}</ul>
+  </div>
+</section>
+
+<div class="article-note">
+  <strong>国内采购提示</strong>
+  <p>{product.domesticNote}</p>
+</div>
+
+<section class="content-block">
+  <span>07</span>
+  <div>
+    <h2>常见采购问题</h2>
+    <div class="faq-list">
+      {product.faq.map((item, index) => (
+        <details class="faq-item" open={index === 0}>
+          <summary>{item.q}</summary>
+          <p>{item.a}</p>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>
+
+{guides.length > 0 && (
+  <section class="content-block">
+    <span>08</span>
+    <div>
+      <h2>相关采购指南</h2>
+      <ul class="related-guide-list">
+        {guides.map((guide) => <li><a href={`/zh/resources/${guide!.slug}/`}>{guide!.title} ↗</a></li>)}
+      </ul>
+    </div>
+  </section>
+)}
+
+<div class="content-callout">
+  <strong>咨询 {product.name} 采购</strong>
+  <p>提交目标规格、应用、数量和目的市场，便于确认可匹配的规格、质量文件与供应选项。页面中的参考参数不替代正式报价、规格书和批次 COA。</p>
+  <a class="button" href={inquiryHref}>提交询价 ↗</a>
+</div>
+
+<section class="content-block">
+  <span>09</span>
+  <div>
+    <h2>更多脂质体与微丸产品</h2>
+    <ul class="related-guide-list">
+      {otherProducts.map((item) => <li><a href={`/zh/products/${item.slug}/`}>{item.name}｜{item.englishName} ↗</a></li>)}
+    </ul>
+  </div>
+</section>
+
+<div class="mobile-inquiry-bar">
+  <div><strong>{product.name}</strong><small>规格 / 样品 / 报价</small></div>
+  <a class="button button-small" href={inquiryHref}>提交询价 ↗</a>
+</div>

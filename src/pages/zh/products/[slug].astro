@@ -1,0 +1,83 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import { zhProducts, getZhProduct } from "../../../data/zh-products";
+import { getGuide } from "../../../data/guides";
+import ZhProductDetail from "../../../components/ZhProductDetail.astro";
+
+export function getStaticPaths() {
+  return zhProducts.map((product) => ({
+    params: { slug: product.slug },
+    props: { slug: product.slug },
+  }));
+}
+
+const slug = Astro.props.slug as string;
+const product = getZhProduct(slug);
+if (!product) throw new Error(`Unknown zh product: ${slug}`);
+const canonicalPath = `/zh/products/${product.slug}/`;
+const breadcrumbs = [
+  { name: "产品与原料", url: "https://sheerherb.cn/zh/products/" },
+  { name: product.name, url: `https://sheerherb.cn${canonicalPath}` },
+];
+const description = `${product.summary} 参考参数、检测方法、包装与采购条件以正式规格书和批次 COA 为准。`;
+const relatedGuides = product.relatedGuides.map((item) => getGuide(item)).filter(Boolean);
+const seoTitles: Record<string, string> = {
+  "liposomal-curcumin-powder": "脂质体姜黄素粉采购",
+  "liposomal-iron-powder": "脂质体铁粉采购",
+  "liposomal-magnesium": "脂质体镁采购",
+  "liposomal-nmn-powder": "脂质体 NMN 粉采购",
+  "liposome-glutathione": "脂质体谷胱甘肽采购",
+  "liposomal-vitamin-c-liquid": "脂质体维生素 C 液体采购",
+  "sustained-release-micropellets": "缓释微丸定制与采购",
+};
+const seoTitle = seoTitles[product.slug] || `${product.name}原料采购`;
+---
+<BaseLayout
+  lang="zh"
+  title={seoTitle}
+  description={description}
+  canonicalPath={canonicalPath}
+  breadcrumbs={breadcrumbs}
+  pageType="product"
+  productName={product.name}
+  productSlug={product.slug}
+  alternateLanguages={["zh"]}
+  faq={product.faq}
+>
+  <main>
+    <section class="page-hero">
+      <div class="container">
+        <div class="eyebrow">SHEERHERB / {product.category}</div>
+        <h1>{product.name}</h1>
+        <p>{product.summary}</p>
+        <div class="breadcrumbs"><a href="/zh/">首页</a> / <a href="/zh/products/">产品与原料</a> / {product.name}</div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container content-layout">
+        <article class="content-main">
+          <ZhProductDetail product={product} />
+        </article>
+        <aside class="content-aside">
+          <div class="aside-card">
+            <div class="eyebrow">BUSINESS INQUIRY</div>
+            <h3>正在寻找 {product.name}？</h3>
+            <p>告诉我们目标规格、应用、数量和目的市场，进一步确认可获得的资料与供应选项。</p>
+            <a class="button" href={`/zh/contact/?interest=${encodeURIComponent(product.name)}&source=${product.slug}&type=product`}>提交采购需求 ↗</a>
+          </div>
+          <div class="aside-links">
+            <a href="/zh/products/">全部产品与原料 ↗</a>
+            <a href="/zh/products/liposomal-ingredients/">脂质体相关原料 ↗</a>
+            <a href="/zh/quality/">质量与文件 ↗</a>
+            <a href="/zh/resources/">采购知识中心 ↗</a>
+          </div>
+          <div class="aside-guides">
+            <strong>相关指南</strong>
+            {relatedGuides.map((item) => <a href={`/zh/resources/${item!.slug}/`}>{item!.title} ↗</a>)}
+          </div>
+        </aside>
+      </div>
+    </section>
+  </main>
+</BaseLayout>

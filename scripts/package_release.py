@@ -35,6 +35,8 @@ def should_skip(relative: Path) -> bool:
     parts = set(relative.parts)
     if parts & SOURCE_EXCLUDE_DIRS:
         return True
+    if any(part.startswith(".chrome-profile") or part.startswith(".shots") for part in relative.parts):
+        return True
     if relative.name in SOURCE_EXCLUDE_FILES:
         return True
     if relative.name.startswith("sheerherb-cn-") and relative.name.endswith(".zip"):

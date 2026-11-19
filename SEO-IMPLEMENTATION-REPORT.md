@@ -4,7 +4,7 @@
 - 本轮重点：中文 `/zh/`
 - 报告日期：2026-11-19
 - 源码版本：`sheerherb-cn-seo-phase4-source.zip`
-- 构建产物：`dist/`（152 个页面）
+- 构建产物：`dist/`（165 个页面）
 - 结论：第三阶段工程验收完成，第四阶段采购知识中心与第五阶段询盘转化改造已完成源码落地；未执行线上部署、生产 Supabase 迁移和 GTM/GA4 后台配置。
 
 ---
@@ -26,7 +26,7 @@
 
 ### 1.2 第四阶段：采购知识中心
 
-新增 10 篇面向采购人员的指南，统一放在 `/zh/resources/` 下。每篇都有独立 Title、Description、H1、目标关键词、搜索意图、FAQ、内链和询盘入口。
+新增第一批 10 篇面向采购人员的指南，统一放在 `/zh/resources/` 下；本轮又补充 5 篇脂质体/微丸专题，累计 15 篇。每篇都有独立 Title、Description、H1、目标关键词、搜索意图、FAQ、内链和询盘入口。
 
 | # | 文章 | 目标关键词 | 主要内链 |
 |---|---|---|---|
@@ -115,7 +115,7 @@ Supabase：
 | Astro | 5.18.2 |
 | @astrojs/sitemap | 3.7.5 |
 | 构建命令 | `npm run build` |
-| 构建结果 | 152 page(s) built，Complete |
+| 构建结果 | 165 page(s) built，Complete |
 | 构建耗时 | 约 2.4 秒 |
 | 输出目录 | `dist/` |
 
@@ -164,7 +164,7 @@ npm run seo:check
 | 检查项 | 结果 |
 |---|---|
 | 检查页面数 | 151（不含根路径兜底页和 Google 验证文件） |
-| Sitemap URL | 150 |
+| Sitemap URL | 163 |
 | Canonical 不一致 | 0 |
 | 内部死链 | 0 |
 | hreflang 指向不存在页面 | 0 |
@@ -183,7 +183,7 @@ npm run seo:check
 | 检查项 | 实现方式 | 结果 |
 |---|---|---|
 | Title | 每页独立；`seo.ts` 与关键词表一致；自动追加品牌后缀，已含 Sheerherb 的标题不重复追加 | 通过 |
-| Meta Description | 30 个中文页面独立描述；非中文使用品牌文案回退 | 通过（2 条长度警告） |
+| Meta Description | 43 个中文页面独立描述；非中文使用品牌文案回退 | 通过（2 条长度警告） |
 | H1 | 每页 1 个；与关键词表 `h1Focus` 对齐 | 通过 |
 | Canonical | `BaseLayout` 统一输出；根路径指向 `/zh/`；404 指向自身 | 通过 |
 | Hreflang | 7 语言页面互链；文章只有 `zh-CN` + `x-default`；404 不输出 hreflang | 通过 |
@@ -210,7 +210,7 @@ npm run seo:check
 | 四个产品详情页 | 产品名 + 原料/采购 | 产品采购资料与询盘 |
 | `/zh/quality/` | 原料COA、植物提取物质量文件 | 质量文件与批次核验 |
 | `/zh/resources/` | 植物提取物采购指南、原料规格确认 | 知识中心 |
-| 10 篇指南 | 各自长尾词 | 搜索入口与内链 |
+| 15 篇指南 | 各自长尾词 | 搜索入口与内链 |
 | `/zh/contact/` | 植物提取物采购询价、功能性原料供应咨询 | 转化页 |
 
 原则：首页不抢具体产品词；分类页不写成现货目录；产品页不虚构含量、纯度、MOQ、库存、认证或供货承诺。
@@ -233,7 +233,7 @@ npm run seo:check
 2. **测试询盘**：在预览环境提交一条真实测试询盘，确认写入成功、`consent=true`、字段完整；测试成功/失败提示。
 3. **配置 GTM/GA4**：在 GTM 中为 `inquiry_start`、`inquiry_submit_success`、`product_view`、`contact_click` 建立 GA4 事件标签，并把 `inquiry_submit_success` 标记为转化。源码推送 dataLayer 不等于 GA4 已自动配置。
 4. **部署**：Cloudflare Pages 构建命令 `npm run build`，输出目录 `dist`；确认 `_redirects` 生效，`/` 返回 301 到 `/zh/`。
-5. **检查线上 URL**：首页、三个分类页、四个产品页、质量页、知识中心、10 篇文章、联系页、隐私政策、法律声明。
+5. **检查线上 URL**：首页、三个分类页、11 个产品页、能力页、质量页、知识中心、15 篇文章、联系页、隐私政策、法律声明。
 6. **提交 sitemap**：Google Search Console 和百度搜索资源平台提交 `https://sheerherb.cn/sitemap-index.xml`。
 7. **检查抓取**：用 GSC URL 检查、百度抓取诊断检查中文首页、分类页、产品页和文章页。
 8. **确认 404**：访问不存在的 URL，确认返回 404 页面且为 noindex。
@@ -248,11 +248,11 @@ npm run seo:check
 
 ```
 npm run build
-→ 152 page(s) built in 2.42s
+→ 165 page(s) built in 2.59s
 → Complete!
 
 node scripts/seo-keyword-audit.mjs
-→ 30 个已登记页面 / 30 个已生成中文页面
+→ 43 个已登记页面 / 43 个已生成中文页面
 → 未覆盖的主关键词：0
 → Title/H1 未匹配：0
 → 重复主关键词：0
@@ -260,7 +260,7 @@ node scripts/seo-keyword-audit.mjs
 → exit 0
 
 node scripts/seo-site-audit.mjs
-→ 151 个页面，150 个 sitemap URL
+→ 164 个页面，163 个 sitemap URL
 → Canonical 不一致：0
 → 内部死链：0
 → hreflang 错误：0
@@ -320,7 +320,7 @@ npm run seo:check
 
 ### 第 3—4 周
 
-- 发布第一批 10 篇文章后，观察收录和展现。
+- 发布第一批文章后，观察收录和展现。
 - 补充真实产品资料：规格书、脱敏 COA 样例、TDS 样例、包装图片。
 - 为 4 个重点产品各补 2—3 篇应用型文章。
 
@@ -337,3 +337,61 @@ npm run seo:check
 - 评估是否启动国际站 `sheerherb.com` 的独立内容规划。
 
 更细的选题和发布节奏见 `SEO-CONTENT-ROADMAP.md`；上线操作见 `SEO-LAUNCH-CHECKLIST.md`。
+
+---
+
+## 10. 2026-11-19 增补：对标国际站的产品矩阵
+
+在原有 30 个中文页面的基础上，本轮对照 `sheerherb.com` 的公开产品结构，补充了国内站的脂质体与微丸产品矩阵。
+
+### 10.1 新增产品页（7 个）
+
+| 产品页 | 主要关键词 | 参考剂型/规格 |
+|---|---|---|
+| `/zh/products/liposomal-curcumin-powder/` | 脂质体姜黄素 | 粉末，参考 MOQ 20 kg |
+| `/zh/products/liposomal-iron-powder/` | 脂质体铁 | 粉末，参考 MOQ 1 kg |
+| `/zh/products/liposomal-magnesium/` | 脂质体镁 | 食品级粉末 |
+| `/zh/products/liposomal-nmn-powder/` | 脂质体 NMN | 5% / 10% / 50% 参考规格 |
+| `/zh/products/liposome-glutathione/` | 脂质体谷胱甘肽 | 98%，HPLC 参考 |
+| `/zh/products/liposomal-vitamin-c-liquid/` | 脂质体维生素 C 液体 | 20% 参考规格，MOQ 1 kg |
+| `/zh/products/sustained-release-micropellets/` | 缓释微丸 | 定制释放/包衣 |
+
+参数来源为 Sheerherb 国际站公开产品页面（2026-11-19 查看），页面已明确标注：国内报价、正式规格书、批次 COA 和目的市场法规要求为准。没有把国际站参数写成国内固定承诺。
+
+### 10.2 新增能力页（1 个）
+
+`/zh/capabilities/`：脂质体粉末、脂质体液体、缓释微丸、OEM/白标、质量文件与剂型选择。用于承接“脂质体粉末”“缓释微丸”“脂质体 OEM”等能力型搜索。
+
+### 10.3 新增采购指南（5 篇）
+
+| 文章 | 目标关键词 |
+|---|---|
+| 脂质体姜黄素采购要看哪些指标？ | 脂质体姜黄素采购 |
+| 脂质体铁和脂质体镁采购有什么区别？ | 脂质体铁和脂质体镁采购 |
+| 脂质体 NMN 采购需要确认什么？ | 脂质体 NMN 采购 |
+| 脂质体液体和粉末怎么选？ | 脂质体液体和粉末 |
+| 缓释微丸定制流程和采购要点 | 缓释微丸定制 |
+
+NMN 页面和文章均明确提示：中国内地食品原料准入有严格限制，具体用途需由法规顾问按目的市场确认，不构成合规结论。
+
+### 10.4 更新后的验收数字
+
+| 指标 | 结果 |
+|---|---|
+| 构建页面 | 165 |
+| Sitemap URL | 163 |
+| 已登记中文页面 | 43 |
+| 关键词覆盖 | 43/43，主词缺失 0 |
+| Title/H1 不匹配 | 0 |
+| 重复主关键词 | 0 |
+| Canonical/死链/hreflang/JSON-LD | 0 |
+| 未登记中文页面 | 0 |
+
+构建命令仍为 `npm run build`，审计命令仍为 `npm run seo:check`。新增产品页只生成中文版本，hreflang 只输出 `zh-CN` 和 `x-default`，不会生成虚假的其他语言版本。
+
+### 10.5 国内站与国际站的边界
+
+- 国内站以中文采购搜索、国内客户沟通、中文资料和询盘转化为目标。
+- 国际站继续面向海外 B2B，不把国内站中文文案机器翻译后复制过去。
+- 两边共享真实产品事实，但国内站增加了中文法规提示、采购清单、文件沟通和国内联系方式。
+- 真实 COA/TDS/SDS、规格书和证书仍需要业务提供；页面不编造。

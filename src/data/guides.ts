@@ -979,6 +979,379 @@ export const guides: Guide[] = [
     ],
     relatedGuides: ["how-to-evaluate-functional-ingredient-suppliers", "ingredient-moq-packaging-lead-time"],
   },
+
+  {
+    slug: "liposomal-curcumin-purchasing-guide",
+    title: "脂质体姜黄素采购要看哪些指标？",
+    seoTitle: "脂质体姜黄素采购要看哪些指标？",
+    description:
+      "从姜黄素含量、包封率、粒径、外观、载体组成到 MOQ 与文件，整理脂质体姜黄素粉末的中文采购确认清单。",
+    category: "liposomal",
+    targetKeyword: "脂质体姜黄素采购",
+    secondaryKeywords: ["脂质体姜黄素", "姜黄素包封率", "脂质体姜黄素粉"],
+    searchIntent: "采购或研发准备询价脂质体姜黄素粉末",
+    published: "2026-11-19",
+    updated: "2026-11-19",
+    readingMinutes: 7,
+    summary: [
+      "先确认姜黄素含量和检测方法。",
+      "包封率、粒径和载体组成要一起看。",
+      "颜色、流动性和固体饮料适配性影响配方。",
+    ],
+    blocks: [
+      p(
+        "脂质体姜黄素不是“姜黄素含量越高越好”的单一问题。姜黄素本身难溶、易氧化，采购时要同时确认载体、包封、粒径、外观和检测方法。",
+      ),
+      h2("1. 先确认姜黄素身份与含量"),
+      ul([
+        "姜黄素来源与规格：天然提取或合成，具体以规格书为准",
+        "姜黄素含量及检测方法（通常 HPLC）",
+        "是否复配其他姜黄素类成分",
+        "批次含量范围，而不是单一批次典型值",
+      ]),
+      h2("2. 包封率、粒径与载体"),
+      p(
+        "包封率描述被脂质体包封的比例，粒径影响分散性和稳定性。两者都要有检测方法和计算口径。还要确认磷脂种类、来源和载体比例，避免只比较一个“脂质体”名称。",
+      ),
+      table(
+        ["指标", "采购要确认"],
+        [
+          ["姜黄素含量", "含量口径、HPLC 方法、批次范围"],
+          ["包封率", "分离方法、计算方式、批次数据"],
+          ["粒径", "DLS 条件、平均粒径、PDI"],
+          ["外观", "颜色、流动性、是否结块"],
+          ["载体", "磷脂组成、来源、等级"],
+        ],
+        "脂质体姜黄素采购指标",
+      ),
+      h2("3. 固体饮料和胶囊的适配性"),
+      p(
+        "固体饮料关注分散性、颜色、气味和沉淀；胶囊关注流动性、装量差异和吸湿性。样品阶段应模拟实际配料和储存条件，而不是只看 COA。",
+      ),
+      h2("4. 文件与商务条件"),
+      p(
+        "确认批次 COA、TDS、SDS、规格书、重金属和微生物报告。MOQ、包装、交期和证书范围按项目确认，不把国际站参考值直接当成国内承诺。",
+      ),
+      links("相关页面", [
+        { label: "脂质体姜黄素粉", href: "/zh/products/liposomal-curcumin-powder/", note: "参考规格与询盘" },
+        { label: "脂质体原料采购指标", href: href("liposomal-ingredient-purchasing-parameters"), note: "包封率、粒径与检测" },
+        { label: "质量与文件", href: "/zh/quality/", note: "COA/TDS/SDS 核验" },
+        { label: "提交采购需求", href: "/zh/contact/?interest=脂质体姜黄素&type=guide", note: "说明含量、应用与数量" },
+      ]),
+    ],
+    faq: [
+      {
+        q: "姜黄素含量越高越好吗？",
+        a: "取决于配方目标和添加量。高含量可能带来颜色、溶解性和成本问题，应结合包封率、粒径和应用评估。",
+      },
+      {
+        q: "包封率可以写进合同吗？",
+        a: "可以约定检测方法和最低要求，但需先确认供应商的检测能力、计算口径和批次数据。",
+      },
+      {
+        q: "脂质体姜黄素能用于固体饮料吗？",
+        a: "可以作为沟通方向，但是否适用取决于分散性、法规准入、标签和实际配方。采购方应确认目的市场要求。",
+      },
+    ],
+    related: [
+      { label: "脂质体姜黄素粉", href: "/zh/products/liposomal-curcumin-powder/" },
+      { label: "脂质体相关原料", href: "/zh/products/liposomal-ingredients/" },
+    ],
+    relatedGuides: ["liposomal-ingredient-purchasing-parameters", "ingredient-sample-testing-preparation"],
+  },
+
+  {
+    slug: "liposomal-iron-magnesium-purchasing",
+    title: "脂质体铁和脂质体镁采购有什么区别？",
+    seoTitle: "脂质体铁和脂质体镁采购有什么区别？",
+    description:
+      "对比脂质体铁和脂质体镁的化合物形式、元素含量、颜色、口感、检测方法和法规确认点，帮助采购选择合适规格。",
+    category: "liposomal",
+    targetKeyword: "脂质体铁采购",
+    secondaryKeywords: ["脂质体镁", "脂质体铁", "铁镁脂质体"],
+    searchIntent: "采购人员比较脂质体铁和脂质体镁的规格与供应商",
+    published: "2026-11-19",
+    updated: "2026-11-19",
+    readingMinutes: 7,
+    summary: [
+      "铁和镁都不是“单一含量”能描述的产品。",
+      "化合物形式决定含量、颜色、口感和法规。",
+      "检测方法和目的市场要先确认。",
+    ],
+    blocks: [
+      p(
+        "脂质体铁和脂质体镁看起来都是“矿物质 + 脂质载体”，但采购口径差别很大：铁和镁的元素含量、化合物形式、颜色、口感、稳定性和法规要求都不同。",
+      ),
+      h2("1. 元素含量不等于化合物含量"),
+      p(
+        "铁含量通常以元素铁计，镁含量以元素镁计，但产品实际是某种铁/镁化合物。询价时要同时写明化合物形式、元素含量、检测方法和换算方式。",
+      ),
+      h2("2. 颜色、口感和配方适配"),
+      table(
+        ["项目", "脂质体铁", "脂质体镁"],
+        [
+          ["常见外观", "灰黑色（参考）", "食品级粉末（参考）"],
+          ["配方关注", "颜色、氧化、铁腥味", "口感、溶解性、流动性"],
+          ["法规重点", "铁化合物与营养强化范围", "镁化合物与使用范围"],
+          ["检测重点", "铁含量、价态、重金属", "镁含量、重金属、微生物"],
+        ],
+        "脂质体铁与镁的采购差异",
+      ),
+      h2("3. 包封率、粒径与稳定性"),
+      p(
+        "两者都要确认包封率、粒径、水分和稳定性，但铁的更易氧化/变色，镁的口感与溶解性更受关注。样品阶段应模拟实际配料、pH 和储存条件。",
+      ),
+      h2("4. 先确认目的市场法规"),
+      p(
+        "铁、镁在不同市场的营养强化剂准入、添加范围和标签要求不同。国内采购应先确认化合物形式、产品形态和目标市场，再讨论规格与报价。",
+      ),
+      links("相关产品", [
+        { label: "脂质体铁粉", href: "/zh/products/liposomal-iron-powder/", note: "参考规格与文件" },
+        { label: "脂质体镁", href: "/zh/products/liposomal-magnesium/", note: "食品级粉末与证书" },
+        { label: "脂质体原料采购指标", href: href("liposomal-ingredient-purchasing-parameters"), note: "通用技术指标" },
+        { label: "提交铁/镁采购需求", href: "/zh/contact/?interest=脂质体铁镁&type=guide", note: "说明化合物形式与用途" },
+      ]),
+    ],
+    faq: [
+      {
+        q: "脂质体铁和普通铁剂有什么区别？",
+        a: "脂质体形式通过脂质载体包埋铁化合物，具体差异取决于包封率、粒径、载体组成和工艺。不能仅凭名称判断吸收或效果。",
+      },
+      {
+        q: "铁含量越高越好吗？",
+        a: "不是。应结合每日摄入设计、颜色、口感、氧化稳定性和法规添加范围综合评估。",
+      },
+      {
+        q: "脂质体镁的证书可以直接用于国内宣传吗？",
+        a: "不能直接使用。证书要核对持有人、范围、有效期和产品对应关系，国内宣传还要符合广告和法规要求。",
+      },
+    ],
+    related: [
+      { label: "脂质体铁粉", href: "/zh/products/liposomal-iron-powder/" },
+      { label: "脂质体镁", href: "/zh/products/liposomal-magnesium/" },
+    ],
+    relatedGuides: ["liposomal-ingredient-purchasing-parameters", "ingredient-sample-testing-preparation"],
+  },
+
+  {
+    slug: "liposomal-nmn-purchasing-guide",
+    title: "脂质体 NMN 采购需要确认什么？",
+    seoTitle: "脂质体 NMN 采购需要确认什么？",
+    description:
+      "说明脂质体 NMN 的 5%、10%、50% 规格、含量与纯度、包封率、稳定性、检测方法和国内法规准入风险。",
+    category: "liposomal",
+    targetKeyword: "脂质体NMN采购",
+    secondaryKeywords: ["脂质体NMN", "NMN脂质体", "NMN规格"],
+    searchIntent: "采购或研发准备询价脂质体 NMN，需要确认规格与合规风险",
+    published: "2026-11-19",
+    updated: "2026-11-19",
+    readingMinutes: 8,
+    summary: [
+      "先确认 NMN 规格和含量口径。",
+      "包封率、粒径和稳定性不能省略。",
+      "国内食品原料准入是高风险点，先确认法规。",
+    ],
+    blocks: [
+      p(
+        "脂质体 NMN 的询价不能只写“NMN 脂质体”。要同时确认 NMN 规格比例、含量/纯度、包封率、粒径、稳定性、检测方法和目的市场法规。",
+      ),
+      h2("1. 规格比例与含量口径"),
+      p(
+        "国际站公开页面列出 5%、10%、50% 三种参考规格。这里的比例通常指 NMN 在脂质体粉末中的规格比例，具体计算口径、检测方法和批次范围要以规格书和 COA 为准。",
+      ),
+      h2("2. 包封率、粒径与稳定性"),
+      ul([
+        "包封率及分离/计算方法",
+        "平均粒径、PDI 与 DLS 条件",
+        "水分、重金属、微生物",
+        "残留溶剂（如工艺使用）",
+        "加速/长期稳定性数据",
+        "储存条件与包装相容性",
+      ]),
+      h2("3. 国内法规准入要先确认"),
+      note(
+        "高风险合规点",
+        "NMN 在中国内地的食品原料准入有严格限制，不能把国际站或出口用途直接套用到国内食品。应先确认目的市场、产品形态和法规路径，再讨论规格、样品和报价。",
+      ),
+      h2("4. 采购文件与商务条件"),
+      p(
+        "确认批次 COA、TDS、SDS、规格书、检测方法和法规资料。MOQ、包装、交期和价格按项目确认，不把参考规格当成固定承诺。",
+      ),
+      links("相关页面", [
+        { label: "脂质体 NMN 粉", href: "/zh/products/liposomal-nmn-powder/", note: "参考规格与询盘" },
+        { label: "脂质体原料采购指标", href: href("liposomal-ingredient-purchasing-parameters"), note: "通用技术指标" },
+        { label: "供应商评估", href: href("how-to-evaluate-functional-ingredient-suppliers"), note: "文件与样品审核" },
+        { label: "提交 NMN 采购需求", href: "/zh/contact/?interest=脂质体NMN&type=guide", note: "说明规格与目的市场" },
+      ]),
+    ],
+    faq: [
+      {
+        q: "NMN 在国内可以作为食品原料吗？",
+        a: "不能一概而论。NMN 在中国内地的食品原料准入有严格限制，具体用途需由法规顾问按目的市场和产品形态确认。本页不构成合规结论。",
+      },
+      {
+        q: "5%、10%、50% 怎么选？",
+        a: "取决于配方目标、添加量、成本和法规。比例越高不一定越适合，应结合含量口径、包封率和应用评估。",
+      },
+      {
+        q: "脂质体 NMN 和普通 NMN 有什么区别？",
+        a: "脂质体形式通过磷脂载体包埋 NMN，具体差异取决于包封率、粒径、载体组成和工艺，不能仅凭名称判断性能。",
+      },
+    ],
+    related: [
+      { label: "脂质体 NMN 粉", href: "/zh/products/liposomal-nmn-powder/" },
+      { label: "脂质体相关原料", href: "/zh/products/liposomal-ingredients/" },
+    ],
+    relatedGuides: ["liposomal-ingredient-purchasing-parameters", "how-to-evaluate-functional-ingredient-suppliers"],
+  },
+
+  {
+    slug: "liposomal-liquid-vs-powder",
+    title: "脂质体液体和粉末怎么选？",
+    seoTitle: "脂质体液体和粉末怎么选？",
+    description:
+      "从剂型、稳定性、运输、包装、MOQ、配方工艺和成本对比脂质体液体与粉末，帮助采购选择合适形态。",
+    category: "liposomal",
+    targetKeyword: "脂质体液体和粉末",
+    secondaryKeywords: ["脂质体液体", "脂质体粉末", "脂质体剂型"],
+    searchIntent: "采购在液体和粉末剂型之间做选择",
+    published: "2026-11-19",
+    updated: "2026-11-19",
+    readingMinutes: 6,
+    summary: [
+      "液体适合饮料/口服液，粉末适合胶囊/粉剂。",
+      "运输、稳定性和包装成本会改变选择。",
+      "先确定剂型，再谈规格和 MOQ。",
+    ],
+    blocks: [
+      p(
+        "脂质体液体和粉末不是简单的“哪个更好”。剂型会影响稳定性、运输、包装、配料工艺、保质期和成本，采购前应先确定终端产品形态。",
+      ),
+      h2("1. 按终端剂型选择"),
+      table(
+        ["终端产品", "更适合的形态", "原因"],
+        [
+          ["饮料、口服液", "液体", "直接配料，减少复溶步骤"],
+          ["胶囊、粉剂、固体饮料", "粉末", "流动性、装量和运输更方便"],
+          ["条装液体", "液体", "需确认防腐、pH 和稳定性"],
+          ["压片/特殊工艺", "粉末或微丸", "需评估流动性和压片适配"],
+        ],
+        "剂型选择参考",
+      ),
+      h2("2. 稳定性与运输"),
+      p(
+        "液体产品要关注分层、沉淀、pH、防腐和微生物；粉末要关注吸湿、结块、分散性和复溶。液体通常运输成本更高，粉末则对储存湿度更敏感。",
+      ),
+      h2("3. 包装、MOQ 与成本"),
+      p(
+        "液体包装、冷链或温控要求可能提高成本；粉末的 MOQ 和包装更灵活。参考 MOQ 不能直接当成国内承诺，要按项目确认。",
+      ),
+      h2("4. 先做剂型匹配，再谈价格"),
+      p(
+        "建议先提供终端剂型、添加量、工艺条件、包装形式和目的市场，再让供应商推荐液体或粉末，并给出对应的规格、文件和样品方案。",
+      ),
+      links("相关产品", [
+        { label: "脂质体维生素 C 液体", href: "/zh/products/liposomal-vitamin-c-liquid/", note: "20% 参考规格" },
+        { label: "脂质体维生素 C 粉末", href: "/zh/products/liposomal-vitamin-c/", note: "粉末剂型" },
+        { label: "脂质体原料采购指标", href: href("liposomal-ingredient-purchasing-parameters"), note: "包封率与粒径" },
+        { label: "提交剂型咨询", href: "/zh/contact/?interest=脂质体剂型&type=guide", note: "说明终端产品与工艺" },
+      ]),
+    ],
+    faq: [
+      {
+        q: "液体脂质体比粉末效果好吗？",
+        a: "不能简单比较。效果取决于活性物、包封率、粒径、剂量和配方，剂型只是其中一个因素。",
+      },
+      {
+        q: "粉末需要冷藏吗？",
+        a: "取决于产品稳定性和包装，应以 TDS/SDS 和标签说明为准。吸湿性强的粉末通常需要防潮储存。",
+      },
+      {
+        q: "液体可以常温运输吗？",
+        a: "需根据稳定性、防腐体系和运输时长确认。部分液体可能需要温控，不能默认常温。",
+      },
+    ],
+    related: [
+      { label: "脂质体维生素 C 液体", href: "/zh/products/liposomal-vitamin-c-liquid/" },
+      { label: "脂质体维生素 C 粉末", href: "/zh/products/liposomal-vitamin-c/" },
+    ],
+    relatedGuides: ["liposomal-ingredient-purchasing-parameters", "ingredient-moq-packaging-lead-time"],
+  },
+
+  {
+    slug: "sustained-release-micropellets-custom",
+    title: "缓释微丸定制流程和采购要点",
+    seoTitle: "缓释微丸定制流程和采购要点",
+    description:
+      "说明缓释微丸的包衣、释放曲线、粒径、胶囊填充、定制流程、MOQ 和文件确认点，适合功能性食品与补充剂项目。",
+    category: "supplier",
+    targetKeyword: "缓释微丸定制",
+    secondaryKeywords: ["缓释微丸", "微丸包衣", "缓释微丸代工"],
+    searchIntent: "有缓释/掩味/胶囊填充需求，寻找微丸定制供应",
+    published: "2026-11-19",
+    updated: "2026-11-19",
+    readingMinutes: 7,
+    summary: [
+      "微丸是定制剂型，不是标准品。",
+      "先定释放曲线，再谈包衣和价格。",
+      "样品阶段必须测释放曲线和胶囊适配性。",
+    ],
+    blocks: [
+      p(
+        "缓释微丸通过包衣和微丸结构保护活性成分、调节释放行为。它属于定制剂型，采购时不能只问“多少钱一公斤”，而要先确认活性物、释放曲线、包衣、粒径和胶囊规格。",
+      ),
+      h2("1. 先定义释放目标"),
+      ul([
+        "目标释放时间与取样点",
+        "释放介质、温度、转速和检测方法",
+        "是否需要肠溶、掩味或防潮",
+        "载药量与均匀度",
+      ]),
+      h2("2. 包衣与微丸结构"),
+      p(
+        "包衣增重、聚合物类型、粒径和圆整度会影响释放曲线和胶囊填充。包衣太薄可能释放过快，太厚可能释放不足；需要样品实测，而不是只看配方描述。",
+      ),
+      h2("3. 定制流程"),
+      table(
+        ["阶段", "输出"],
+        [
+          ["需求确认", "活性物、释放目标、胶囊规格、法规要求"],
+          ["样品与测试", "样品、释放曲线、粒径/流动性数据"],
+          ["批次生产", "确认规格、批次文件、交期与包装"],
+        ],
+        "缓释微丸三步定制",
+      ),
+      h2("4. MOQ、交期与文件"),
+      p(
+        "微丸的 MOQ、开发周期和交期取决于配方、包衣和批次，不能套用标准品。需要确认批次 COA、TDS、SDS、释放方法、稳定性和胶囊填充适配性。",
+      ),
+      links("相关页面", [
+        { label: "缓释微丸", href: "/zh/products/sustained-release-micropellets/", note: "参考规格与询盘" },
+        { label: "定制寻源服务", href: "/zh/custom-sourcing/", note: "需求包与供应评估" },
+        { label: "定制原料寻源", href: href("how-to-run-custom-ingredient-sourcing"), note: "五步流程" },
+        { label: "提交微丸定制需求", href: "/zh/contact/?interest=缓释微丸&type=guide", note: "说明活性物与释放目标" },
+      ]),
+    ],
+    faq: [
+      {
+        q: "缓释微丸能保证固定释放时间吗？",
+        a: "不能脱离具体配方承诺。释放时间取决于活性物、包衣、粒径和介质条件，应以样品实测释放曲线为准。",
+      },
+      {
+        q: "微丸可以装胶囊吗？",
+        a: "可以，但需确认粒径、流动性、装量差异和胶囊壳相容性。样品阶段应实际试装。",
+      },
+      {
+        q: "MOQ 为什么比粉末高？",
+        a: "微丸涉及包衣、配方开发和批次生产，起订量通常受工艺和批次限制，需按项目确认。",
+      },
+    ],
+    related: [
+      { label: "缓释微丸", href: "/zh/products/sustained-release-micropellets/" },
+      { label: "定制寻源", href: "/zh/custom-sourcing/" },
+    ],
+    relatedGuides: ["how-to-run-custom-ingredient-sourcing", "ingredient-moq-packaging-lead-time"],
+  },
 ];
 
 export function getGuide(slug: string) {
