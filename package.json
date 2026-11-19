@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
-    "preview": "astro preview"
+    "preview": "astro preview",
+    "seo:audit": "node scripts/seo-keyword-audit.mjs"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.6.0",

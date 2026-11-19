@@ -1,0 +1,486 @@
+{
+  "_meta": {
+    "site": "https://sheerherb.cn",
+    "language": "zh-CN",
+    "purpose": "内部 SEO 关键词规划与页面覆盖检查；不是输出给搜索引擎的 meta keywords 标签",
+    "lastReviewed": "2026-11-19",
+    "notes": [
+      "关键词为业务策略初稿，不代表已验证的搜索量、难度或排名。",
+      "上线前应结合百度搜索资源平台、Google Search Console 和真实询盘数据调整。",
+      "不以没有证据的厂家、源头工厂、认证、库存或固定规格作为页面关键词承诺。"
+    ]
+  },
+  "pages": [
+    {
+      "path": "/zh/",
+      "pageName": "中文首页",
+      "pageType": "商业首页",
+      "searchIntent": "寻找植物提取物、脂质体及功能性原料供应合作方",
+      "priority": "P0",
+      "primaryKeywords": [
+        "植物提取物供应商",
+        "功能性原料供应商"
+      ],
+      "secondaryKeywords": [
+        "植物提取物采购",
+        "脂质体原料供应",
+        "膳食补充剂原料供应"
+      ],
+      "contentChecklist": [
+        "Title 包含主营业务定位",
+        "H1 清楚说明 B2B 供应合作",
+        "首屏正文自然出现主要业务词",
+        "链接到产品目录和重点分类页",
+        "有明确采购询盘入口"
+      ],
+      "notes": "首页覆盖业务总类，不要与具体产品详情页争夺产品名词。",
+      "titleFocus": "植物提取物与脂质体原料供应合作",
+      "h1Focus": "植物提取物与功能性原料供应"
+    },
+    {
+      "path": "/zh/products/",
+      "pageName": "产品与原料目录",
+      "pageType": "产品目录",
+      "searchIntent": "浏览供应商提供的原料类别和代表性产品方向",
+      "priority": "P1",
+      "primaryKeywords": [
+        "植物提取物和脂质体原料",
+        "功能性原料目录"
+      ],
+      "secondaryKeywords": [
+        "植物提取物",
+        "脂质体相关原料",
+        "功能性原料采购"
+      ],
+      "contentChecklist": [
+        "区分原料类别和具体产品",
+        "链接到全部重点分类页",
+        "说明展示不代表固定库存或规格",
+        "提供采购需求入口"
+      ],
+      "notes": "目录页负责导航和分流，不要取代分类页的详细主题。",
+      "titleFocus": "植物提取物与脂质体原料产品目录",
+      "h1Focus": "产品与原料方向"
+    },
+    {
+      "path": "/zh/products/botanical-extracts/",
+      "pageName": "植物提取物分类",
+      "pageType": "产品分类",
+      "searchIntent": "寻找植物提取物采购或供应合作",
+      "priority": "P0",
+      "primaryKeywords": [
+        "植物提取物采购",
+        "植物提取物供应"
+      ],
+      "secondaryKeywords": [
+        "植物提取物规格",
+        "植物提取物提取比例",
+        "植物提取物检测方法"
+      ],
+      "contentChecklist": [
+        "植物中文名和拉丁学名确认说明",
+        "使用部位、提取溶剂、提取比例说明",
+        "标志性成分和检测方法说明",
+        "相关产品链接",
+        "采购询盘入口"
+      ],
+      "notes": "避免将没有实际供应证据的具体品种写成现货目录。",
+      "titleFocus": "植物提取物供应与定制采购",
+      "h1Focus": "植物提取物与功能性提取物"
+    },
+    {
+      "path": "/zh/products/liposomal-ingredients/",
+      "pageName": "脂质体相关原料分类",
+      "pageType": "产品分类",
+      "searchIntent": "寻找脂质体体系所需原料和采购信息",
+      "priority": "P0",
+      "primaryKeywords": [
+        "脂质体原料",
+        "脂质体原料采购"
+      ],
+      "secondaryKeywords": [
+        "磷脂原料",
+        "脂质材料",
+        "脂质体相关辅料"
+      ],
+      "contentChecklist": [
+        "解释分类范围和原料身份",
+        "说明规格确认维度",
+        "关联脂质体维生素 C 产品页",
+        "质量文件说明",
+        "采购询盘入口"
+      ],
+      "notes": "不要将脂质体成品、磷脂原料和其他辅料混为同一产品。",
+      "titleFocus": "脂质体相关原料供应与采购",
+      "h1Focus": "脂质体相关原料"
+    },
+    {
+      "path": "/zh/products/custom-sourcing/",
+      "pageName": "定制寻源分类页",
+      "pageType": "采购服务分类",
+      "searchIntent": "已有明确成分或规格，需要供应商寻源支持",
+      "priority": "P1",
+      "primaryKeywords": [
+        "功能性原料定制寻源",
+        "原料定制采购"
+      ],
+      "secondaryKeywords": [
+        "原料供应商寻源",
+        "指定规格原料采购"
+      ],
+      "contentChecklist": [
+        "描述需求信息",
+        "描述供应评估流程",
+        "描述样品和文件确认",
+        "链接联系表单"
+      ],
+      "notes": "与顶层 /zh/custom-sourcing/ 服务页区分；本页重点为产品分类入口。",
+      "titleFocus": "功能性原料定制寻源与采购协作",
+      "h1Focus": "功能性原料定制寻源"
+    },
+    {
+      "path": "/zh/products/liposomal-vitamin-c/",
+      "pageName": "脂质体维生素 C 粉末",
+      "pageType": "产品详情",
+      "searchIntent": "采购或询价脂质体维生素 C 粉末原料",
+      "priority": "P0",
+      "primaryKeywords": [
+        "脂质体维生素C原料"
+      ],
+      "secondaryKeywords": [
+        "脂质体维生素C粉末",
+        "Liposomal Vitamin C Powder",
+        "脂质体维生素C采购"
+      ],
+      "contentChecklist": [
+        "产品身份与剂型",
+        "真实含量和检测方法（经确认后）",
+        "外观和规格（经确认后）",
+        "COA/TDS/SDS 可提供状态",
+        "包装/MOQ/样品需确认",
+        "产品专属询盘入口"
+      ],
+      "notes": "不得未经核实填写含量、MOQ、认证或库存。",
+      "titleFocus": "脂质体维生素 C 粉末原料采购",
+      "h1Focus": "脂质体维生素 C 粉末"
+    },
+    {
+      "path": "/zh/products/urolithin-a/",
+      "pageName": "尿石素 A",
+      "pageType": "产品详情",
+      "searchIntent": "采购或询价尿石素 A 原料",
+      "priority": "P0",
+      "primaryKeywords": [
+        "尿石素A原料"
+      ],
+      "secondaryKeywords": [
+        "尿石素A采购",
+        "Urolithin A 原料",
+        "尿石素A规格"
+      ],
+      "contentChecklist": [
+        "产品身份",
+        "纯度和检测方法（经确认后）",
+        "质量文件可提供状态",
+        "包装/MOQ/样品需确认",
+        "产品专属询盘入口"
+      ],
+      "notes": "不要将市场通用参数写成 Sheerherb 当前供货承诺。",
+      "titleFocus": "尿石素 A 原料供应与采购询价",
+      "h1Focus": "尿石素 A"
+    },
+    {
+      "path": "/zh/products/shilajit-resin/",
+      "pageName": "喜来芝树脂",
+      "pageType": "产品详情",
+      "searchIntent": "采购或询价喜来芝树脂原料",
+      "priority": "P0",
+      "primaryKeywords": [
+        "喜来芝树脂原料"
+      ],
+      "secondaryKeywords": [
+        "Shilajit Resin",
+        "喜来芝树脂采购",
+        "喜来芝树脂规格"
+      ],
+      "contentChecklist": [
+        "来源和产品身份（经确认后）",
+        "指标与检测方法（经确认后）",
+        "批次质量文件",
+        "包装/样品/采购数量需确认",
+        "产品专属询盘入口"
+      ],
+      "notes": "避免没有供应商文件支持的产地、活性成分和纯度声明。",
+      "titleFocus": "喜来芝树脂原料采购与供应咨询",
+      "h1Focus": "喜来芝树脂"
+    },
+    {
+      "path": "/zh/products/berberine-hcl/",
+      "pageName": "盐酸小檗碱",
+      "pageType": "产品详情",
+      "searchIntent": "采购或询价盐酸小檗碱原料",
+      "priority": "P0",
+      "primaryKeywords": [
+        "盐酸小檗碱原料"
+      ],
+      "secondaryKeywords": [
+        "盐酸小檗碱采购",
+        "Berberine HCl",
+        "盐酸小檗碱规格"
+      ],
+      "contentChecklist": [
+        "产品身份和 CAS（确认后）",
+        "含量及检测方法（经确认后）",
+        "质量文件可提供状态",
+        "包装/MOQ/样品需确认",
+        "产品专属询盘入口"
+      ],
+      "notes": "规格、认证和供货条件必须与实际文件一致。",
+      "titleFocus": "盐酸小檗碱原料供应与采购询价",
+      "h1Focus": "盐酸小檗碱"
+    },
+    {
+      "path": "/zh/custom-sourcing/",
+      "pageName": "定制寻源服务",
+      "pageType": "服务页",
+      "searchIntent": "寻找功能性原料寻源和采购协作服务",
+      "priority": "P1",
+      "primaryKeywords": [
+        "功能性原料寻源",
+        "原料供应商寻源服务"
+      ],
+      "secondaryKeywords": [
+        "定制原料采购",
+        "原料采购协作",
+        "指定规格原料寻源"
+      ],
+      "contentChecklist": [
+        "说明适用客户和需求",
+        "说明供应商评估流程",
+        "说明样品和规格确认",
+        "说明交付前商务确认",
+        "询盘 CTA"
+      ],
+      "notes": "避免与 /zh/products/custom-sourcing/ 使用完全相同的页面标题和主关键词。",
+      "titleFocus": "功能性原料定制寻源与采购协作",
+      "h1Focus": "定制寻源与采购协作"
+    },
+    {
+      "path": "/zh/quality/",
+      "pageName": "质量与文件",
+      "pageType": "信任与质量页",
+      "searchIntent": "了解原料质量文件和批次资料如何核验",
+      "priority": "P1",
+      "primaryKeywords": [
+        "原料COA",
+        "植物提取物质量文件"
+      ],
+      "secondaryKeywords": [
+        "原料TDS",
+        "原料SDS",
+        "原料检测报告",
+        "批次质量文件"
+      ],
+      "contentChecklist": [
+        "解释 COA/TDS/SDS 的区别",
+        "说明文件与批次的对应关系",
+        "说明检测方法和规格核验",
+        "明确文件需按项目确认"
+      ],
+      "notes": "仅说明文件用途和核验流程，不暗示所有产品均已有相关证书。",
+      "titleFocus": "原料质量文件与供应商资料核验",
+      "h1Focus": "质量、文件与合规沟通"
+    },
+    {
+      "path": "/zh/industries/",
+      "pageName": "应用领域",
+      "pageType": "应用页",
+      "searchIntent": "了解原料在不同企业应用场景中的采购考量",
+      "priority": "P2",
+      "primaryKeywords": [
+        "功能性原料应用领域"
+      ],
+      "secondaryKeywords": [
+        "化妆品原料采购",
+        "营养健康原料",
+        "科研原料采购"
+      ],
+      "contentChecklist": [
+        "区分不同应用领域",
+        "说明各领域规格和法规要求需单独确认",
+        "链接到相关原料分类和联系页"
+      ],
+      "notes": "当前页面较概括，后续需补充真实应用案例或采购场景。",
+      "titleFocus": "功能性原料应用领域",
+      "h1Focus": "应用领域"
+    },
+    {
+      "path": "/zh/about/",
+      "pageName": "关于 Sheerherb",
+      "pageType": "品牌信任页",
+      "searchIntent": "核实 Sheerherb 的业务定位和合作方式",
+      "priority": "P2",
+      "primaryKeywords": [
+        "Sheerherb 原料供应"
+      ],
+      "secondaryKeywords": [
+        "Sheerherb 植物提取物",
+        "Sheerherb 功能性原料"
+      ],
+      "contentChecklist": [
+        "明确贸易与供应链协作定位",
+        "提供可核实的企业信息",
+        "避免未证实的工厂/资质声明",
+        "链接联系页"
+      ],
+      "notes": "品牌页优先建立可信度，不需要堆叠泛关键词。",
+      "titleFocus": "关于 Sheerherb｜功能性原料供应与采购协作",
+      "h1Focus": "植物提取物与脂质体原料供应合作"
+    },
+    {
+      "path": "/zh/contact/",
+      "pageName": "联系与采购询盘",
+      "pageType": "转化页",
+      "searchIntent": "联系供应商并提交原料采购需求",
+      "priority": "P1",
+      "primaryKeywords": [
+        "植物提取物采购询价",
+        "功能性原料供应联系"
+      ],
+      "secondaryKeywords": [
+        "原料供应商联系方式",
+        "原料采购需求提交"
+      ],
+      "contentChecklist": [
+        "表单字段清晰",
+        "允许提供产品/成分/规格/数量/目的市场",
+        "联系方式可点击",
+        "提交成功事件正常"
+      ],
+      "notes": "转化页不应为了关键词密度牺牲表单可用性。",
+      "titleFocus": "联系 Sheerherb｜提交原料采购需求",
+      "h1Focus": "联系我们"
+    },
+    {
+      "path": "/zh/factory/",
+      "pageName": "供应与生产协作说明",
+      "pageType": "业务说明页",
+      "searchIntent": "了解供应商和生产协作中的核验事项",
+      "priority": "P2",
+      "primaryKeywords": [
+        "原料供应商审核"
+      ],
+      "secondaryKeywords": [
+        "供应商资料核验",
+        "原料供应链协作"
+      ],
+      "contentChecklist": [
+        "区分贸易协作与生产制造",
+        "说明供应商资料核验",
+        "不宣称自有工厂，除非有证据"
+      ],
+      "notes": "不建议将本页定位为厂家页，除非企业实际生产资质得到证实。",
+      "titleFocus": "原料供应商审核与生产协作说明",
+      "h1Focus": "工厂与供应链合作"
+    },
+    {
+      "path": "/zh/certifications/",
+      "pageName": "认证与资质信息",
+      "pageType": "资质说明页",
+      "searchIntent": "了解企业或供应商可核实的认证和资质信息",
+      "priority": "P2",
+      "primaryKeywords": [
+        "原料供应商资质核验"
+      ],
+      "secondaryKeywords": [
+        "原料质量认证",
+        "供应商认证文件"
+      ],
+      "contentChecklist": [
+        "只展示可核验且有效的证书",
+        "标明证书持有人和适用范围",
+        "未提供证书时不做暗示"
+      ],
+      "notes": "如没有可公开证书，优先说明核验流程，不应以认证词作虚假承诺。",
+      "titleFocus": "原料供应商资质与认证核验",
+      "h1Focus": "认证与资质"
+    },
+    {
+      "path": "/zh/cases/",
+      "pageName": "项目合作方式",
+      "pageType": "项目说明页",
+      "searchIntent": "了解原料寻源和采购项目合作方式",
+      "priority": "P2",
+      "primaryKeywords": [
+        "原料采购项目合作"
+      ],
+      "secondaryKeywords": [
+        "植物提取物寻源项目",
+        "功能性原料采购协作"
+      ],
+      "contentChecklist": [
+        "仅发布获得授权的真实案例",
+        "隐去客户机密",
+        "说明项目需求和解决过程"
+      ],
+      "notes": "没有可公开的真实案例时不要编造客户、数据或效果。",
+      "titleFocus": "原料采购项目合作方式",
+      "h1Focus": "项目合作"
+    },
+    {
+      "path": "/zh/resources/",
+      "pageName": "采购指南与资源",
+      "pageType": "内容资源页",
+      "searchIntent": "了解植物提取物和功能性原料采购前需要准备的信息",
+      "priority": "P1",
+      "primaryKeywords": [
+        "植物提取物采购指南",
+        "原料规格确认"
+      ],
+      "secondaryKeywords": [
+        "植物提取物提取比例",
+        "原料检测方法",
+        "原料采购注意事项"
+      ],
+      "contentChecklist": [
+        "提供实用采购信息清单",
+        "解释植物身份和规格字段",
+        "解释检测方法和文件",
+        "链接到分类页和产品页"
+      ],
+      "notes": "适合后续扩展成独立的采购知识文章。",
+      "titleFocus": "植物提取物采购指南与原料资源",
+      "h1Focus": "采购指南与资源"
+    },
+    {
+      "path": "/zh/privacy/",
+      "pageName": "隐私政策",
+      "pageType": "法律页面",
+      "priority": "不做关键词目标",
+      "primaryKeywords": [],
+      "secondaryKeywords": [],
+      "contentChecklist": [
+        "内容符合实际数据处理方式",
+        "提供真实运营主体和联系渠道"
+      ],
+      "notes": "法律页面以准确和合规为主，不分配商业 SEO 关键词。",
+      "titleFocus": "隐私政策",
+      "h1Focus": "隐私政策"
+    },
+    {
+      "path": "/zh/terms/",
+      "pageName": "法律声明与使用条款",
+      "pageType": "法律页面",
+      "priority": "不做关键词目标",
+      "primaryKeywords": [],
+      "secondaryKeywords": [],
+      "contentChecklist": [
+        "条款符合实际业务",
+        "明确产品信息和交易以正式文件为准"
+      ],
+      "notes": "法律页面以准确和合规为主，不分配商业 SEO 关键词。",
+      "titleFocus": "法律声明与使用条款",
+      "h1Focus": "法律声明与使用条款"
+    }
+  ]
+}
