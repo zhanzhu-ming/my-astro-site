@@ -1,17 +1,54 @@
 ---
 import "../styles/global.css";
 import { site } from "../data/site";
-import { getBrandCopy, languages } from "../data/brand";
-const { lang = "zh", title, description } = Astro.props;
+import { getBrandCopy } from "../data/brand";
+const {
+  lang = "zh",
+  title,
+  description,
+  canonicalPath,
+  noindex = false,
+  breadcrumbs = [],
+  pageType = "website",
+  productName = "",
+} = Astro.props;
 const t = site[lang] || site.zh;
 const copy = getBrandCopy(lang);
 const languageLabels = [["zh","中文"],["en","English"],["de","Deutsch"],["ja","日本語"],["es","Español"],["ru","Русский"],["it","Italiano"]];
-const path = Astro.url.pathname.replace(/^\/(zh|en|de|ja|es|ru|it)(?=\/|$)/, "") || "/";
+const pathRaw = Astro.url.pathname.replace(/^\/(zh|en|de|ja|es|ru|it)(?=\/|$)/, "") || "/";
+const path = pathRaw.endsWith("/") ? pathRaw : `${pathRaw}/`;
 const languageName = languageLabels.find(([code]) => code === lang)?.[1] || lang.toUpperCase();
 const htmlLang = ({ zh: "zh-CN", en: "en", de: "de", ja: "ja", es: "es", ru: "ru", it: "it" })[lang] || "zh-CN";
-const pageTitle = `${title ? `${title} | ` : ""}Sheerherb`;
+const canonicalUrlPath = canonicalPath || (Astro.url.pathname.endsWith("/") ? Astro.url.pathname : `${Astro.url.pathname}/`);
+const canonical = `https://sheerherb.cn${canonicalUrlPath}`;
+const pageTitle = title ? `${title} | Sheerherb` : "Sheerherb";
 const desc = description || copy.heroLead;
-const isContactPage = Astro.url.pathname.includes("/contact/");
+const breadcrumbItems = breadcrumbs.length ? breadcrumbs : (Astro.url.pathname.replace(/\/$/, "").split("/").filter(Boolean).slice(1).map((part) => ({ name: part, url: `https://sheerherb.cn/${lang}/${part}/` })));
+const structuredData = [
+  {
+    "@type": "Organization",
+    "@id": "https://sheerherb.cn/#organization",
+    name: "Sheerherb",
+    url: "https://sheerherb.cn/zh/",
+    email: "sales@sheerherb.com",
+  },
+  {
+    "@type": "WebSite",
+    "@id": "https://sheerherb.cn/#website",
+    url: "https://sheerherb.cn/zh/",
+    name: "Sheerherb",
+    publisher: { "@id": "https://sheerherb.cn/#organization" },
+    inLanguage: htmlLang,
+  },
+  ...(breadcrumbItems.length ? [{
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: lang === "zh" ? "首页" : "Home", item: `https://sheerherb.cn/${lang}/` },
+      ...breadcrumbItems.map((item, index) => ({ "@type": "ListItem", position: index + 2, name: item.name, item: item.url })),
+    ],
+  }] : []),
+];
+const jsonLd = JSON.stringify({ "@context": "https://schema.org", "@graph": structuredData }).replace(/</g, "\\u003c");
 ---
 <!doctype html>
 <html lang={htmlLang}>
@@ -29,17 +66,26 @@ const isContactPage = Astro.url.pathname.includes("/contact/");
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description" content={desc} />
   <meta name="theme-color" content="#102b3a" />
+  <meta name="robots" content={noindex ? "noindex,follow" : "index,follow,max-image-preview:large"} />
+  <meta name="twitter:card" content="summary" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Sheerherb" />
+  <meta property="og:title" content={pageTitle} />
+  <meta property="og:description" content={desc} />
+  <meta property="og:url" content={canonical} />
+  <meta property="og:locale" content={htmlLang} />
   <title>{pageTitle}</title>
-  <link rel="canonical" href={`https://sheerherb.cn${Astro.url.pathname}`} />
-  {languageLabels.map(([code]) => <link rel="alternate" hreflang={code === "zh" ? "zh-CN" : code} href={`https://sheerherb.cn/${code}${path}`} />)}
-  <link rel="alternate" hreflang="x-default" href={`https://sheerherb.cn/zh${path}`} />
+  <link rel="canonical" href={canonical} />
+  {languageLabels.map(([code]) => <link rel="alternate" hreflang={code === "zh" ? "zh-CN" : code} href={`https://sheerherb.cn/${code}${path === "/" ? "/" : path}`} />)}
+  <link rel="alternate" hreflang="x-default" href={`https://sheerherb.cn/zh${path === "/" ? "/" : path}`} />
+  <script type="application/ld+json" set:html={jsonLd}></script>
 </head>
-<body>
+<body data-page-type={pageType} data-product-name={productName}>
   <!-- Google Tag Manager (noscript) -->
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-ND9Z73J6"
   height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <!-- End Google Tag Manager (noscript) -->
-  <div class="topline"><div class="container top-inner"><span>{t.tagline}</span><a href="mailto:sales@sheerherb.com">sales@sheerherb.com</a></div></div>
+  <div class="topline"><div class="container top-inner"><span>{t.tagline}</span><a href={`/${lang}/contact/`}>{lang === "zh" ? "商务联系" : "Business Contact"} ↗</a></div></div>
   <header class="site-header">
     <div class="container nav-wrap">
       <a class="brand" href={`/${lang}/`} aria-label="Sheerherb">
@@ -61,10 +107,24 @@ const isContactPage = Astro.url.pathname.includes("/contact/");
     </div>
   </header>
   <slot />
-  {!isContactPage && <a class="global-mobile-inquiry" href={`/${lang}/contact/`}>{lang === "zh" ? "提交采购需求" : copy.primary} ↗</a>}
+  <script is:inline>
+    (() => {
+      const body = document.body;
+      window.dataLayer = window.dataLayer || [];
+      if (body?.dataset.pageType === "product") {
+        window.dataLayer.push({ event: "product_view", product_name: body.dataset.productName || "" });
+      }
+      document.addEventListener("click", (event) => {
+        const target = event.target;
+        if (!(target instanceof Element)) return;
+        const link = target.closest("a[href^='mailto:'], a[href^='tel:'], a[href*='wa.me']");
+        if (link) window.dataLayer.push({ event: "contact_click", contact_method: link.href.startsWith("mailto:") ? "email" : link.href.startsWith("tel:") ? "phone" : "whatsapp" });
+      });
+    })();
+  </script>
   <footer class="footer">
     <div class="container footer-grid">
-      <div><a class="brand brand-footer" href={`/${lang}/`}><span class="brand-mark">S<span>.</span></span><span><strong>Sheerherb</strong><small>{t.tagline}</small></span></a><p class="footer-note">{lang === "zh" ? "西安 Sheerherb 生物科技有限公司。网站产品信息仅供业务沟通，具体规格、检测、供货和交易条件以正式产品文件及双方确认为准。" : "Xi’an Sheerherb Biological Technology Co., Ltd. Product information is for business communication; specifications, testing, availability and commercial terms are subject to official product documents and written confirmation."}</p></div>
+      <div><a class="brand brand-footer" href={`/${lang}/`}><span class="brand-mark">S<span>.</span></span><span><strong>Sheerherb</strong><small>{t.tagline}</small></span></a><p class="footer-note">{t.footerNote}</p></div>
       <div class="footer-links">{t.nav.map(([slug, label]) => <a href={`/${lang}/${slug}/`}>{label}</a>)}<a href={`/${lang}/privacy/`}>{lang === "zh" ? "隐私政策" : "Privacy"}</a><a href={`/${lang}/terms/`}>{lang === "zh" ? "法律声明" : "Terms"}</a></div>
     </div>
     <div class="container footer-bottom"><span>© {new Date().getFullYear()} Sheerherb. All rights reserved.</span><span><a href="mailto:sales@sheerherb.com">sales@sheerherb.com</a></span></div>

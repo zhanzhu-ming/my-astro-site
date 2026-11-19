@@ -4,5 +4,5 @@ import sitemap from "@astrojs/sitemap";
 export default defineConfig({
   site: "https://sheerherb.cn",
   output: "static",
-  integrations: [sitemap()],
+  integrations: [sitemap({ filter: (page) => page !== "https://sheerherb.cn/" })],
 });

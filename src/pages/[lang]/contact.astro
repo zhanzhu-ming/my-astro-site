@@ -2,6 +2,7 @@
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { site } from "../../data/site";
 import { getBrandCopy } from "../../data/brand";
+import { getSeo } from "../../data/seo";
 export function getStaticPaths() {
   return [
     { params: { lang: 'en' } },
@@ -17,12 +18,13 @@ const lang = Astro.params.lang as "zh" | "en" | "de" | "ja" | "es" | "ru" | "it"
 const t = site[lang] || site.zh;
 const copy = getBrandCopy(lang);
 const en = lang !== "zh";
+const seo = getSeo(lang, "contact", en ? "Contact Sheerherb" : "联系我们", copy.contactIntro);
 ---
-<BaseLayout lang={lang} title={en ? "Contact Sheerherb" : "联系我们"} description={copy.contactIntro}>
+<BaseLayout lang={lang} title={seo.title} description={seo.description} canonicalPath={`/${lang}/contact/`} breadcrumbs={[{ name: en ? "Contact" : "联系我们", url: `https://sheerherb.cn/${lang}/contact/` }]}>
   <main>
     <section class="page-hero"><div class="container"><div class="eyebrow">SHEERHERB / CONTACT</div><h1>{lang === "zh" ? "联系我们" : "Contact Sheerherb"}</h1><p>{copy.contactIntro}</p><div class="breadcrumbs"><a href={`/${lang}/`}>{en ? "Home" : "首页"}</a> / {en ? "Contact" : "联系我们"}</div></div></section>
-    <section class="section"><div class="container contact-intro-strip"><div><span class="eyebrow">B2B PURCHASING BRIEF</span><h2>{lang === "zh" ? "让我们更快理解您的采购项目" : "Help Us Understand Your Sourcing Project"}</h2><p>{lang === "zh" ? "提供越清晰的规格与采购信息，越有助于判断供应可行性并减少反复确认。暂时没有完整规格也可以先提交产品名称和目标用途。" : "Clear specifications and purchasing details help us assess feasibility. If you do not have a complete specification yet, start with the ingredient name and intended use."}</p></div><div class="contact-steps"><span>01　{lang === "zh" ? "需求梳理" : "Brief"}</span><span>02　{lang === "zh" ? "供应核对" : "Sourcing review"}</span><span>03　{lang === "zh" ? "样品与报价" : "Sample & quote"}</span></div></div><div class="container contact-layout">
-      <div class="contact-copy"><div class="eyebrow">{en ? "LET'S TALK BUSINESS" : "商务合作沟通"}</div><h2>{en ? "Tell us about your product and application requirements." : "欢迎告诉我们您的产品方向与应用需求。"}</h2><p>{en ? "Please include the product name, target specification, application, estimated quantity and destination market. Do not submit confidential formulas or sensitive personal information." : "请提供产品名称、目标规格、应用场景、预计数量和目的市场。请勿提交配方机密或敏感个人信息。"}</p><div class="contact-detail"><small>{en ? "WHAT TO PREPARE" : "建议准备的信息"}</small><strong>{en ? "Ingredient · Specification · Application · Volume" : "原料名称 · 目标规格 · 应用场景 · 采购数量"}</strong></div><div class="contact-detail"><small>{en ? "BUSINESS EMAIL" : "商务邮箱"}</small><strong id="businessEmail">sales@sheerherb.com</strong></div><div class="contact-detail"><small>{en ? "PHONE / WHATSAPP" : "电话 / WhatsApp"}</small><strong>+86 19591570368</strong></div>
+    <section class="section"><div class="container contact-layout">
+      <div class="contact-copy"><div class="eyebrow">{en ? "LET'S TALK BUSINESS" : "商务合作沟通"}</div><h2>{en ? "Tell us about your product and application requirements." : "欢迎告诉我们您的产品方向与应用需求。"}</h2><p>{en ? "Please include the product name, target specification, application, estimated quantity and destination market. Do not submit confidential formulas or sensitive personal information." : "请提供产品名称、目标规格、应用场景、预计数量和目的市场。请勿提交配方机密或敏感个人信息。"}</p><div class="contact-detail"><small>{en ? "BUSINESS EMAIL" : "商务邮箱"}</small><strong id="businessEmail"><a href="mailto:sales@sheerherb.com">sales@sheerherb.com</a></strong></div><div class="contact-detail"><small>{en ? "PHONE / WHATSAPP" : "电话 / WhatsApp"}</small><strong><a href="tel:+8619591570368">+86 19591570368</a></strong></div>
       <div class="contact-detail"><small>{en ? "OFFICE ADDRESS" : "办公地址"}</small><strong>{en ? "Room 1204, Vanke Huizhi Center, Yanta District, Xi'an, Shaanxi, China" : "中国陕西省西安市雁塔区万科汇智中心 1204 室"}</strong></div></div>
       <form class="inquiry-form" id="inquiryForm" data-lang={lang}>
         <div class="form-row"><label>{en ? "Name" : "姓名"} *<input name="name" required maxlength="120" autocomplete="name" /></label><label>{en ? "Company" : "公司名称"} *<input name="company" required maxlength="160" autocomplete="organization" /></label></div>
@@ -51,6 +53,17 @@ const key = import.meta.env.PUBLIC_SUPABASE_ANON_KEY || "sb_publishable_iOGjI9dS
 
 const pageLang = form?.dataset.lang || document.documentElement.lang || "zh";
 const lang = pageLang.toLowerCase().split("-")[0] || "en";
+const params = new URLSearchParams(window.location.search);
+const interestField = form?.querySelector("[name='interest']");
+if (interestField && params.get("interest") && !interestField.value) interestField.value = params.get("interest").slice(0, 200);
+let inquiryStarted = false;
+form?.addEventListener("input", () => {
+  if (!inquiryStarted) {
+    inquiryStarted = true;
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({ event: "inquiry_start", inquiry_language: lang });
+  }
+}, { once: true });
 const en = lang !== "zh";
 
 form?.addEventListener("submit", async (event) => {
