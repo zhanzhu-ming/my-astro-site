@@ -14,7 +14,7 @@ export const brandCopy = {
     objectivesLead: "以研发、应用、效率、验证和配方实验为核心，与客户共同推进活性物质的有效应用。",
     technologyTitle: "载体技术与应用",
     technologyLead: "通过微球与纳米脂质体等技术路径，探索活性物质的包埋、保护与应用方式。",
-    aboutTitle: "首页 | 维禾 Sheerherb",
+    aboutTitle: "关于 Sheerherb",
     aboutLead: "西安 Sheerherb 生物科技有限公司是一家专注于活性物质载体系统研究与生产的科技企业，致力于为个人护理、食品和营养补充剂行业提供创新应用方案。",
     ctaTitle: "与 Sheerherb 开启项目沟通",
     ctaLead: "告诉我们您的产品方向、目标成分和应用需求，进一步沟通适合的产品与技术方案。",

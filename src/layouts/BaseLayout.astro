@@ -11,6 +11,7 @@ const languageName = languageLabels.find(([code]) => code === lang)?.[1] || lang
 const htmlLang = ({ zh: "zh-CN", en: "en", de: "de", ja: "ja", es: "es", ru: "ru", it: "it" })[lang] || "zh-CN";
 const pageTitle = `${title ? `${title} | ` : ""}Sheerherb`;
 const desc = description || copy.heroLead;
+const isContactPage = Astro.url.pathname.includes("/contact/");
 ---
 <!doctype html>
 <html lang={htmlLang}>
@@ -38,15 +39,15 @@ const desc = description || copy.heroLead;
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-ND9Z73J6"
   height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <!-- End Google Tag Manager (noscript) -->
-  <div class="topline"><div class="container top-inner"><span>{copy.tagline}</span><a href={`/${lang}/contact/`}>{lang === "zh" ? "商务联系" : "Business Contact"} ↗</a></div></div>
+  <div class="topline"><div class="container top-inner"><span>{t.tagline}</span><a href="mailto:sales@sheerherb.com">sales@sheerherb.com</a></div></div>
   <header class="site-header">
     <div class="container nav-wrap">
       <a class="brand" href={`/${lang}/`} aria-label="Sheerherb">
         <span class="brand-mark">S<span>.</span></span>
-        <span><strong>Sheerherb</strong><small>{copy.tagline}</small></span>
+        <span><strong>Sheerherb</strong><small>{t.tagline}</small></span>
       </a>
       <nav class="desktop-nav" aria-label="Main navigation">
-        {copy.nav.map(([slug, label]) => <a href={`/${lang}/${slug}/`}>{label}</a>)}
+        {t.nav.map(([slug, label]) => <a href={`/${lang}/${slug}/`}>{label}</a>)}
       </nav>
       <div class="nav-actions">
         <details class="language-menu">
@@ -55,15 +56,16 @@ const desc = description || copy.heroLead;
             {languageLabels.map(([code, label]) => <li><a href={`/${code}${path}`} aria-current={code === lang ? "page" : undefined}>{label}{code === lang ? " ✓" : ""}</a></li>)}
           </ul>
         </details>
-        <a class="button button-small" href={`/${lang}/contact/`}>{copy.primary}</a>
+        <a class="button button-small" href={`/${lang}/contact/`}>{t.cta}</a>
       </div>
     </div>
   </header>
   <slot />
+  {!isContactPage && <a class="global-mobile-inquiry" href={`/${lang}/contact/`}>{lang === "zh" ? "提交采购需求" : copy.primary} ↗</a>}
   <footer class="footer">
     <div class="container footer-grid">
-      <div><a class="brand brand-footer" href={`/${lang}/`}><span class="brand-mark">S<span>.</span></span><span><strong>Sheerherb</strong><small>{copy.tagline}</small></span></a><p class="footer-note">{lang === "zh" ? "西安 Sheerherb 生物科技有限公司。网站产品信息仅供业务沟通，具体规格、检测、供货和交易条件以正式产品文件及双方确认为准。" : "Xi’an Sheerherb Biological Technology Co., Ltd. Product information is for business communication; specifications, testing, availability and commercial terms are subject to official product documents and written confirmation."}</p></div>
-      <div class="footer-links">{copy.nav.map(([slug, label]) => <a href={`/${lang}/${slug}/`}>{label}</a>)}<a href={`/${lang}/privacy/`}>{lang === "zh" ? "隐私政策" : "Privacy"}</a><a href={`/${lang}/terms/`}>{lang === "zh" ? "法律声明" : "Terms"}</a></div>
+      <div><a class="brand brand-footer" href={`/${lang}/`}><span class="brand-mark">S<span>.</span></span><span><strong>Sheerherb</strong><small>{t.tagline}</small></span></a><p class="footer-note">{lang === "zh" ? "西安 Sheerherb 生物科技有限公司。网站产品信息仅供业务沟通，具体规格、检测、供货和交易条件以正式产品文件及双方确认为准。" : "Xi’an Sheerherb Biological Technology Co., Ltd. Product information is for business communication; specifications, testing, availability and commercial terms are subject to official product documents and written confirmation."}</p></div>
+      <div class="footer-links">{t.nav.map(([slug, label]) => <a href={`/${lang}/${slug}/`}>{label}</a>)}<a href={`/${lang}/privacy/`}>{lang === "zh" ? "隐私政策" : "Privacy"}</a><a href={`/${lang}/terms/`}>{lang === "zh" ? "法律声明" : "Terms"}</a></div>
     </div>
     <div class="container footer-bottom"><span>© {new Date().getFullYear()} Sheerherb. All rights reserved.</span><span><a href="mailto:sales@sheerherb.com">sales@sheerherb.com</a></span></div>
   </footer>
