@@ -1,45 +1,56 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import { pages, pageSlugs, products } from "../../data/site";
+import { pages, pageSlugs } from "../../data/site";
+import { getBrandCopy } from "../../data/brand";
 export function getStaticPaths() {
   const paths = [];
-  for (const lang of ["zh", "en", "de", "ja", "es", "ru", "it"]) {
+  const langs = ["zh","en","de","ja","es","ru","it"];
+  const featured = ["liposomal-vitamin-c","urolithin-a","shilajit-resin","berberine-hcl"];
+  for (const lang of langs) {
     for (const slug of pageSlugs) paths.push({ params: { lang, slug }, props: { slug } });
-    for (const slug of ["products/liposomal-ingredients", "products/botanical-extracts", "products/custom-sourcing"]) paths.push({ params: { lang, slug }, props: { slug } });
+    for (const slug of featured) paths.push({ params: { lang, slug: `products/${slug}` }, props: { slug: `products/${slug}` } });
+    for (const slug of ["products/liposomal-ingredients","products/botanical-extracts","products/custom-sourcing"]) paths.push({ params: { lang, slug }, props: { slug } });
   }
   return paths;
 }
 const lang = Astro.params.lang as "zh" | "en" | "de" | "ja" | "es" | "ru" | "it";
 const slug = Astro.props.slug as string;
-const en = lang !== "zh";
-const productDetail = slug.startsWith("products/");
-const productKey = slug.endsWith("liposomal-ingredients") ? "liposomal" : slug.endsWith("botanical-extracts") ? "extracts" : "custom";
-const detailCopy = {
-  zh: {
-    liposomal: ["脂质体相关原料", "围绕脂质体体系所需的脂质材料与配套原料开展供应沟通。", ["目标原料身份与组成", "纯度、酸价、过氧化值等适用指标（按产品类型确认）", "来源、等级、包装与储存条件", "COA、TDS、SDS 等文件可得性"]],
-    extracts: ["植物与功能性提取物", "依据植物来源、提取工艺和目标标志性成分，沟通适配的原料选项。", ["植物拉丁名、使用部位与来源", "提取溶剂、提取比例与载体", "标志性成分及检测方法", "目标市场适用文件与标签信息"]],
-    custom: ["定制化原料寻源", "针对指定成分或特殊规格，开展定向供应商寻源与采购协调。", ["目标成分名称、CAS / INCI / 植物拉丁名", "目标规格、检测标准与样品要求", "预计采购量、包装与交付地点", "目的市场、法规与文件要求"]]
-  },
-  en: {
-    liposomal: ["Liposomal-Related Ingredients", "Sourcing discussions for lipid materials and supporting ingredients used in liposomal systems.", ["Ingredient identity and composition", "Applicable indicators such as purity, acid value or peroxide value (product dependent)", "Origin, grade, packaging and storage conditions", "Availability of COA, TDS, SDS and related documents"]],
-    extracts: ["Botanical & Functional Extracts", "Discuss ingredient options based on botanical origin, extraction process and target marker compounds.", ["Botanical Latin name, plant part and origin", "Extraction solvent, extract ratio and carrier", "Marker compounds and analytical methods", "Destination-market documentation and label information"]],
-    custom: ["Custom Ingredient Sourcing", "Focused supplier sourcing and purchasing coordination for specified ingredients or special requirements.", ["Ingredient name, CAS / INCI / botanical Latin name", "Target specification, test standard and sample needs", "Estimated volume, packaging and delivery destination", "Destination market, regulatory and document requirements"]]
-  }
-};
-const copy = productDetail ? null : pages[slug as keyof typeof pages]?.[lang];
-const product = (detailCopy[lang as "zh" | "en"] || detailCopy.en)[productKey];
-const title = productDetail ? product[0] : copy?.title || (en ? "Information" : "信息");
-const intro = productDetail ? product[1] : copy?.intro || "";
+const c = getBrandCopy(lang);
+const productDetail = slug.startsWith("products/") && slug !== "products/";
+const productSlug = productDetail ? slug.split("/").pop() : "";
+const featuredProduct = productDetail ? c.products.find((item) => item[0] === productSlug) : null;
+const legacyProduct = productDetail && !featuredProduct;
+const copy = pages[slug as keyof typeof pages]?.[lang] || pages[slug as keyof typeof pages]?.zh;
+const isAbout = slug === "about";
+const isProducts = slug === "products";
+const isTechnology = slug === "custom-sourcing";
+const title = featuredProduct ? featuredProduct[1] : isAbout ? c.aboutTitle : isTechnology ? c.technologyTitle : isProducts ? c.productsTitle : copy?.title || "Sheerherb";
+const intro = featuredProduct ? featuredProduct[3] : isAbout ? c.aboutLead : isTechnology ? c.technologyLead : isProducts ? c.productsLead : copy?.intro || "";
+const blocks = isAbout ? c.aboutBlocks : isTechnology ? c.technology : copy?.blocks || [];
 ---
 <BaseLayout lang={lang} title={title} description={intro}>
   <main>
-    <section class="page-hero"><div class="container"><div class="eyebrow">{en ? "CHENGYAN BIO / BUSINESS INFORMATION" : "澄研生物 / 商务信息"}</div><h1>{title}</h1><p>{intro}</p><div class="breadcrumbs"><a href={`/${lang}/`}>{en ? "Home" : "首页"}</a> / {title}</div></div></section>
+    <section class="page-hero"><div class="container"><div class="eyebrow">SHEERHERB / {isTechnology ? "TECHNOLOGY" : isAbout ? "COMPANY" : "INFORMATION"}</div><h1>{title}</h1><p>{intro}</p><div class="breadcrumbs"><a href={`/${lang}/`}>{lang === "zh" ? "首页" : "Home"}</a> / {title}</div></div></section>
     <section class="section"><div class="container content-layout">
       <article class="content-main">
-        {productDetail ? <><div class="content-callout"><strong>{en ? "Sourcing scope" : "寻源范围"}</strong><p>{product[1]}</p></div><h2>{en ? "Information to confirm" : "建议确认的信息"}</h2><ul class="check-list">{product[2].map(x=><li>{x}</li>)}</ul><h2>{en ? "How to request a quotation" : "如何提交询价"}</h2><p>{en ? "Send us your target specification, estimated volume, destination market and required documents. We will review the brief and confirm whether suitable sourcing options can be explored." : "请提供目标规格、预计数量、目的市场及所需文件。我们将先评估需求信息，再确认是否有合适的供应寻源方向。"}</p></> :
-          copy?.blocks.map((b,i)=><section class="content-block"><span>0{i+1}</span><div><h2>{b[0]}</h2><p>{b[1]}</p></div></section>)}
+        {isProducts ? <>
+          <div class="product-grid product-grid-four">
+            {c.products.map((item, i) => <a class="product-card featured-product" href={`/${lang}/products/${item[0]}/`}>
+              <div class="product-number">0{i+1}</div><div class="product-symbol">{["◉","✳","◌","◇"][i]}</div>
+              <h3>{item[1]}</h3><p>{item[3]}</p><span class="product-tag">{item[2]}</span><span class="card-arrow">↗</span>
+            </a>)}
+          </div>
+        </> : featuredProduct ? <>
+          <div class="content-callout"><strong>{lang === "zh" ? "产品信息" : "Product Information"}</strong><p>{featuredProduct[3]}</p></div>
+          <h2>{lang === "zh" ? "产品询盘" : "Product Inquiry"}</h2>
+          <p>{lang === "zh" ? "如需了解产品规格、含量、检测方法、包装、起订量及供货情况，请通过询盘表单联系 Sheerherb，并注明目标市场与应用场景。" : "For specifications, content, test methods, packaging, MOQ and availability, contact Sheerherb through the inquiry form and include your target market and application."}</p>
+          <a class="button" href={`/${lang}/contact/`}>{c.primary} ↗</a>
+        </> : legacyProduct ? <>
+          <div class="content-callout"><strong>{lang === "zh" ? "产品方向" : "Product Category"}</strong><p>{lang === "zh" ? "该分类页面保留为产品资料入口。具体产品和规格请以正式目录及询盘回复为准。" : "This category page is retained as a product-information entry point. Confirm individual products and specifications through the official catalogue and inquiry response."}</p></div>
+          <h2>{lang === "zh" ? "联系产品团队" : "Contact the Product Team"}</h2><a class="button" href={`/${lang}/contact/`}>{c.primary} ↗</a>
+        </> : blocks.map((b,i)=><section class="content-block"><span>0{i+1}</span><div><h2>{b[0]}</h2><p>{b[1]}</p></div></section>)}
       </article>
-      <aside class="content-aside"><div class="aside-card"><div class="eyebrow">{en ? "PROJECT INQUIRY" : "项目询盘"}</div><h3>{en ? "Have a specification in mind?" : "已有目标规格或产品资料？"}</h3><p>{en ? "Share your ingredient, application and purchasing plan. We will follow up with a sourcing review." : "告诉我们目标成分、应用场景和采购计划，我们将进一步沟通寻源方向。"}</p><a class="button" href={`/${lang}/contact/`}>{en ? "Send an Inquiry" : "提交采购需求"} ↗</a></div><div class="aside-links"><a href={`/${lang}/products/`}>{en ? "All Products" : "全部产品"} ↗</a><a href={`/${lang}/quality/`}>{en ? "Quality & Documents" : "质量与文件"} ↗</a></div></aside>
+      <aside class="content-aside"><div class="aside-card"><div class="eyebrow">{lang === "zh" ? "商务询盘" : "BUSINESS INQUIRY"}</div><h3>{lang === "zh" ? "正在寻找产品或技术方案？" : "Looking for a product or technology solution?"}</h3><p>{lang === "zh" ? "告诉我们您的目标产品、应用和规格需求，进一步沟通相关信息。" : "Share your target product, application and specification requirements to discuss the relevant details."}</p><a class="button" href={`/${lang}/contact/`}>{c.primary} ↗</a></div><div class="aside-links"><a href={`/${lang}/products/`}>{lang === "zh" ? "全部产品" : "All Products"} ↗</a><a href={`/${lang}/custom-sourcing/`}>{lang === "zh" ? "创新技术" : "Technology"} ↗</a></div></aside>
     </div></section>
   </main>
 </BaseLayout>

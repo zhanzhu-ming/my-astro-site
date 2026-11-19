@@ -1,22 +1,20 @@
 ---
 import "../styles/global.css";
 import { site } from "../data/site";
-const { lang = "en", title, description } = Astro.props;
-const t = site[lang];
-const languages = [
-  ["zh", "中文"], ["en", "English"], ["de", "Deutsch"],
-  ["ja", "日本語"], ["es", "Español"], ["ru", "Русский"], ["it", "Italiano"]
-];
+import { getBrandCopy, languages } from "../data/brand";
+const { lang = "zh", title, description } = Astro.props;
+const t = site[lang] || site.zh;
+const copy = getBrandCopy(lang);
+const languageLabels = [["zh","中文"],["en","English"],["de","Deutsch"],["ja","日本語"],["es","Español"],["ru","Русский"],["it","Italiano"]];
 const path = Astro.url.pathname.replace(/^\/(zh|en|de|ja|es|ru|it)(?=\/|$)/, "") || "/";
-const languageName = languages.find(([code]) => code === lang)?.[1] || lang.toUpperCase();
-const htmlLang = ({ zh: "zh-CN", en: "en", de: "de", ja: "ja", es: "es", ru: "ru", it: "it" })[lang] || "en";
-const pageTitle = `${title ? `${title} | ` : ""}${t.brand}`;
-const desc = description || t.tagline;
+const languageName = languageLabels.find(([code]) => code === lang)?.[1] || lang.toUpperCase();
+const htmlLang = ({ zh: "zh-CN", en: "en", de: "de", ja: "ja", es: "es", ru: "ru", it: "it" })[lang] || "zh-CN";
+const pageTitle = `${title ? `${title} | ` : ""}Sheerherb`;
+const desc = description || copy.heroLead;
 ---
 <!doctype html>
 <html lang={htmlLang}>
 <head>
-
   <!-- Google Tag Manager -->
   <script>
     (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -26,44 +24,48 @@ const desc = description || t.tagline;
     })(window,document,'script','dataLayer','GTM-ND9Z73J6');
   </script>
   <!-- End Google Tag Manager -->
-<meta charset="UTF-8" />
+  <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description" content={desc} />
   <meta name="theme-color" content="#102b3a" />
   <title>{pageTitle}</title>
   <link rel="canonical" href={`https://sheerherb.cn${Astro.url.pathname}`} />
-  {languages.map(([code]) => <link rel="alternate" hreflang={code === "zh" ? "zh-CN" : code} href={`https://sheerherb.cn/${code}${path}`} />)}
-  <link rel="alternate" hreflang="x-default" href={`https://sheerherb.cn/en${path}`} />
+  {languageLabels.map(([code]) => <link rel="alternate" hreflang={code === "zh" ? "zh-CN" : code} href={`https://sheerherb.cn/${code}${path}`} />)}
+  <link rel="alternate" hreflang="x-default" href={`https://sheerherb.cn/zh${path}`} />
 </head>
 <body>
-  <div class="topline"><div class="container top-inner"><span>{t.trustLine}</span><a href={`/${lang}/contact/`}>{lang === "zh" ? "商务联系" : "Business Contact"} ↗</a></div></div>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-ND9Z73J6"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+  <div class="topline"><div class="container top-inner"><span>{copy.tagline}</span><a href={`/${lang}/contact/`}>{lang === "zh" ? "商务联系" : "Business Contact"} ↗</a></div></div>
   <header class="site-header">
     <div class="container nav-wrap">
-      <a class="brand" href={`/${lang}/`} aria-label={t.brand}>
-        <span class="brand-mark">C<span>.</span></span>
-        <span><strong>{t.brand}</strong><small>{t.tagline}</small></span>
+      <a class="brand" href={`/${lang}/`} aria-label="Sheerherb">
+        <span class="brand-mark">S<span>.</span></span>
+        <span><strong>Sheerherb</strong><small>{copy.tagline}</small></span>
       </a>
       <nav class="desktop-nav" aria-label="Main navigation">
-        {t.nav.map(([slug, label]) => <a href={`/${lang}/${slug}/`}>{label}</a>)}
+        {copy.nav.map(([slug, label]) => <a href={`/${lang}/${slug}/`}>{label}</a>)}
       </nav>
       <div class="nav-actions">
         <details class="language-menu">
           <summary aria-label="Select language">{languageName} ▾</summary>
           <ul class="language-options">
-            {languages.map(([code, label]) => <li><a href={`/${code}${path}`} aria-current={code === lang ? "page" : undefined}>{label}{code === lang ? " ✓" : ""}</a></li>)}
+            {languageLabels.map(([code, label]) => <li><a href={`/${code}${path}`} aria-current={code === lang ? "page" : undefined}>{label}{code === lang ? " ✓" : ""}</a></li>)}
           </ul>
         </details>
-        <a class="button button-small" href={`/${lang}/contact/`}>{t.cta}</a>
+        <a class="button button-small" href={`/${lang}/contact/`}>{copy.primary}</a>
       </div>
     </div>
   </header>
   <slot />
   <footer class="footer">
     <div class="container footer-grid">
-      <div><a class="brand brand-footer" href={`/${lang}/`}><span class="brand-mark">C<span>.</span></span><span><strong>{t.brand}</strong><small>{t.tagline}</small></span></a><p class="footer-note">{t.footerNote}</p></div>
-      <div class="footer-links">{t.nav.map(([slug, label]) => <a href={`/${lang}/${slug}/`}>{label}</a>)}</div>
+      <div><a class="brand brand-footer" href={`/${lang}/`}><span class="brand-mark">S<span>.</span></span><span><strong>Sheerherb</strong><small>{copy.tagline}</small></span></a><p class="footer-note">{lang === "zh" ? "西安 Sheerherb 生物科技有限公司。网站产品信息仅供业务沟通，具体规格、检测、供货和交易条件以正式产品文件及双方确认为准。" : "Xi’an Sheerherb Biological Technology Co., Ltd. Product information is for business communication; specifications, testing, availability and commercial terms are subject to official product documents and written confirmation."}</p></div>
+      <div class="footer-links">{copy.nav.map(([slug, label]) => <a href={`/${lang}/${slug}/`}>{label}</a>)}<a href={`/${lang}/privacy/`}>{lang === "zh" ? "隐私政策" : "Privacy"}</a><a href={`/${lang}/terms/`}>{lang === "zh" ? "法律声明" : "Terms"}</a></div>
     </div>
-    <div class="container footer-bottom"><span>© {new Date().getFullYear()} {t.brand}. All rights reserved.</span><span><a href={`/${lang}/privacy/`}>{lang === "zh" ? "隐私政策" : "Privacy"}</a> · <a href={`/${lang}/terms/`}>{lang === "zh" ? "法律声明" : "Terms"}</a></span></div>
+    <div class="container footer-bottom"><span>© {new Date().getFullYear()} Sheerherb. All rights reserved.</span><span><a href="mailto:sales@sheerherb.com">sales@sheerherb.com</a></span></div>
   </footer>
 </body>
 </html>

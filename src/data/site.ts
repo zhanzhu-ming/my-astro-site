@@ -1,6 +1,6 @@
 export const site = {
   zh: {
-    brand: "澄研生物",
+    brand: "Sheerherb",
     tagline: "脂质体相关原料与提取物供应合作",
     nav: [
       ["products", "产品与原料"],
@@ -29,7 +29,7 @@ export const site = {
     footerNote: "本网站内容用于 B2B 商务信息交流。产品可供性、技术参数、质量文件、法规适用性及交付条件均以具体供应商文件和双方书面确认为准。",
   },
   en: {
-    brand: "Chengyan Bio",
+    brand: "Sheerherb",
     tagline: "Sourcing partner for liposomal & extract ingredients",
     nav: [
       ["products", "Products"],
@@ -58,7 +58,7 @@ export const site = {
     footerNote: "This website is for B2B business communication. Availability, specifications, quality documents, regulatory suitability and delivery terms are subject to supplier documentation and written confirmation for each project.",
   },
   de: {
-    brand: "Chengyan Bio",
+    brand: "Sheerherb",
     tagline: "Beschaffungspartner für liposomale & Extrakt-Inhaltsstoffe",
     nav: [
       ["products", "Produkte"],
@@ -87,7 +87,7 @@ export const site = {
     footerNote: "Diese Website dient dem B2B-Austausch. Die Verfügbarkeit und Konditionen unterliegen schriftlichen Bestätigungen.",
   },
   ja: {
-    brand: "Chengyan Bio",
+    brand: "Sheerherb",
     tagline: "リポソーム関連原料・抽出物の調達パートナー",
     nav: [
       ["products", "製品と原料"],
@@ -116,7 +116,7 @@ export const site = {
     footerNote: "当サイトの内容はB2Bビジネス交流を目的としています。可用性や仕様などは具体的なサプライヤー文書および書面確認に基づきます。",
   },
   es: {
-    brand: "Chengyan Bio",
+    brand: "Sheerherb",
     tagline: "Socio de abastecimiento de ingredientes liposomales y extractos",
     nav: [
       ["products", "Productos"],
@@ -145,7 +145,7 @@ export const site = {
     footerNote: "Este sitio web es para comunicación comercial B2B. La disponibilidad está sujeta a confirmación por escrito.",
   },
   ru: {
-    brand: "Chengyan Bio",
+    brand: "Sheerherb",
     tagline: "Партнер по поставкам липосомальных ингредиентов и экстрактов",
     nav: [
       ["products", "Продукты"],
@@ -174,7 +174,7 @@ export const site = {
     footerNote: "Этот веб-сайт предназначен для B2B общения. Доступность и условия регулируются письменным подтверждением.",
   },
   it: {
-    brand: "Chengyan Bio",
+    brand: "Sheerherb",
     tagline: "Partner di approvvigionamento per ingredienti liposomali ed estratti",
     nav: [
       ["products", "Prodotti"],
