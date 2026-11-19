@@ -3,15 +3,15 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 import { pages, pageSlugs, products } from "../../data/site";
 export function getStaticPaths() {
   const paths = [];
-  for (const lang of ["zh", "en"]) {
+  for (const lang of ["zh", "en", "de", "ja", "es", "ru", "it"]) {
     for (const slug of pageSlugs) paths.push({ params: { lang, slug }, props: { slug } });
     for (const slug of ["products/liposomal-ingredients", "products/botanical-extracts", "products/custom-sourcing"]) paths.push({ params: { lang, slug }, props: { slug } });
   }
   return paths;
 }
-const lang = Astro.params.lang as "zh" | "en";
+const lang = Astro.params.lang as "zh" | "en" | "de" | "ja" | "es" | "ru" | "it";
 const slug = Astro.props.slug as string;
-const en = lang === "en";
+const en = lang !== "zh";
 const productDetail = slug.startsWith("products/");
 const productKey = slug.endsWith("liposomal-ingredients") ? "liposomal" : slug.endsWith("botanical-extracts") ? "extracts" : "custom";
 const detailCopy = {
@@ -27,7 +27,7 @@ const detailCopy = {
   }
 };
 const copy = productDetail ? null : pages[slug as keyof typeof pages]?.[lang];
-const product = detailCopy[lang][productKey];
+const product = (detailCopy[lang as "zh" | "en"] || detailCopy.en)[productKey];
 const title = productDetail ? product[0] : copy?.title || (en ? "Information" : "信息");
 const intro = productDetail ? product[1] : copy?.intro || "";
 ---

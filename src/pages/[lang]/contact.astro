@@ -12,9 +12,9 @@ export function getStaticPaths() {
     { params: { lang: 'it' } }, // 意大利语 (意大利)
   ];
 }
-const lang = Astro.params.lang as "zh" | "en";
+const lang = Astro.params.lang as "zh" | "en" | "de" | "ja" | "es" | "ru" | "it";
 const t = site[lang];
-const en = lang === "en";
+const en = lang !== "zh";
 ---
 <BaseLayout lang={lang} title={en ? "Contact" : "联系我们"} description={t.contactLead}>
   <main>
@@ -47,8 +47,8 @@ const url = import.meta.env.PUBLIC_SUPABASE_URL || "https://juabwnoemnrhansayzpp
 const key = import.meta.env.PUBLIC_SUPABASE_ANON_KEY || "sb_publishable_iOGjI9dSo6_tSkEguN_QbQ_ts45FGww";
 
 const pageLang = form?.dataset.lang || document.documentElement.lang || "zh";
-const lang = pageLang.toLowerCase().startsWith("en") ? "en" : "zh";
-const en = lang === "en";
+const lang = pageLang.toLowerCase().split("-")[0] || "en";
+const en = lang !== "zh";
 
 form?.addEventListener("submit", async (event) => {
   event.preventDefault();
