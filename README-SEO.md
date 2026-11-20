@@ -111,3 +111,18 @@ docs/preview/                最终构建截图
 ## 国内站视觉升级
 
 国内站视觉定位调整为“高级植物原料供应商”：以深植物绿、自然暖白、鼠尾草绿和植物砂金建立克制、有质感的品牌界面；以清晰的产品目录、采购流程、质量文件、知识内容和询盘入口保持 B2B 采购信息的可扫描性。首页 Hero 已改为植物原料标本式视觉展示。详细变更见 `docs/国内站视觉升级说明.md`。
+
+## 2026-11 全站内容升级
+
+- 国内站内容定位统一为“高级植物原料供应商”：以克制的品牌表达建立信任，以采购任务结构帮助 B2B 客户扫描信息。
+- 新增 `src/data/en-page-plan.ts`，使 14 个主要内页的英文内容与中文页面模块数量一一对应。
+- 英文重点产品页新增完整的身份、规格核对、检测方法、应用、文件、采购条件、市场注意事项及 FAQ 内容。
+- 15 篇英文采购指南新增分主题的正文段落和采购核对清单，不再以简短摘要替代文章正文。
+- 首页新增品牌编辑式内容模块；内页页头加入对应主题视觉。
+- `public/images/editorial/` 中的 SVG 为原创概念插画，不代表真实产品实拍、工厂、实验室或检测现场。
+- `docs/video-production/` 中提供 3 支中英文视频脚本与镜头表；MP4 成片需使用经授权的真实素材后制作。
+- 发布前请核验企业法定主体、真实供应商资料、产品规格与批次文件、证书范围、商务条件及隐私政策细节。
+
+## Build environment
+
+Use a supported current Node.js release (the installed dependency tree reports Node.js `>=22.22.1` for a transitive package) and run `npm ci` followed by `npm run build`. The editing environment used for this package ran Node.js 22.16.0; dependency installation timed out, so the Astro production build was not completed here.

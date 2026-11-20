@@ -1,7 +1,7 @@
 export const site = {
   zh: {
     brand: "Sheerherb",
-    tagline: "脂质体相关原料与提取物供应合作",
+    tagline: "植物提取物与功能性原料采购协作",
     nav: [
       ["products", "产品与原料"],
       ["custom-sourcing", "定制寻源"],
@@ -13,8 +13,8 @@ export const site = {
     ],
     cta: "提交采购需求",
     homeEyebrow: "BOTANICAL & LIPOSOMAL INGREDIENT SOURCING",
-    homeTitle: "植物提取物与功能性原料供应合作",
-    homeLead: "面向品牌方、膳食补充剂企业、食品及化妆品制造商、经销商和研发采购团队，提供植物提取物、脂质体相关原料及功能性原料的供应对接、规格沟通、供应商资料核验与定制寻源协作。",
+    homeTitle: "为每一种原料，建立清晰的采购路径",
+    homeLead: "面向品牌方、制造商、经销商与研发采购团队，围绕植物提取物、脂质体相关原料及功能性原料开展 B2B 供应对接与采购协作。从原料身份、规格和应用出发，逐步核对供应来源、质量文件与商务条件，让每一次采购沟通更清晰、更有依据。",
     homePrimary: "发送采购需求",
     homeSecondary: "浏览产品方向",
     trustLine: "B2B 贸易与供应链协作 · 全球市场 · 按项目确认规格与文件",
@@ -31,7 +31,7 @@ export const site = {
   },
   en: {
     brand: "Sheerherb",
-    tagline: "Sourcing partner for liposomal & extract ingredients",
+    tagline: "Botanical extracts & functional ingredient sourcing",
     nav: [
       ["products", "Products"],
       ["custom-sourcing", "Custom Sourcing"],
@@ -43,8 +43,8 @@ export const site = {
     ],
     cta: "Send an Inquiry",
     homeEyebrow: "BOTANICAL & LIPOSOMAL INGREDIENT SOURCING",
-    homeTitle: "Connecting global brands with ingredient supply opportunities",
-    homeLead: "A B2B trading and sourcing partner for liposome-related ingredients, botanical extracts and functional raw materials. We coordinate product specifications, supplier information and purchasing communication to support your sourcing and product development projects.",
+    homeTitle: "A considered approach to botanical & functional ingredient sourcing",
+    homeLead: "Sheerherb works with brands, manufacturers, distributors and R&D procurement teams on B2B sourcing coordination for botanical extracts, liposomal-related materials and functional ingredients. We begin with ingredient identity, specification and application, then review source information, quality records and commercial terms so each purchasing conversation has a clearer basis.",
     homePrimary: "Discuss Your Requirements",
     homeSecondary: "Explore Product Categories",
     trustLine: "B2B sourcing & trade coordination · Global markets · Specifications confirmed per project",

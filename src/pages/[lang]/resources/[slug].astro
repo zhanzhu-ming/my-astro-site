@@ -2,6 +2,8 @@
 import BaseLayout from "../../../layouts/BaseLayout.astro";
 import { guides, getGuide, guideCategories } from "../../../data/guides";
 import { guideEn, guideHubEn } from "../../../data/guide-locales";
+import { guideEnArticles } from "../../../data/guide-en-articles";
+import { guideEnSupplements, guideEnFaqs } from "../../../data/guide-en-supplements";
 import GuideCard from "../../../components/GuideCard.astro";
 
 export function getStaticPaths() {
@@ -16,6 +18,7 @@ const guide = getGuide(slug);
 if (!guide) throw new Error(`Unknown guide: ${slug}`);
 const en = lang === "en";
 const localized = en ? guideEn[slug] : null;
+const englishSections = en ? [...(guideEnArticles[slug] || []), ...(guideEnSupplements[slug] || [])] : null;
 const title = localized?.title || guide.title;
 const description = localized?.description || guide.description;
 const category = guideCategories[guide.category];
@@ -62,13 +65,10 @@ const inquiryHref = `/${lang}/contact/?interest=${encodeURIComponent(en ? title 
 
           {en ? (
             <>
-              <h2>{`What to confirm: ${title}`}</h2>
-              <p>{description}</p>
-              <ul class="check-list">{localized!.summary.map((item) => <li>{item}</li>)}</ul>
-              <h2>Before You Contact a Supplier</h2>
-              <p>Prepare the target ingredient identity, required specification, intended application, destination market, estimated quantity and document requirements. These details help make supplier responses easier to review and compare.</p>
-              <h2>Important Note</h2>
-              <p>This guide is for general B2B purchasing preparation. Product identity, specifications, test results, document availability, regulatory suitability and commercial terms must be confirmed for the specific supplier, product and project. It is not a substitute for supplier records, laboratory testing or regulatory advice.</p>
+              {(englishSections || []).map((section) => <section class="guide-article-section"><h2>{section.heading}</h2><p>{section.body}</p>{section.bullets && <ul class="check-list">{section.bullets.map((item) => <li>{item}</li>)}</ul>}{section.note && <div class="article-note"><strong>Purchasing note</strong><p>{section.note}</p></div>}</section>)}
+              <div class="article-note"><strong>Before contacting a supplier</strong><p>Prepare the target ingredient identity, approved or draft specification, intended application, destination market, estimated quantity, sample needs and document requirements. Separate mandatory criteria from preferences and identify open questions so supplier responses can be reviewed on a comparable basis.</p></div>
+              <section class="guide-article-section"><h2>Frequently Asked Questions</h2><div class="faq-list">{guideEnFaqs.map((item,index)=><details class="faq-item" open={index===0}><summary>{item.q}</summary><p>{item.a}</p></details>)}</div></section>
+              <div class="article-note"><strong>Scope of this guide</strong><p>This guide supports general B2B purchasing preparation. Product identity, specifications, test results, document availability, regulatory suitability and commercial terms must be confirmed for the specific supplier, product, batch and project. It is not a substitute for supplier records, laboratory testing or qualified regulatory advice.</p></div>
             </>
           ) : (
             <>

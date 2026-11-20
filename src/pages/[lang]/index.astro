@@ -21,7 +21,7 @@ const seo = getSeo(lang, "home", c.heroTitle, c.heroLead);
       <div class="container hero-grid">
         <div class="hero-copy">
           <div class="eyebrow"><i></i>{c.heroEyebrow}</div>
-          <h1>{lang === "zh" ? <>植物提取物与<span class="h1-nowrap">功能性原料供应合作</span></> : c.heroTitle}</h1>
+          <h1>{c.heroTitle}</h1>
           <p class="hero-lead">{c.heroLead}</p>
           <div class="hero-actions"><a class="button" href={`/${lang}/contact/`}>{c.primary} <span>↗</span></a><a class="text-link" href={`/${lang}/products/`}>{c.secondary} <span>→</span></a></div>
           <div class="hero-meta"><span>01 / SOURCING</span><span>02 / SPECIFICATION</span><span>03 / PROCUREMENT</span></div>
@@ -124,13 +124,30 @@ const seo = getSeo(lang, "home", c.heroTitle, c.heroLead);
       <div class="container">
         <div class="section-heading"><div><div class="eyebrow">KNOWLEDGE</div><h2>{lang === "zh" ? "采购知识中心" : "Ingredient Sourcing Knowledge Hub"}</h2></div><p>{lang === "zh" ? "从原料规格、质量文件到供应商评估，把采购问题拆成可以确认的清单。" : "Turn ingredient specifications, quality documentation and supplier evaluation into clear purchasing checklists."}</p></div>
         <div class="guide-grid guide-grid-three">
-          {[
-            [lang === "zh" ? "如何阅读植物提取物 COA" : "How to Review a Botanical Extract COA", lang === "zh" ? "核对批次、检测项目、方法与结果。" : "Review batch details, test items, methods and results."],
-            [lang === "zh" ? "COA、TDS 与 SDS 有什么区别" : "COA vs. TDS vs. SDS", lang === "zh" ? "了解三类文件分别能回答什么问题。" : "Understand what each document is designed to confirm."],
-            [lang === "zh" ? "如何定义原料采购规格" : "How to Define an Ingredient Specification", lang === "zh" ? "把成分身份、指标和应用要求写清楚。" : "Define ingredient identity, quality parameters and application needs."]
-          ].map((item, i) => <article class="guide-card"><div class="guide-card-top"><span>0{i+1}</span><small>{lang === "zh" ? "采购基础" : "PROCUREMENT BASICS"}</small></div><h3>{item[0]}</h3><p>{item[1]}</p><a href={`/${lang}/quality/`}>{lang === "zh" ? "了解更多" : "Learn more"} ↗</a></article>)}
+          {featuredGuides.map((guide) => <GuideCard guide={guide} lang={lang} />)}
         </div>
-        <div class="section-actions"><a class="button" href={`/${lang}/quality/`}>{lang === "zh" ? "浏览采购知识" : "Explore Procurement Resources"} ↗</a></div>
+        <div class="section-actions"><a class="button" href={`/${lang}/resources/`}>{lang === "zh" ? "浏览采购知识" : "Explore Procurement Resources"} ↗</a></div>
+      </div>
+    </section>
+    <section class="section section-editorial">
+      <div class="container editorial-feature">
+        <div class="editorial-feature-image"><img src="/images/editorial/botanical-still-life.svg" alt={lang === "zh" ? "植物提取物、树脂与原料样品的静物视觉" : "Editorial still life of botanical extracts, resin and ingredient samples"} loading="lazy" /></div>
+        <div class="editorial-feature-copy">
+          <div class="eyebrow">SHEERHERB / OUR APPROACH</div>
+          <h2>{lang === "zh" ? "从原料本身出发，让采购沟通更清晰。" : "Start with the ingredient. Make every purchasing conversation clearer."}</h2>
+          <p>{lang === "zh" ? "一项原料采购，往往同时涉及身份、规格、应用、检测方法、文件和商务条件。Sheerherb 将这些问题放进同一条沟通路径，先确认信息，再讨论供应选项。" : "An ingredient purchase often involves identity, specification, application, analytical methods, documents and commercial terms. Sheerherb brings these questions into one coordinated conversation: clarify the information first, then review potential supply options."}</p>
+          <a class="text-link" href={`/${lang}/custom-sourcing/`}>{lang === "zh" ? "了解定制寻源方式" : "Explore Custom Sourcing"} ↗</a>
+        </div>
+      </div>
+    </section>
+    <section class="section section-soft">
+      <div class="container">
+        <div class="section-heading"><div><div class="eyebrow">06 / INGREDIENT PERSPECTIVES</div><h2>{lang === "zh" ? "从不同角度认识原料" : "A closer look at ingredients"}</h2></div><p>{lang === "zh" ? "从原料样品、应用场景到质量文件，建立清晰、可核对的采购认知。" : "Explore ingredients through samples, application contexts and quality records to build a clearer, verifiable purchasing brief."}</p></div>
+        <div class="editorial-card-grid">
+          <a class="editorial-card" href={`/${lang}/products/`}><img src="/images/editorial/ingredient-lab.svg" alt={lang === "zh" ? "原料研发与样品评估场景插画" : "Ingredient research and sample-evaluation illustration"} loading="lazy"/><div><span>01 / MATERIAL STUDY</span><h3>{lang === "zh" ? "原料与样品" : "Materials & Samples"}</h3><p>{lang === "zh" ? "明确原料身份、形态、规格和样品批次，是采购评估的起点。" : "Ingredient identity, physical form, specification and sample-batch details are the starting point for evaluation."}</p></div></a>
+          <a class="editorial-card" href={`/${lang}/industries/`}><img src="/images/editorial/application-worlds.svg" alt={lang === "zh" ? "营养、食品、个人护理和研发应用领域插画" : "Illustration of nutrition, food, personal care and research applications"} loading="lazy"/><div><span>02 / APPLICATION CONTEXT</span><h3>{lang === "zh" ? "应用与配方" : "Applications & Formulation"}</h3><p>{lang === "zh" ? "应用场景会影响原料选择、检测重点、剂型和目标市场文件要求。" : "Application context shapes ingredient selection, testing priorities, dosage form and destination-market documentation."}</p></div></a>
+          <a class="editorial-card" href={`/${lang}/quality/`}><img src="/images/editorial/quality-records.svg" alt={lang === "zh" ? "COA、TDS、SDS 质量文件视觉" : "COA, TDS and SDS quality-document illustration"} loading="lazy"/><div><span>03 / DOCUMENT REVIEW</span><h3>{lang === "zh" ? "质量文件与批次" : "Quality Records & Batches"}</h3><p>{lang === "zh" ? "把文件出具主体、产品身份、检测方法和批次对应关系逐项核对。" : "Review the issuing party, product identity, analytical method and batch relationship."}</p></div></a>
+        </div>
       </div>
     </section>
     <section class="cta-band"><div class="container cta-inner"><div><div class="eyebrow eyebrow-light">LET'S WORK TOGETHER</div><h2>{c.ctaTitle}</h2><p>{c.ctaLead}</p></div><a class="button button-light" href={`/${lang}/contact/`}>{c.primary} ↗</a></div></section>
