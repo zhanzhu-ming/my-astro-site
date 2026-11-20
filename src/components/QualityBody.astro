@@ -1,6 +1,10 @@
 ---
 import { qualityContent } from "../data/quality";
+import { qualityEn } from "../data/quality-en";
 import { getGuide } from "../data/guides";
+const { lang = "zh" } = Astro.props as { lang?: "zh" | "en" };
+const content = lang === "en" ? qualityEn : qualityContent;
+const labels = lang === "en" ? qualityEn.labels : { inquiryTitle: "询价时请附上文件需求", inquiryText: "把目标市场、用途和需要的文件一次说明，可以减少反复确认。以下信息越完整，越容易判断文件是否可提供。", inquiryButton: "提交文件需求", faqTitle: "常见文件问题", relatedTitle: "延伸阅读" };
 
 const relatedGuides = [
   "how-to-read-botanical-extract-coa",
@@ -8,10 +12,10 @@ const relatedGuides = [
   "how-to-define-ingredient-purchasing-specification",
 ].map((slug) => getGuide(slug)).filter(Boolean);
 ---
-<p class="page-lead">{qualityContent.intro}</p>
+<p class="page-lead">{content.intro}</p>
 
 <div class="quality-doc-grid">
-  {qualityContent.documents.map((doc) => (
+  {content.documents.map((doc) => (
     <article class="quality-doc-card">
       <div class="quality-doc-code">{doc.code}</div>
       <h2>{doc.title}</h2>
@@ -24,7 +28,7 @@ const relatedGuides = [
   ))}
 </div>
 
-{qualityContent.sections.map((section, index) => (
+{content.sections.map((section, index) => (
   <section class="content-block">
     <span>0{index + 1}</span>
     <div>
@@ -35,20 +39,20 @@ const relatedGuides = [
 ))}
 
 <div class="content-callout">
-  <strong>询价时请附上文件需求</strong>
-  <p>把目标市场、用途和需要的文件一次说明，可以减少反复确认。以下信息越完整，越容易判断文件是否可提供。</p>
+  <strong>{labels.inquiryTitle}</strong>
+  <p>{labels.inquiryText}</p>
   <ul class="check-list">
-    {qualityContent.checklist.map((item) => <li>{item}</li>)}
+    {content.checklist.map((item) => <li>{item}</li>)}
   </ul>
-  <a class="button" href="/zh/contact/?interest=质量文件&type=quality">提交文件需求 ↗</a>
+  <a class="button" href={lang === "en" ? "/en/contact/?interest=Quality%20Documents&type=quality" : "/zh/contact/?interest=质量文件&type=quality"}>{labels.inquiryButton} ↗</a>
 </div>
 
 <section class="content-block">
   <span>04</span>
   <div>
-    <h2>常见文件问题</h2>
+    <h2>{labels.faqTitle}</h2>
     <div class="faq-list">
-      {qualityContent.faq.map((item, index) => (
+      {content.faq.map((item, index) => (
         <details class="faq-item" open={index === 0}>
           <summary>{item.q}</summary>
           <p>{item.a}</p>
@@ -61,9 +65,9 @@ const relatedGuides = [
 <section class="content-block">
   <span>05</span>
   <div>
-    <h2>延伸阅读</h2>
+    <h2>{labels.relatedTitle}</h2>
     <ul class="related-guide-list">
-      {relatedGuides.map((guide) => <li><a href={`/zh/resources/${guide!.slug}/`}>{guide!.title} ↗</a></li>)}
+      {relatedGuides.map((guide) => <li><a href={`/${lang}/resources/${guide!.slug}/`}>{lang === "en" ? ({"how-to-read-botanical-extract-coa":"How to Read a Botanical Extract COA","coa-tds-sds-differences":"COA vs. TDS vs. SDS: Key Differences","how-to-define-ingredient-purchasing-specification":"How to Define Ingredient Purchasing Specifications"}[guide!.slug] || guide!.title) : guide!.title} ↗</a></li>)}
     </ul>
   </div>
 </section>

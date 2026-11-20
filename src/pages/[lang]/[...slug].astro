@@ -6,6 +6,7 @@ import { getSeo } from "../../data/seo";
 import { getProductDetail } from "../../data/product-details";
 import { zhPagePlan } from "../../data/zh-page-plan";
 import { qualityContent } from "../../data/quality";
+import { qualityEn } from "../../data/quality-en";
 import ProductDetailBody from "../../components/ProductDetailBody.astro";
 import QualityBody from "../../components/QualityBody.astro";
 import ResourceHub from "../../components/ResourceHub.astro";
@@ -87,9 +88,9 @@ const seoFallbackTitle = lang !== "zh"
 const seo = getSeo(lang, seoKey, seoFallbackTitle, intro);
 const canonicalPath = `/${lang}/${slug}/`;
 const zhProductDetail = featuredProduct && lang === "zh" ? getProductDetail(productSlug) : null;
-const isQualityZh = slug === "quality" && lang === "zh";
-const isResourcesZh = slug === "resources" && lang === "zh";
-const faq = zhProductDetail ? zhProductDetail.faq : isQualityZh ? qualityContent.faq : [];
+const isQualityPage = slug === "quality";
+const isResourcesPage = slug === "resources";
+const faq = zhProductDetail ? zhProductDetail.faq : isQualityPage ? (lang === "en" ? qualityEn.faq : qualityContent.faq) : [];
 const breadcrumbItems = slug.startsWith("products/")
   ? [{ name: lang === "zh" ? "产品与原料" : "Products", url: `https://sheerherb.cn/${lang}/products/` }, { name: title, url: `https://sheerherb.cn${canonicalPath}` }]
   : [{ name: title, url: `https://sheerherb.cn${canonicalPath}` }];
@@ -123,7 +124,7 @@ const categoryCards = productCategories[lang] || productCategories.en;
             <ul><li><a href={`/${lang}/products/liposomal-vitamin-c/`}>{lang === "zh" ? "脂质体维生素 C 粉末" : "Liposomal Vitamin C Powder"}</a></li></ul>
           </> : <div class="content-callout"><strong>{lang === "zh" ? "提交具体原料需求" : "Share a Specific Ingredient Requirement"}</strong><p>{lang === "zh" ? "如需其他植物提取物或目录之外的功能性原料，请提供目标名称、规格、应用、数量和目的市场，通过定制寻源评估供应选项。" : "For other extracts or functional ingredients outside the featured list, share the target name, specification, application, volume and destination market."}</p><a class="button" href={`/${lang}/contact/?interest=${encodeURIComponent(title)}&type=sourcing`}>{c.primary} ↗</a></div>}
 
-        </> : isResourcesZh ? <ResourceHub /> : isQualityZh ? <QualityBody /> : featuredProduct ? (
+        </> : isResourcesPage ? <ResourceHub lang={lang} /> : isQualityPage ? <QualityBody lang={lang} /> : featuredProduct ? (
           zhProductDetail ? <ProductDetailBody product={featuredProduct} /> : <>
             <div class="content-callout"><strong>{lang === "zh" ? "产品身份与规格" : "Product Identity & Specifications"}</strong><p>{featuredProduct[3]} {lang === "zh" ? "产品含量、纯度、外观、检测方法、来源、包装和起订量请以对应产品的正式规格书及批次资料为准。" : "Assay, purity, appearance, test method, origin, packaging and MOQ must be confirmed against the applicable product specification and batch documents."}</p></div>
             {[

@@ -405,3 +405,11 @@ NMN 页面和文章均明确提示：中国内地食品原料准入有严格限�
 
 ## 语言版本范围
 网站仅保留中文（/zh/）和英文（/en/）两套界面及页面路由。德语、日语、西班牙语、俄语和意大利语不再生成；旧语言入口统一重定向至中文首页。
+
+## 2026-11-20 bilingual page alignment correction
+
+- The English `/en/quality/` page now follows the Chinese page's content architecture: COA, TDS and SDS document cards; test methods and acceptance criteria; batch traceability; destination-market responsibilities; inquiry checklist; four FAQs; and related reading.
+- The English `/en/resources/` page now mirrors the Chinese knowledge hub structure: three featured guides, four purchasing-stage categories, the complete guide list, and the inquiry callout. All 15 guide cards have English titles and descriptions and point to matching `/en/resources/` routes.
+- English guide detail routes are generated for the 15 listed guides. Their English pages provide translated titles, descriptions and key takeaways, plus purchasing guidance and project-specific verification notes. The original long-form Chinese articles remain available on `/zh/resources/`.
+- The English brand copy was aligned with the current B2B ingredient sourcing and purchasing-coordination positioning instead of legacy microsphere/nano-liposome manufacturing claims. English navigation labels now match the Chinese navigation structure.
+- Validation: the new TypeScript data modules passed standalone `tsc` checks; all 15 guide slugs have English metadata. A full Astro production build could not be completed because `npm ci` timed out in this environment and the Astro CLI was unavailable. Run `npm ci` and `npm run build` before deployment.

@@ -1,13 +1,16 @@
 ---
 import { guideCategories, type Guide } from "../data/guides";
+import { guideEn, guideHubEn } from "../data/guide-locales";
 
-const { guide, compact = false } = Astro.props as { guide: Guide; compact?: boolean };
+const { guide, compact = false, lang = "zh" } = Astro.props as { guide: Guide; compact?: boolean; lang?: "zh" | "en" };
+const en = lang === "en";
+const localized = en ? guideEn[guide.slug] : null;
 const category = guideCategories[guide.category];
-const href = `/zh/resources/${guide.slug}/`;
+const href = `/${lang}/resources/${guide.slug}/`;
 ---
 <a class:list={["guide-card", { "guide-card-compact": compact }]} href={href}>
-  <div class="guide-card-top"><span class="guide-card-category">{category.short}</span><span class="guide-card-time">{guide.readingMinutes} 分钟阅读</span></div>
-  <h3>{guide.title}</h3>
-  <p>{guide.description}</p>
-  <div class="guide-card-bottom"><span>{category.label}</span><span class="card-arrow">↗</span></div>
+  <div class="guide-card-top"><span class="guide-card-category">{category.short}</span><span class="guide-card-time">{en ? `${guide.readingMinutes} min read` : `${guide.readingMinutes} 分钟阅读`}</span></div>
+  <h3>{localized?.title || guide.title}</h3>
+  <p>{localized?.description || guide.description}</p>
+  <div class="guide-card-bottom"><span>{en ? guideHubEn.categories[guide.category].label : category.label}</span><span class="card-arrow">↗</span></div>
 </a>

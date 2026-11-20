@@ -45,22 +45,22 @@ export const brandCopy = {
     contactIntro: "请提供目标产品或成分、规格要求、应用场景、预计采购数量和目的市场。无论是植物提取物采购询价，还是功能性原料供应咨询，Sheerherb 都会按项目开展原料供应与采购协作沟通。"
   },
   en: {
-    tagline: "Active Carrier Systems · Microsphere & Nano-Liposome Technology",
-    nav: [["products","Products"],["custom-sourcing","Innovative Technology"],["about","About Sheerherb"],["industries","Applications"],["contact","Contact"]],
-    heroEyebrow: "ACTIVE CARRIER SYSTEMS · RESEARCH & MANUFACTURING",
-    heroTitle: "Advancing the application potential of active ingredients",
-    heroLead: "Xi’an Sheerherb Biological Technology Co., Ltd. focuses on the research and production of active carrier systems, developing application solutions based on microsphere and nano-liposome technologies for personal care, food and nutritional supplements.",
-    productsTitle: "Products & Solutions",
-    productsLead: "Explore representative product categories featured on Sheerherb’s international website. Specifications, test methods, packaging, MOQ and availability are confirmed through project communication and official product documents.",
-    objectivesTitle: "Our Core Objectives",
-    objectivesLead: "Research, application, efficiency, verification and formula experiments guide our work with customers on active-substance applications.",
-    technologyTitle: "Carrier Technologies & Applications",
-    technologyLead: "We explore encapsulation, protection and application approaches for active substances through microsphere and nano-liposome technologies.",
-    aboutTitle: "About Sheerherb",
-    aboutLead: "Xi’an Sheerherb Biological Technology Co., Ltd. is a technology enterprise focused on researching and producing active carrier systems, with application solutions for personal care, food and nutritional supplements.",
-    ctaTitle: "Start a Project Conversation with Sheerherb",
-    ctaLead: "Tell us about your product direction, target ingredients and application requirements so we can discuss relevant products and technology options.",
-    primary: "Send an Inquiry", secondary: "Explore Products",
+    tagline: "Botanical Extracts & Functional Ingredient Sourcing",
+    nav: [["products","Products & Ingredients"],["custom-sourcing","Custom Sourcing"],["quality","Quality & Documents"],["about","About Sheerherb"],["contact","Contact Us"]],
+    heroEyebrow: "BOTANICAL & FUNCTIONAL INGREDIENT SOURCING",
+    heroTitle: "Botanical Extracts & Functional Ingredient Sourcing",
+    heroLead: "Sheerherb supports B2B buyers, brands, manufacturers and ingredient procurement teams with sourcing coordination for botanical extracts, liposomal-related ingredients and functional ingredients. Share your target ingredient, application, quality requirements, estimated volume and destination market so sourcing options can be reviewed project by project.",
+    productsTitle: "Products & Ingredient Categories",
+    productsLead: "Explore the ingredient categories and featured products available for B2B sourcing discussions. Website listings do not represent fixed inventory or guaranteed specifications. Product identity, parameters, documents and supply terms must be confirmed for each project.",
+    objectivesTitle: "Practical Cooperation for Procurement Teams",
+    objectivesLead: "We support requirement clarification, supplier-document review, sample and specification coordination, and communication throughout the purchasing process.",
+    technologyTitle: "From Requirement Review to Purchasing Coordination",
+    technologyLead: "Supply sources, technical documents, test items, lead times and trade terms are reviewed and confirmed before quotation and ordering.",
+    aboutTitle: "Botanical Extract & Functional Ingredient Sourcing",
+    aboutLead: "Sheerherb focuses on B2B ingredient sourcing and purchasing coordination for botanical extracts, liposomal-related ingredients and functional ingredients. Project discussions are based on target ingredient, specification, application, quality documents and purchasing volume. Specific supply capabilities and product parameters are subject to supplier records and written confirmation.",
+    ctaTitle: "Submit Your Ingredient Purchasing Requirements",
+    ctaLead: "Share the target ingredient, specification, application, estimated quantity and destination market so we can review sourcing feasibility.",
+    primary: "Submit an Inquiry", secondary: "Browse Ingredients",
     products: [
       ["liposomal-vitamin-c","Liposomal Vitamin C Powder","Liposomal Vitamin C Powder","A featured liposomal product direction. Confirm specifications, content, dosage form and test method against official product documents.","View Product"],
       ["urolithin-a","Urolithin A","Urolithin A","A featured product on the international website. Confirm grade, specification and availability through an inquiry.","View Product"],
@@ -68,23 +68,23 @@ export const brandCopy = {
       ["berberine-hcl","Berberine HCl","Berberine HCl","A featured product on the international website. Contact Sheerherb to confirm target specifications, testing and packaging.","View Product"]
     ],
     objectives: [
-      ["01","Research & Production","Develop and produce advanced active carrier systems, with a focus on performance, efficacy and reliability."],
-      ["02","Application Solutions","Provide tailored approaches to industry challenges and help address bottlenecks in active-substance applications."],
-      ["03","Efficiency Enhancement","Explore technology approaches that improve the utilization efficiency of active substances in finished products."],
-      ["04","Efficacy Verification","Use testing and evaluation to review carrier-system reliability and application performance; project data should be consulted."],
-      ["05","Formula Application Experiments","Work with customers on formula application experiments aligned with their specific requirements."]
+      ["01","Requirement Clarification","Confirm the target ingredient, intended use, specification, purchasing volume and destination market."],
+      ["02","Supply Assessment","Review potential supply sources, available specifications and supplier information."],
+      ["03","Document Review","Discuss the availability and batch applicability of COAs, TDSs, SDSs and other project records."],
+      ["04","Samples & Specifications","Coordinate samples, testing feedback and specification review after initial sourcing feasibility is established."],
+      ["05","Order Coordination","Coordinate quotation, packaging, lead time, logistics and trade terms for project confirmation."]
     ],
     technology: [
-      ["Microsphere Technology","Sheerherb has applied microsphere technology in the field of food supplements and continues to expand its R&D scope and service capabilities."],
-      ["Nano-Liposome Technology","Sheerherb has applied nano-liposome technology in the field of food supplements and continues to explore application solutions for active substances."]
+      ["Botanical Extract Sourcing","Review supply options based on botanical identity, plant part, extraction process, marker compounds and testing requirements."],
+      ["Liposomal-Related Ingredients","Discuss the identity, grade, specifications and applications of phospholipids, lipid materials and supporting ingredients."]
     ],
     aboutBlocks: [
-      ["Company Focus","Sheerherb focuses on the research and production of active carrier systems for personal care, food and nutritional supplement applications."],
-      ["Technology Directions","The company website highlights microsphere and nano-liposome technologies and continued expansion of related R&D and application services."],
-      ["Collaborative Approach","Market-oriented research and close customer collaboration connect technology development with practical applications."],
-      ["Our Mission","Guided by “Leading the Future with Technology, Serving Health with Expertise,” Sheerherb continues to pursue research, innovation and customer collaboration."]
+      ["Business Positioning","Sheerherb supports B2B sourcing and purchasing coordination for botanical extracts, liposomal-related ingredients and functional ingredients."],
+      ["Requirement Assessment","Project needs are clarified according to target ingredient, specification, intended use, purchasing volume and destination market."],
+      ["Documents & Samples","We help coordinate available supplier information, quality documents, samples and specification review."],
+      ["Commercial Coordination","Supply capability, pricing, lead time and transaction terms are confirmed for each project and in writing."]
     ],
-    contactIntro: "If you are interested in Sheerherb products or technology solutions, share your target product, specification and application so we can follow up."
+    contactIntro: "Please share the target product or ingredient, specification requirements, application, estimated purchasing volume and destination market. Sheerherb coordinates B2B ingredient sourcing discussions project by project."
   },
   de: {
     tagline: "Aktive Trägersysteme · Mikrosphären- und Nano-Liposomen-Technologie",
