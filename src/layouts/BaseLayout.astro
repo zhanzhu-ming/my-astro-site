@@ -36,16 +36,11 @@ const copy = getBrandCopy(lang);
 const languageLabels: Record<string, string> = {
   zh: "中文",
   en: "English",
-  de: "Deutsch",
-  ja: "日本語",
-  es: "Español",
-  ru: "Русский",
-  it: "Italiano",
 };
-const pathRaw = Astro.url.pathname.replace(/^\/(zh|en|de|ja|es|ru|it)(?=\/|$)/, "") || "/";
+const pathRaw = Astro.url.pathname.replace(/^\/(zh|en)(?=\/|$)/, "") || "/";
 const path = pathRaw.endsWith("/") ? pathRaw : `${pathRaw}/`;
 const languageName = languageLabels[lang] || lang.toUpperCase();
-const htmlLang = ({ zh: "zh-CN", en: "en", de: "de", ja: "ja", es: "es", ru: "ru", it: "it" })[lang] || "zh-CN";
+const htmlLang = ({ zh: "zh-CN", en: "en" })[lang] || "zh-CN";
 const canonicalUrlPath = canonicalPath || (Astro.url.pathname.endsWith("/") ? Astro.url.pathname : `${Astro.url.pathname}/`);
 const canonical = `https://sheerherb.cn${canonicalUrlPath}`;
 const pageTitle = title ? (title.includes("Sheerherb") ? title : `${title} | Sheerherb`) : "Sheerherb";

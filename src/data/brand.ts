@@ -1,4 +1,4 @@
-export const languages = ["zh", "en", "de", "ja", "es", "ru", "it"] as const;
+export const languages = ["zh", "en"] as const;
 export type Lang = typeof languages[number];
 
 export const brandCopy = {

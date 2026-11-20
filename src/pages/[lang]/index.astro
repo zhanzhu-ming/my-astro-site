@@ -7,9 +7,9 @@ import { featuredGuides } from "../../data/guides";
 
 import GuideCard from "../../components/GuideCard.astro";
 export function getStaticPaths() {
-  return ["zh","en","de","ja","es","ru","it"].map((lang) => ({ params: { lang } }));
+  return ["zh","en"].map((lang) => ({ params: { lang } }));
 }
-const lang = Astro.params.lang as "zh" | "en" | "de" | "ja" | "es" | "ru" | "it";
+const lang = Astro.params.lang as "zh" | "en";
 const t = site[lang] || site.zh;
 const c = getBrandCopy(lang);
 const seo = getSeo(lang, "home", c.heroTitle, c.heroLead);

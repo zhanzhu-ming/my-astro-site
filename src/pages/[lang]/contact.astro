@@ -4,20 +4,12 @@ import { site } from "../../data/site";
 import { getBrandCopy } from "../../data/brand";
 import { getSeo } from "../../data/seo";
 export function getStaticPaths() {
-  return [
-    { params: { lang: 'en' } },
-    { params: { lang: 'zh' } },
-    { params: { lang: 'de' } }, // 德语 (德国)
-    { params: { lang: 'ja' } }, // 日语 (日本)
-    { params: { lang: 'es' } }, // 西班牙语 (西班牙)
-    { params: { lang: 'ru' } }, // 俄语 (俄国)
-    { params: { lang: 'it' } }, // 意大利语 (意大利)
-  ];
+  return [{ params: { lang: "zh" } }, { params: { lang: "en" } }];
 }
-const lang = Astro.params.lang as "zh" | "en" | "de" | "ja" | "es" | "ru" | "it";
+const lang = Astro.params.lang as "zh" | "en";
 const t = site[lang] || site.zh;
 const copy = getBrandCopy(lang);
-const en = lang !== "zh";
+const en = lang === "en";
 const seo = getSeo(lang, "contact", en ? t.contactTitle : "联系我们", copy.contactIntro);
 ---
 <BaseLayout lang={lang} title={seo.title} description={seo.description} canonicalPath={`/${lang}/contact/`} breadcrumbs={[{ name: en ? "Contact" : "联系我们", url: `https://sheerherb.cn/${lang}/contact/` }]}>
@@ -75,7 +67,7 @@ form?.addEventListener("input", () => {
     window.dataLayer.push({ event: "inquiry_start", inquiry_language: lang, source_page: sourcePage, inquiry_type: inquiryType });
   }
 }, { once: true });
-const en = lang !== "zh";
+const en = lang === "en";
 
 form?.addEventListener("submit", async (event) => {
   event.preventDefault();
