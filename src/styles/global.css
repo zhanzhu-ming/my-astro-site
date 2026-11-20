@@ -528,3 +528,16 @@ body{font-family:Inter,"PingFang SC","Microsoft YaHei","Noto Sans SC",Arial,sans
 @media(max-width:1000px){.desktop-nav{gap:10px}.desktop-nav a{font-size:10px}.hero-grid{gap:28px}.hero-visual{height:390px}}
 @media(max-width:760px){.container{width:min(100% - 34px,1240px)}.site-header{height:auto}.hero{padding-top:48px}.hero-grid{grid-template-columns:1fr;gap:26px}.hero h1{font-size:39px}.hero-visual{height:270px;order:2}.hero-meta{margin-top:28px}.section{padding:60px 0}.product-grid{grid-template-columns:1fr 1fr}.product-card{min-height:300px}.page-hero{padding:42px 0 34px}.page-hero-image img{height:190px}.content-layout{gap:32px}.content-aside{position:static}}
 @media(max-width:520px){.product-grid,.product-grid-four{grid-template-columns:1fr}.product-card{min-height:0}.product-thumb{height:170px}.hero h1{font-size:34px}.hero-visual{height:230px}.hero-actions{flex-direction:row;flex-wrap:wrap}.section-heading h2{font-size:28px}.page-hero h1{font-size:33px}.inquiry-form{padding:18px}}
+
+/* Image-free presentation: retain the premium botanical palette and procurement-first layout without photos or illustrations. */
+.hero-grid{grid-template-columns:minmax(0,1fr)!important;max-width:980px}
+.hero-visual,.page-hero-image,.product-thumb,.editorial-feature-image{display:none!important}
+.page-hero-grid{grid-template-columns:minmax(0,1fr)!important}
+.product-card{min-height:250px}
+.technology-card{grid-template-columns:1fr!important}
+.technology-art{min-height:54px!important;justify-content:flex-start!important;padding:16px 20px!important;background:#edf1e9!important;color:#58745e!important}
+.technology-art span{font-size:9px!important;letter-spacing:.16em!important}
+.editorial-feature{grid-template-columns:1fr!important}
+.editorial-card-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+.editorial-card{display:block!important;min-height:210px}
+@media(max-width:760px){.hero-grid,.page-hero-grid{grid-template-columns:1fr!important}.editorial-card-grid{grid-template-columns:1fr}.editorial-card{min-height:0}}

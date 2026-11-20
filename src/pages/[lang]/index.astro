@@ -26,27 +26,7 @@ const seo = getSeo(lang, "home", c.heroTitle, c.heroLead);
           <div class="hero-actions"><a class="button" href={`/${lang}/contact/`}>{c.primary} <span>↗</span></a><a class="text-link" href={`/${lang}/products/`}>{c.secondary} <span>→</span></a></div>
           <div class="hero-meta"><span>01 / SOURCING</span><span>02 / SPECIFICATION</span><span>03 / PROCUREMENT</span></div>
         </div>
-        <div class="hero-visual botanical-stage" aria-label={lang === "zh" ? "Sheerherb 西安企业设施实景" : "Sheerherb facility in Xi’an"}>
-          <img class="home-hero-photo" src="https://sheerherb.com/media/2024/04/sheerherb-factory-1.jpg" alt={lang === "zh" ? "Sheerherb 国际官网展示的西安企业设施外观" : "Sheerherb facility exterior in Xi’an"} fetchpriority="high" />
-          <span class="stage-kicker">SHEERHERB / XI’AN · CHINA</span>
-          <div class="specimen-main">
-            <div class="specimen-orb"><span>SH</span></div>
-            <span class="specimen-caption">BOTANICAL · FUNCTIONAL · LIPOSOMAL</span>
-          </div>
-          <article class="specimen-card specimen-card-a">
-            <span class="specimen-index">01 / BOTANICAL</span>
-            <div class="specimen-leaf-art" aria-hidden="true"></div>
-            <b>{lang === "zh" ? "植物提取物" : "Botanical Extracts"}</b>
-            <small>{lang === "zh" ? "来源与规格按项目确认" : "Origin and specs reviewed per project"}</small>
-          </article>
-          <article class="specimen-card specimen-card-b">
-            <span class="specimen-index">02 / INGREDIENTS</span>
-            <div class="specimen-powder-art" aria-hidden="true"></div>
-            <b>{lang === "zh" ? "功能性原料" : "Functional Ingredients"}</b>
-            <small>{lang === "zh" ? "文件与采购条件逐项核实" : "Documents and terms checked individually"}</small>
-          </article>
-          <span class="stage-foot">B2B SOURCING · SPECIFICATION · COORDINATION</span>
-        </div>
+
       </div>
       <div class="container hero-bottom"><span>{c.tagline}</span><span>{lang === "zh" ? "浏览产品与原料" : "EXPLORE INGREDIENTS"} ↓</span></div>
     </section>
@@ -56,7 +36,7 @@ const seo = getSeo(lang, "home", c.heroTitle, c.heroLead);
         <div class="section-heading"><div><div class="eyebrow">01 / PRODUCTS</div><h2>{c.productsTitle}</h2></div><p>{c.productsLead}</p></div>
         <div class="product-grid product-grid-four">
           {c.products.map((item, i) => <a class="product-card featured-product" href={`/${lang}/products/${item[0]}/`}>
-            <div class="product-number">0{i+1}</div><div class="product-thumb"><img src={ ["https://sheerherb.com/wp-content/uploads/2024/04/vitamin-C-300x167.png", "https://sheerherb.com/wp-content/uploads/2024/04/%E7%94%BB%E6%9D%BF-1.jpg", "https://sheerherb.com/media/2024/04/Liposomal-1.png", "https://sheerherb.com/wp-content/uploads/2025/12/urolithin-A.png"][i] } alt={`${item[1]} ${lang === "zh" ? "产品参考图片" : "product reference image"}`} loading="lazy"/></div>
+            <div class="product-number">0{i+1}</div>
             <h3>{item[1]}</h3><p>{item[3]}</p><span class="product-tag">{item[2]}</span><span class="card-arrow">↗</span>
           </a>)}
         </div>
@@ -93,7 +73,7 @@ const seo = getSeo(lang, "home", c.heroTitle, c.heroLead);
       <div class="container">
         <div class="section-heading"><div><div class="eyebrow">03 / TECHNOLOGY</div><h2>{c.technologyTitle}</h2></div><p>{c.technologyLead}</p></div>
         <div class="technology-grid">
-          {c.technology.map((item, i) => <article class="technology-card"><div class="technology-art"><img src={i === 0 ? "https://sheerherb.com/media/2024/04/Liposomal-1.png" : "https://sheerherb.com/wp-content/uploads/2024/04/%E7%94%BB%E6%9D%BF-1.jpg"} alt={item[0]} loading="lazy"/><small>0{i+1} / SHEERHERB</small></div><div><h3>{item[0]}</h3><p>{item[1]}</p><a href={i === 0 ? `/${lang}/products/botanical-extracts/` : `/${lang}/products/liposomal-ingredients/`}>{lang === "zh" ? "查看原料方向" : "Explore Ingredient Direction"} ↗</a></div></article>)}
+          {c.technology.map((item, i) => <article class="technology-card"><div class="technology-art"><span>0{i+1} / SHEERHERB</span></div><div><h3>{item[0]}</h3><p>{item[1]}</p><a href={i === 0 ? `/${lang}/products/botanical-extracts/` : `/${lang}/products/liposomal-ingredients/`}>{lang === "zh" ? "查看原料方向" : "Explore Ingredient Direction"} ↗</a></div></article>)}
         </div>
       </div>
     </section>
@@ -132,7 +112,6 @@ const seo = getSeo(lang, "home", c.heroTitle, c.heroLead);
     </section>
     <section class="section section-editorial">
       <div class="container editorial-feature">
-        <div class="editorial-feature-image"><img src="/images/editorial/botanical-still-life.svg" alt={lang === "zh" ? "植物提取物、树脂与原料样品的静物视觉" : "Editorial still life of botanical extracts, resin and ingredient samples"} loading="lazy" /></div>
         <div class="editorial-feature-copy">
           <div class="eyebrow">SHEERHERB / OUR APPROACH</div>
           <h2>{lang === "zh" ? "从原料本身出发，让采购沟通更清晰。" : "Start with the ingredient. Make every purchasing conversation clearer."}</h2>
@@ -145,9 +124,9 @@ const seo = getSeo(lang, "home", c.heroTitle, c.heroLead);
       <div class="container">
         <div class="section-heading"><div><div class="eyebrow">06 / INGREDIENT PERSPECTIVES</div><h2>{lang === "zh" ? "从不同角度认识原料" : "A closer look at ingredients"}</h2></div><p>{lang === "zh" ? "从原料样品、应用场景到质量文件，建立清晰、可核对的采购认知。" : "Explore ingredients through samples, application contexts and quality records to build a clearer, verifiable purchasing brief."}</p></div>
         <div class="editorial-card-grid">
-          <a class="editorial-card" href={`/${lang}/products/`}><img src="https://sheerherb.com/wp-content/uploads/2024/04/vitamin-C-300x167.png" alt={lang === "zh" ? "国际官网展示的维生素 C 产品相关视觉" : "Vitamin C ingredient visual from the international website"} loading="lazy"/><div><span>01 / MATERIAL STUDY</span><h3>{lang === "zh" ? "原料与样品" : "Materials & Samples"}</h3><p>{lang === "zh" ? "明确原料身份、形态、规格和样品批次，是采购评估的起点。" : "Ingredient identity, physical form, specification and sample-batch details are the starting point for evaluation."}</p></div></a>
-          <a class="editorial-card" href={`/${lang}/industries/`}><img src="https://sheerherb.com/media/2024/04/Liposomal-1.png" alt={lang === "zh" ? "国际官网发布的脂质体结构示意图" : "Liposomal structure diagram published on the international website"} loading="lazy"/><div><span>02 / APPLICATION CONTEXT</span><h3>{lang === "zh" ? "应用与配方" : "Applications & Formulation"}</h3><p>{lang === "zh" ? "应用场景会影响原料选择、检测重点、剂型和目标市场文件要求。" : "Application context shapes ingredient selection, testing priorities, dosage form and destination-market documentation."}</p></div></a>
-          <a class="editorial-card" href={`/${lang}/quality/`}><img src="https://sheerherb.com/wp-content/uploads/2025/12/urolithin-A.png" alt={lang === "zh" ? "国际官网展示的尿石素 A HPLC 图谱资料" : "Urolithin A HPLC chromatogram published on the international website"} loading="lazy"/><div><span>03 / DOCUMENT REVIEW</span><h3>{lang === "zh" ? "质量文件与批次" : "Quality Records & Batches"}</h3><p>{lang === "zh" ? "把文件出具主体、产品身份、检测方法和批次对应关系逐项核对。" : "Review the issuing party, product identity, analytical method and batch relationship."}</p></div></a>
+          <a class="editorial-card" href={`/${lang}/products/`}><div><span>01 / MATERIAL STUDY</span><h3>{lang === "zh" ? "原料与样品" : "Materials & Samples"}</h3><p>{lang === "zh" ? "明确原料身份、形态、规格和样品批次，是采购评估的起点。" : "Ingredient identity, physical form, specification and sample-batch details are the starting point for evaluation."}</p></div></a>
+          <a class="editorial-card" href={`/${lang}/industries/`}><div><span>02 / APPLICATION CONTEXT</span><h3>{lang === "zh" ? "应用与配方" : "Applications & Formulation"}</h3><p>{lang === "zh" ? "应用场景会影响原料选择、检测重点、剂型和目标市场文件要求。" : "Application context shapes ingredient selection, testing priorities, dosage form and destination-market documentation."}</p></div></a>
+          <a class="editorial-card" href={`/${lang}/quality/`}><div><span>03 / DOCUMENT REVIEW</span><h3>{lang === "zh" ? "质量文件与批次" : "Quality Records & Batches"}</h3><p>{lang === "zh" ? "把文件出具主体、产品身份、检测方法和批次对应关系逐项核对。" : "Review the issuing party, product identity, analytical method and batch relationship."}</p></div></a>
         </div>
       </div>
     </section>
