@@ -26,12 +26,25 @@ const seo = getSeo(lang, "home", c.heroTitle, c.heroLead);
           <div class="hero-actions"><a class="button" href={`/${lang}/contact/`}>{c.primary} <span>↗</span></a><a class="text-link" href={`/${lang}/products/`}>{c.secondary} <span>→</span></a></div>
           <div class="hero-meta"><span>01 / SOURCING</span><span>02 / SPECIFICATION</span><span>03 / PROCUREMENT</span></div>
         </div>
-        <div class="hero-visual" aria-label="Abstract microsphere and liposome technology illustration">
-          <div class="visual-orbit orbit-one"></div><div class="visual-orbit orbit-two"></div>
-          <div class="visual-core"><div class="core-inner"><span>BOTANICAL</span><b>INGREDIENT</b><small>SOURCING</small></div></div>
-          <span class="float-chip chip-a">{lang === "zh" ? "植物提取物" : "BOTANICAL EXTRACTS"}</span>
-          <span class="float-chip chip-b">{lang === "zh" ? "脂质体原料" : "LIPOSOMAL INGREDIENTS"}</span>
-          <span class="visual-index">SHEERHERB / B2B SOURCING</span>
+        <div class="hero-visual botanical-stage" aria-label={lang === "zh" ? "植物原料与功能性成分视觉展示" : "Botanical and functional ingredient visual display"}>
+          <span class="stage-kicker">SHEERHERB / INGREDIENT STUDY</span>
+          <div class="specimen-main">
+            <div class="specimen-orb"><span>SH</span></div>
+            <span class="specimen-caption">BOTANICAL · FUNCTIONAL · LIPOSOMAL</span>
+          </div>
+          <article class="specimen-card specimen-card-a">
+            <span class="specimen-index">01 / BOTANICAL</span>
+            <div class="specimen-leaf-art" aria-hidden="true"></div>
+            <b>{lang === "zh" ? "植物提取物" : "Botanical Extracts"}</b>
+            <small>{lang === "zh" ? "来源与规格按项目确认" : "Origin and specs reviewed per project"}</small>
+          </article>
+          <article class="specimen-card specimen-card-b">
+            <span class="specimen-index">02 / INGREDIENTS</span>
+            <div class="specimen-powder-art" aria-hidden="true"></div>
+            <b>{lang === "zh" ? "功能性原料" : "Functional Ingredients"}</b>
+            <small>{lang === "zh" ? "文件与采购条件逐项核实" : "Documents and terms checked individually"}</small>
+          </article>
+          <span class="stage-foot">B2B SOURCING · SPECIFICATION · COORDINATION</span>
         </div>
       </div>
       <div class="container hero-bottom"><span>{c.tagline}</span><span>{lang === "zh" ? "浏览产品与原料" : "EXPLORE INGREDIENTS"} ↓</span></div>
