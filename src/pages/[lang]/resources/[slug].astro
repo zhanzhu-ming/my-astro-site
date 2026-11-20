@@ -42,16 +42,19 @@ const inquiryHref = `/${lang}/contact/?interest=${encodeURIComponent(en ? title 
 >
   <main>
     <section class="page-hero article-hero">
-      <div class="container">
-        <div class="eyebrow">SHEERHERB / {category.short}</div>
-        <h1>{title}</h1>
-        <p>{description}</p>
-        <div class="article-meta">
-          <span>{categoryLabel}</span>
-          <span>{en ? "Updated" : "更新于"} <time datetime={guide.updated}>{guide.updated}</time></span>
-          <span>{en ? `${guide.readingMinutes} min read` : `${guide.readingMinutes} 分钟阅读`}</span>
+      <div class="container page-hero-grid">
+        <div>
+          <div class="eyebrow">SHEERHERB / {category.short}</div>
+          <h1>{title}</h1>
+          <p>{description}</p>
+          <div class="article-meta">
+            <span>{categoryLabel}</span>
+            <span>{en ? "Updated" : "更新于"} <time datetime={guide.updated}>{guide.updated}</time></span>
+            <span>{en ? `${guide.readingMinutes} min read` : `${guide.readingMinutes} 分钟阅读`}</span>
+          </div>
+          <div class="breadcrumbs"><a href={`/${lang}/`}>{en ? "Home" : "首页"}</a> / <a href={`/${lang}/resources/`}>{en ? "Resources" : "采购知识"}</a> / {title}</div>
         </div>
-        <div class="breadcrumbs"><a href={`/${lang}/`}>{en ? "Home" : "首页"}</a> / <a href={`/${lang}/resources/`}>{en ? "Resources" : "采购知识"}</a> / {title}</div>
+        <div class="page-hero-image"><img src={guide.category === "quality" ? "https://sheerherb.com/wp-content/uploads/2025/12/urolithin-A.png" : guide.category === "liposomal" ? "https://sheerherb.com/media/2024/04/Liposomal-1.png" : "https://sheerherb.com/wp-content/uploads/2024/04/vitamin-C-300x167.png"} alt={en ? `${title} ingredient and quality reference visual` : `${title} 原料采购主题图片`} loading="lazy"/></div>
       </div>
     </section>
 
