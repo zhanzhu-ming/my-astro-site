@@ -8,6 +8,7 @@ create table if not exists public.inquiries (
   company text not null,
   email text not null,
   phone text,
+  country text,
   interest text not null,
   quantity text,
   specification text,
@@ -22,6 +23,7 @@ create table if not exists public.inquiries (
 );
 
 -- 已有项目升级：保留历史数据，仅补充新字段。
+alter table public.inquiries add column if not exists country text;
 alter table public.inquiries add column if not exists specification text;
 alter table public.inquiries add column if not exists application text;
 alter table public.inquiries add column if not exists documents text;

@@ -95,3 +95,7 @@ docs/preview/                最终构建截图
 - 非中文页面本轮不做全面重写，只保持结构、hreflang 和标题独立。
 
 详细记录见 `SEO-IMPLEMENTATION-REPORT.md`。
+
+## Sheerherb 页面级规划
+
+中文站核心页面的定位、关键词、Title、H1、页面任务、内链边界及上线核验清单见 [`docs/Sheerherb-页面级规划执行版.md`](docs/Sheerherb-页面级规划执行版.md)。本轮实现以 B2B 原料供应对接与采购协作为主线，不将合作供应商能力表述为 Sheerherb 自有工厂或认证。

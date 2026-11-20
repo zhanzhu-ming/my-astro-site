@@ -31,7 +31,8 @@ const seo = getSeo(lang, "contact", en ? t.contactTitle : "联系我们", copy.c
         <div class="form-row"><label>{en ? "Work email" : "工作邮箱"} *<input name="email" type="email" required maxlength="254" autocomplete="email" /></label><label>{en ? "Phone / WhatsApp" : "电话 / WhatsApp"}<input name="phone" maxlength="80" /></label></div>
         <div class="form-row"><label>{en ? "Product / Ingredient" : "关注产品 / 原料"} *<input name="interest" required maxlength="200" placeholder={en ? "e.g. liposomal vitamin C, Urolithin A..." : "例如：脂质体维生素 C、尿石素 A……"} /></label><label>{en ? "Estimated quantity" : "预计采购数量"}<input name="quantity" maxlength="120" placeholder={en ? "Sample / kg / MT / annual volume" : "样品 / kg / 吨 / 年需求量"} /></label></div>
         <div class="form-row"><label>{en ? "Target specification" : "目标规格"} <span class="optional">{en ? "Optional" : "选填"}</span><input name="specification" maxlength="300" placeholder={en ? "Assay, purity, particle size, grade..." : "含量、纯度、粒径、等级、检测方法……"} /></label><label>{en ? "Application" : "应用方向"} <span class="optional">{en ? "Optional" : "选填"}</span><input name="application" maxlength="200" placeholder={en ? "Supplement, food, cosmetic..." : "膳食补充剂、食品、化妆品……"} /></label></div>
-        <div class="form-row"><label>{en ? "Destination market" : "目的市场"}<input name="market" maxlength="120" placeholder={en ? "Country / region" : "国家 / 地区"} /></label><label>{en ? "Required documents" : "需要的文件"} <span class="optional">{en ? "Optional" : "选填"}</span><input name="documents" maxlength="200" placeholder={en ? "COA, TDS, SDS, specification..." : "COA、TDS、SDS、规格书……"} /></label></div>
+        <div class="form-row"><label>{en ? "Country / Region" : "国家 / 地区"}<input name="country" maxlength="120" placeholder={en ? "Country / region" : "国家 / 地区"} /></label><label>{en ? "Destination market" : "目标市场"}<input name="market" maxlength="120" placeholder={en ? "Where will the ingredient be sold?" : "原料计划销售或使用的市场"} /></label></div>
+        <div class="form-row"><label>{en ? "Required documents" : "需要的文件"} <span class="optional">{en ? "Optional" : "选填"}</span><input name="documents" maxlength="200" placeholder={en ? "COA, TDS, SDS, specification..." : "COA、TDS、SDS、规格书……"} /></label></div>
         <label>{en ? "Project details" : "项目需求"}<textarea name="message" rows="5" maxlength="4000" placeholder={en ? "Required documents, target market, timeline, testing plan..." : "所需文件、目标市场、采购时间、测试计划……"}></textarea></label>
         <div class="form-honeypot" aria-hidden="true"><label>Website<input name="website" tabindex="-1" autocomplete="off" /></label></div>
         <input type="hidden" name="source_page" id="sourcePage" value="" />
@@ -106,6 +107,7 @@ form?.addEventListener("submit", async (event) => {
     quantity: String(data.get("quantity") || "").trim() || null,
     specification: String(data.get("specification") || "").trim() || null,
     application: String(data.get("application") || "").trim() || null,
+    country: String(data.get("country") || "").trim() || null,
     market: String(data.get("market") || "").trim() || null,
     documents: String(data.get("documents") || "").trim() || null,
     message: String(data.get("message") || "").trim() || null,

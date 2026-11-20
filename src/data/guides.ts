@@ -1033,7 +1033,7 @@ export const guides: Guide[] = [
         "确认批次 COA、TDS、SDS、规格书、重金属和微生物报告。MOQ、包装、交期和证书范围按项目确认，不把国际站参考值直接当成国内承诺。",
       ),
       links("相关页面", [
-        { label: "脂质体姜黄素粉", href: "/zh/products/liposomal-curcumin-powder/", note: "参考规格与询盘" },
+        { label: "脂质体姜黄素粉", href: "/zh/products/liposomal-ingredients/", note: "分类与采购核对项目" },
         { label: "脂质体原料采购指标", href: href("liposomal-ingredient-purchasing-parameters"), note: "包封率、粒径与检测" },
         { label: "质量与文件", href: "/zh/quality/", note: "COA/TDS/SDS 核验" },
         { label: "提交采购需求", href: "/zh/contact/?interest=脂质体姜黄素&type=guide", note: "说明含量、应用与数量" },
@@ -1054,7 +1054,7 @@ export const guides: Guide[] = [
       },
     ],
     related: [
-      { label: "脂质体姜黄素粉", href: "/zh/products/liposomal-curcumin-powder/" },
+      { label: "脂质体姜黄素粉", href: "/zh/products/liposomal-ingredients/" },
       { label: "脂质体相关原料", href: "/zh/products/liposomal-ingredients/" },
     ],
     relatedGuides: ["liposomal-ingredient-purchasing-parameters", "ingredient-sample-testing-preparation"],
@@ -1106,8 +1106,8 @@ export const guides: Guide[] = [
         "铁、镁在不同市场的营养强化剂准入、添加范围和标签要求不同。国内采购应先确认化合物形式、产品形态和目标市场，再讨论规格与报价。",
       ),
       links("相关产品", [
-        { label: "脂质体铁粉", href: "/zh/products/liposomal-iron-powder/", note: "参考规格与文件" },
-        { label: "脂质体镁", href: "/zh/products/liposomal-magnesium/", note: "食品级粉末与证书" },
+        { label: "脂质体铁粉", href: "/zh/products/liposomal-ingredients/", note: "分类与采购核对项目" },
+        { label: "脂质体镁", href: "/zh/products/liposomal-ingredients/", note: "按项目核验产品资料" },
         { label: "脂质体原料采购指标", href: href("liposomal-ingredient-purchasing-parameters"), note: "通用技术指标" },
         { label: "提交铁/镁采购需求", href: "/zh/contact/?interest=脂质体铁镁&type=guide", note: "说明化合物形式与用途" },
       ]),
@@ -1127,8 +1127,8 @@ export const guides: Guide[] = [
       },
     ],
     related: [
-      { label: "脂质体铁粉", href: "/zh/products/liposomal-iron-powder/" },
-      { label: "脂质体镁", href: "/zh/products/liposomal-magnesium/" },
+      { label: "脂质体铁粉", href: "/zh/products/liposomal-ingredients/" },
+      { label: "脂质体镁", href: "/zh/products/liposomal-ingredients/" },
     ],
     relatedGuides: ["liposomal-ingredient-purchasing-parameters", "ingredient-sample-testing-preparation"],
   },
@@ -1178,7 +1178,7 @@ export const guides: Guide[] = [
         "确认批次 COA、TDS、SDS、规格书、检测方法和法规资料。MOQ、包装、交期和价格按项目确认，不把参考规格当成固定承诺。",
       ),
       links("相关页面", [
-        { label: "脂质体 NMN 粉", href: "/zh/products/liposomal-nmn-powder/", note: "参考规格与询盘" },
+        { label: "脂质体 NMN 粉", href: "/zh/products/liposomal-ingredients/", note: "分类与采购核对项目" },
         { label: "脂质体原料采购指标", href: href("liposomal-ingredient-purchasing-parameters"), note: "通用技术指标" },
         { label: "供应商评估", href: href("how-to-evaluate-functional-ingredient-suppliers"), note: "文件与样品审核" },
         { label: "提交 NMN 采购需求", href: "/zh/contact/?interest=脂质体NMN&type=guide", note: "说明规格与目的市场" },
@@ -1199,7 +1199,7 @@ export const guides: Guide[] = [
       },
     ],
     related: [
-      { label: "脂质体 NMN 粉", href: "/zh/products/liposomal-nmn-powder/" },
+      { label: "脂质体 NMN 粉", href: "/zh/products/liposomal-ingredients/" },
       { label: "脂质体相关原料", href: "/zh/products/liposomal-ingredients/" },
     ],
     relatedGuides: ["liposomal-ingredient-purchasing-parameters", "how-to-evaluate-functional-ingredient-suppliers"],
@@ -1251,7 +1251,7 @@ export const guides: Guide[] = [
         "建议先提供终端剂型、添加量、工艺条件、包装形式和目的市场，再让供应商推荐液体或粉末，并给出对应的规格、文件和样品方案。",
       ),
       links("相关产品", [
-        { label: "脂质体维生素 C 液体", href: "/zh/products/liposomal-vitamin-c-liquid/", note: "20% 参考规格" },
+        { label: "脂质体维生素 C 液体", href: "/zh/products/liposomal-ingredients/", note: "按项目确认具体规格" },
         { label: "脂质体维生素 C 粉末", href: "/zh/products/liposomal-vitamin-c/", note: "粉末剂型" },
         { label: "脂质体原料采购指标", href: href("liposomal-ingredient-purchasing-parameters"), note: "包封率与粒径" },
         { label: "提交剂型咨询", href: "/zh/contact/?interest=脂质体剂型&type=guide", note: "说明终端产品与工艺" },
@@ -1272,7 +1272,7 @@ export const guides: Guide[] = [
       },
     ],
     related: [
-      { label: "脂质体维生素 C 液体", href: "/zh/products/liposomal-vitamin-c-liquid/" },
+      { label: "脂质体维生素 C 液体", href: "/zh/products/liposomal-ingredients/" },
       { label: "脂质体维生素 C 粉末", href: "/zh/products/liposomal-vitamin-c/" },
     ],
     relatedGuides: ["liposomal-ingredient-purchasing-parameters", "ingredient-moq-packaging-lead-time"],
@@ -1326,7 +1326,7 @@ export const guides: Guide[] = [
         "微丸的 MOQ、开发周期和交期取决于配方、包衣和批次，不能套用标准品。需要确认批次 COA、TDS、SDS、释放方法、稳定性和胶囊填充适配性。",
       ),
       links("相关页面", [
-        { label: "缓释微丸", href: "/zh/products/sustained-release-micropellets/", note: "参考规格与询盘" },
+        { label: "缓释微丸", href: "/zh/products/liposomal-ingredients/", note: "分类与采购核对项目" },
         { label: "定制寻源服务", href: "/zh/custom-sourcing/", note: "需求包与供应评估" },
         { label: "定制原料寻源", href: href("how-to-run-custom-ingredient-sourcing"), note: "五步流程" },
         { label: "提交微丸定制需求", href: "/zh/contact/?interest=缓释微丸&type=guide", note: "说明活性物与释放目标" },
@@ -1347,7 +1347,7 @@ export const guides: Guide[] = [
       },
     ],
     related: [
-      { label: "缓释微丸", href: "/zh/products/sustained-release-micropellets/" },
+      { label: "缓释微丸", href: "/zh/products/liposomal-ingredients/" },
       { label: "定制寻源", href: "/zh/custom-sourcing/" },
     ],
     relatedGuides: ["how-to-run-custom-ingredient-sourcing", "ingredient-moq-packaging-lead-time"],

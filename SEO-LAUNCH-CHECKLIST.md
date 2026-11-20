@@ -63,7 +63,7 @@ Cloudflare Pages 配置：
 部署后检查：
 
 - [ ] `/` 返回 301 到 `/zh/`。
-- [ ] `/zh/`、`/zh/products/`、三个分类页、11 个产品页、`/zh/quality/`、`/zh/resources/`、15 篇文章、`/zh/capabilities/`、`/zh/products/liposomal-curcumin-powder/`、`/zh/products/liposomal-vitamin-c-liquid/`、`/zh/products/sustained-release-micropellets/`、`/zh/contact/` 均 200。
+- [ ] `/zh/`、`/zh/products/`、三个分类页、4 个重点产品页、`/zh/quality/`、`/zh/resources/`、15 篇文章、`/zh/contact/` 均 200。
 - [ ] 不存在的 URL 返回 404，页面为 noindex。
 - [ ] `https://sheerherb.cn/robots.txt` 内容正确。
 - [ ] `https://sheerherb.cn/sitemap-index.xml` 可访问，子 sitemap 包含 163 个 URL。
@@ -144,3 +144,8 @@ Cloudflare Pages 配置：
 - 不要用机器翻译批量复制中文文章到其他语言。
 - 不要把 `service_role` key 放进前端或公开仓库。
 - 不要承诺固定排名、收录时间或流量增长。
+
+
+## 页面规划更新（2026-11-20）
+
+以 `docs/Sheerherb-页面级规划执行版.md` 为准：核心产品页为脂质体维生素 C、尿石素 A、喜来芝树脂和盐酸小檗碱。旧版额外脂质体 SKU 页面与 `/zh/capabilities/` 不再作为当前发布路由。
