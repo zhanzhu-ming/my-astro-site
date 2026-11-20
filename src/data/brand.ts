@@ -4,7 +4,7 @@ export type Lang = typeof languages[number];
 export const brandCopy = {
   zh: {
     tagline: "植物提取物与脂质体相关原料供应合作",
-    nav: [["products","产品与原料"],["custom-sourcing","定制寻源"],["quality","质量与文件"],["about","关于 Sheerherb"],["contact","联系我们"]],
+    nav: [["products","产品与原料"],["custom-sourcing","定制寻源"],["industries","应用领域"],["quality","质量与文件"],["about","关于 Sheerherb"],["contact","联系我们"]],
     heroEyebrow: "BOTANICAL & LIPOSOMAL INGREDIENT SOURCING",
     heroTitle: "植物提取物与功能性原料供应合作",
     heroLead: "Sheerherb 作为面向企业客户的植物提取物供应商与功能性原料供应商，为品牌方、制造商及原料采购团队提供脂质体相关原料、植物提取物及功能性原料的供应对接、规格沟通和定制寻源协作。请提供目标成分、应用、质量要求、采购数量和目的市场，以便逐项评估供应选项。",
@@ -15,7 +15,7 @@ export const brandCopy = {
     technologyTitle: "从需求沟通到采购交付",
     technologyLead: "每个项目的供应来源、技术资料、检测项目、交期和贸易条款均需在报价与订单前逐项确认。",
     aboutTitle: "植物提取物与脂质体原料供应合作",
-    aboutLead: "Sheerherb 以 B2B 原料供应对接与采购协作为核心，围绕目标成分、规格、应用、质量文件和采购数量开展项目沟通。具体供应能力与产品参数以供应商资料及双方书面确认为准。",
+    aboutLead: "Sheerherb 面向品牌方、制造商、经销商及研发采购团队，围绕植物提取物、脂质体相关原料和功能性原料开展 B2B 供应对接与采购协作。从原料身份、规格、应用和目的市场出发，逐步沟通供应来源、质量文件、样品及商务条件；所有产品参数与供货条件均以实际供应商资料和双方书面确认为准。",
     ctaTitle: "提交您的原料采购需求",
     ctaLead: "请提供目标成分、规格要求、应用场景、预计数量和目的市场，我们将据此开展供应可行性沟通。",
     primary: "提交采购需求", secondary: "浏览产品方向",
@@ -37,16 +37,19 @@ export const brandCopy = {
       ["脂质体相关原料","围绕磷脂、脂质材料及配套原料的身份、等级、规格和应用需求开展采购沟通。"]
     ],
     aboutBlocks: [
-      ["业务定位","Sheerherb 原料供应业务面向企业客户，围绕植物提取物、脂质体相关原料及功能性原料开展供应对接与采购协作。"],
-      ["需求评估","根据目标成分、规格、用途、采购数量和目的市场，逐项澄清项目需求。"],
-      ["资料与样品","协助沟通可获得的供应商资料、质量文件、样品及规格确认事项。"],
-      ["商务协作","供货能力、价格、交期及交易条件以具体项目确认和双方书面文件为准。"]
+      ["业务定位","面向品牌方、制造商、经销商和研发采购团队，围绕植物提取物、脂质体相关原料及功能性原料开展 B2B 供应对接与采购协作。"],
+      ["原料方向","重点展示脂质体维生素 C、尿石素 A、喜来芝树脂和盐酸小檗碱等产品方向，并可沟通目录之外的原料需求；具体可供情况需逐项确认。"],
+      ["需求评估","从目标成分、CAS/INCI（如适用）、规格、应用、采购数量和目的市场出发，整理可执行的采购需求。"],
+      ["供应来源沟通","根据项目了解潜在供应主体、产品身份、供应商角色、可供规格及资料情况，初步沟通不等同于现场审计或供货保证。"],
+      ["文件与样品","围绕 COA、TDS、SDS、第三方检测报告和证书范围开展资料沟通，并在可行时协调样品及检测反馈。"],
+      ["商务协作","报价、MOQ、包装、库存、交期、物流和贸易条件由相关供应方按具体项目确认，并以正式书面文件为准。"],
+      ["合作原则","重视信息可核验、文件与批次对应、规格版本清晰和关键条件书面确认，不把合作供应商能力表述为 Sheerherb 自有工厂能力。"]
     ],
     contactIntro: "请提供目标产品或成分、规格要求、应用场景、预计采购数量和目的市场。无论是植物提取物采购询价，还是功能性原料供应咨询，Sheerherb 都会按项目开展原料供应与采购协作沟通。"
   },
   en: {
     tagline: "Botanical Extracts & Functional Ingredient Sourcing",
-    nav: [["products","Products & Ingredients"],["custom-sourcing","Custom Sourcing"],["quality","Quality & Documents"],["about","About Sheerherb"],["contact","Contact Us"]],
+    nav: [["products","Products & Ingredients"],["custom-sourcing","Custom Sourcing"],["industries","Applications"],["quality","Quality & Documents"],["about","About Sheerherb"],["contact","Contact Us"]],
     heroEyebrow: "BOTANICAL & FUNCTIONAL INGREDIENT SOURCING",
     heroTitle: "Botanical Extracts & Functional Ingredient Sourcing",
     heroLead: "Sheerherb supports B2B buyers, brands, manufacturers and ingredient procurement teams with sourcing coordination for botanical extracts, liposomal-related ingredients and functional ingredients. Share your target ingredient, application, quality requirements, estimated volume and destination market so sourcing options can be reviewed project by project.",
@@ -57,7 +60,7 @@ export const brandCopy = {
     technologyTitle: "From Requirement Review to Purchasing Coordination",
     technologyLead: "Supply sources, technical documents, test items, lead times and trade terms are reviewed and confirmed before quotation and ordering.",
     aboutTitle: "Botanical Extract & Functional Ingredient Sourcing",
-    aboutLead: "Sheerherb focuses on B2B ingredient sourcing and purchasing coordination for botanical extracts, liposomal-related ingredients and functional ingredients. Project discussions are based on target ingredient, specification, application, quality documents and purchasing volume. Specific supply capabilities and product parameters are subject to supplier records and written confirmation.",
+    aboutLead: "Sheerherb works with B2B brands, manufacturers, distributors and R&D procurement teams on sourcing coordination for botanical extracts, liposomal-related ingredients and functional ingredients. Projects are reviewed from ingredient identity, specification, application and destination market through supplier information, quality documents, samples and commercial terms. Product parameters and supply conditions remain subject to actual supplier records and written confirmation.",
     ctaTitle: "Submit Your Ingredient Purchasing Requirements",
     ctaLead: "Share the target ingredient, specification, application, estimated quantity and destination market so we can review sourcing feasibility.",
     primary: "Submit an Inquiry", secondary: "Browse Ingredients",
@@ -79,10 +82,14 @@ export const brandCopy = {
       ["Liposomal-Related Ingredients","Discuss the identity, grade, specifications and applications of phospholipids, lipid materials and supporting ingredients."]
     ],
     aboutBlocks: [
-      ["Business Positioning","Sheerherb supports B2B sourcing and purchasing coordination for botanical extracts, liposomal-related ingredients and functional ingredients."],
-      ["Requirement Assessment","Project needs are clarified according to target ingredient, specification, intended use, purchasing volume and destination market."],
-      ["Documents & Samples","We help coordinate available supplier information, quality documents, samples and specification review."],
-      ["Commercial Coordination","Supply capability, pricing, lead time and transaction terms are confirmed for each project and in writing."]
+      ["Business Positioning","We support B2B brands, manufacturers, distributors and R&D procurement teams with sourcing coordination for botanical extracts, liposomal-related ingredients and functional ingredients."],
+      ["Ingredient Scope","Featured directions include Liposomal Vitamin C, Urolithin A, Shilajit Resin and Berberine HCl, alongside project discussions for other ingredients. Availability must be checked individually."],
+      ["Requirement Assessment","We organize purchasing briefs around ingredient identity, CAS or INCI where applicable, specification, intended use, volume and destination market."],
+      ["Supply-Source Communication","Potential suppliers are discussed against their role, product identity, available specifications and supporting information. An initial review is not a site audit or a guarantee of supply."],
+      ["Documents & Samples","Project discussions may cover COAs, TDSs, SDSs, third-party reports and certificate scope, with sample coordination and testing feedback where feasible."],
+      ["Commercial Coordination","Quotation, MOQ, packaging, stock, lead time, logistics and trade terms must be confirmed by the relevant supplier for each project and recorded in writing."],
+      ["Working Principles","We value verifiable information, batch-relevant documents, clear specification revisions and written confirmation. Partner-supplier capabilities are not presented as Sheerherb-owned manufacturing facilities."],
+      ["Projects We Can Discuss","You can contact us with a defined ingredient and specification, an early-stage R&D requirement or a supplier-screening task. Share the information already available and the questions that remain open so the next steps can be assessed realistically."]
     ],
     contactIntro: "Please share the target product or ingredient, specification requirements, application, estimated purchasing volume and destination market. Sheerherb coordinates B2B ingredient sourcing discussions project by project."
   },
