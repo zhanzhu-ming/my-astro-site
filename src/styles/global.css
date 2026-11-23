@@ -541,3 +541,11 @@ body{font-family:Inter,"PingFang SC","Microsoft YaHei","Noto Sans SC",Arial,sans
 .editorial-card-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
 .editorial-card{display:block!important;min-height:210px}
 @media(max-width:760px){.hero-grid,.page-hero-grid{grid-template-columns:1fr!important}.editorial-card-grid{grid-template-columns:1fr}.editorial-card{min-height:0}}
+
+
+/* Product image slot: intentionally labeled until an authenticated batch photo is supplied. */
+.product-photo-pending{min-height:220px;margin:0 0 2rem;padding:2rem;display:flex;flex-direction:column;justify-content:flex-end;gap:.6rem;background:linear-gradient(135deg,#e9eee7,#d7e1d7 55%,#c3d2c5);border:1px solid #d5dfd5;color:#263d32;border-radius:4px;}
+.product-photo-pending span{font-size:.68rem;letter-spacing:.16em;font-weight:700;opacity:.7}
+.product-photo-pending strong{font-family:Georgia,serif;font-size:clamp(1.6rem,4vw,2.5rem);font-weight:500}
+.product-photo-pending small{font-size:.78rem;opacity:.8}
+.button-outline{background:transparent;color:var(--teal);border-color:var(--teal);box-shadow:none}.button-outline:hover{background:var(--teal);color:#fff}

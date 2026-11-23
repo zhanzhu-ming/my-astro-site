@@ -1,0 +1,19 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+const crumbs=[{name:"研发与工艺",url:"https://sheerherb.cn/zh/rd-process/"}];
+const steps=[
+["脂质体包埋原理","脂质体通常由磷脂等两亲性脂质在适当条件下形成囊泡或相关脂质结构，可用于承载亲水性或脂溶性活性物。不同产品的载体组成、制备路线和结构表征存在差异，不能将所有标注为 Liposomal 的粉末视为相同体系。"],
+["工艺沟通重点","采购与研发阶段建议确认活性物加入方式、磷脂来源与组成、均质/分散条件、包封率测定方法、粒径与 PDI、干燥或粉末化步骤，以及最终产品的复溶/分散表现。具体工艺参数须由实际生产方提供，不在此虚构生产设备或自有产能。"],
+["标准化植物提取合作","植物提取项目应明确植物中文名与拉丁学名、使用部位、原料产地、提取溶剂、提取比例、载体/辅料、标志性成分和检测方法。提取比例不能替代活性成分实测含量；不同植物部位和工艺的结果不可直接横向比较。"],
+["样品验证与放大","研发样品应记录供应主体、样品批号、规格版本、包装和储存条件。测试计划可覆盖身份、含量、分散性、稳定性、配方相容性及目标市场所需污染物指标。样品表现不自动代表未来商业批次，放大和批次一致性需另行验证。"],
+["技术文件与变更管理","项目阶段建议维护 TDS、检测方法、批次 COA、SDS、第三方报告及规格版本记录。原料来源、载体组成、生产场所或检测方法发生变化时，应评估对规格和应用的影响，并由相关方书面确认。"]
+];
+---
+<BaseLayout lang="zh" title="研发与工艺｜脂质体包埋与植物提取标准化合作" description="介绍脂质体包埋基本原理、关键质量参数、植物提取标准化合作体系及样品验证流程。具体生产工艺和产能以实际合作生产方资料为准。" canonicalPath="/zh/rd-process/" breadcrumbs={crumbs} alternateLanguages={["zh"]}>
+<main>
+<section class="page-hero"><div class="container"><div class="eyebrow">SHEERHERB / R&D & PROCESS</div><h1>研发与工艺</h1><p>围绕脂质体相关原料与标准化植物提取项目，建立从原料身份、工艺参数到检测方法和应用验证的沟通框架。</p><div class="breadcrumbs"><a href="/zh/">首页</a> / 研发与工艺</div></div></section>
+<section class="section"><div class="container content-layout"><article class="content-main">
+{steps.map((step,i)=><section class="content-block"><span>{String(i+1).padStart(2,"0")}</span><div><h2>{step[0]}</h2><p>{step[1]}</p></div></section>)}
+<div class="content-callout"><strong>合作边界说明</strong><p>Sheerherb 国内站定位为植物提取物、脂质体原料及功能性成分的 B2B 供应链协作。合作生产方、生产地址、设备、工艺参数和产能须按具体项目核实，本页不将合作方能力表述为 Sheerherb 自有工厂能力。</p><a class="button" href="/zh/contact/?interest=研发与工艺合作&type=rd">提交研发需求 ↗</a></div>
+</article><aside class="content-aside"><div class="aside-card"><h3>研发项目需要确认什么？</h3><p>目标活性物、剂型、目标含量、应用场景、检测方法、样品数量及目的市场。</p><a class="button" href="/zh/contact/?interest=研发样品&type=sample">申请样品 / 技术沟通 ↗</a></div><div class="aside-links"><a href="/zh/products/liposomal-ingredients/">脂质体原料 ↗</a><a href="/zh/products/botanical-extracts/">植物提取物 ↗</a><a href="/zh/quality/">质量控制与文件 ↗</a><a href="/zh/faq/">采购 FAQ ↗</a></div></aside></div></section>
+</main></BaseLayout>

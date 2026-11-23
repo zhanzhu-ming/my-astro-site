@@ -105,7 +105,7 @@ const otherProducts = zhProducts.filter((item) => item.slug !== product.slug).sl
 <div class="content-callout">
   <strong>咨询 {product.name} 采购</strong>
   <p>提交目标规格、应用、数量和目的市场，便于确认可匹配的规格、质量文件与供应选项。页面中的参考参数不替代正式报价、规格书和批次 COA。</p>
-  <a class="button" href={inquiryHref}>提交询价 ↗</a>
+  <div class="hero-actions"><a class="button" href={inquiryHref}>在线询价 ↗</a><a class="button button-outline" href={`/zh/contact/?interest=${encodeURIComponent(product.name)}&source=${product.slug}&type=sample`}>申请研发样品 ↗</a></div>
 </div>
 
 <section class="content-block">

@@ -5,6 +5,7 @@ export const site = {
     nav: [
       ["products", "产品与原料"],
       ["custom-sourcing", "定制寻源"],
+      ["rd-process", "研发与工艺"],
       ["industries", "应用领域"],
       ["quality", "质量与文件"],
       ["resources", "采购知识"],

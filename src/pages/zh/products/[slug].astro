@@ -22,6 +22,10 @@ const breadcrumbs = [
 const description = `${product.summary} 参考参数、检测方法、包装与采购条件以正式规格书和批次 COA 为准。`;
 const relatedGuides = product.relatedGuides.map((item) => getGuide(item)).filter(Boolean);
 const seoTitles: Record<string, string> = {
+  "liposomal-vitamin-c": "脂质体维生素C粉末采购｜规格与质量文件",
+  "urolithin-a": "尿石素A原料采购｜CAS 1143-70-0",
+  "shilajit-resin": "喜来芝树脂采购｜来源与质量指标",
+  "berberine-hcl": "盐酸小檗碱采购｜CAS 633-65-8",
   "liposomal-curcumin-powder": "脂质体姜黄素粉采购",
   "liposomal-iron-powder": "脂质体铁粉采购",
   "liposomal-magnesium": "脂质体镁采购",
@@ -41,6 +45,7 @@ const seoTitle = seoTitles[product.slug] || `${product.name}原料采购`;
   pageType="product"
   productName={product.name}
   productSlug={product.slug}
+  productCas={product.cas}
   alternateLanguages={["zh"]}
   faq={product.faq}
 >
@@ -57,6 +62,9 @@ const seoTitle = seoTitles[product.slug] || `${product.name}原料采购`;
     <section class="section">
       <div class="container content-layout">
         <article class="content-main">
+          <div class="product-photo-pending" role="img" aria-label={`${product.name} 产品实拍图待补充`}>
+            <span>SHEERHERB / PRODUCT VISUAL</span><strong>{product.name}</strong><small>产品实拍图待补充｜请以实际批次样品及包装为准</small>
+          </div>
           <ZhProductDetail product={product} />
         </article>
         <aside class="content-aside">

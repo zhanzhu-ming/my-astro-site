@@ -13,6 +13,7 @@ const {
   pageType = "website",
   productName = "",
   productSlug = "",
+  productCas = "",
   alternateLanguages = languages,
   article = null,
   faq = [],
@@ -26,6 +27,7 @@ const {
   pageType?: string;
   productName?: string;
   productSlug?: string;
+  productCas?: string;
   alternateLanguages?: readonly Lang[];
   article?: { headline: string; datePublished: string; dateModified: string; section?: string } | null;
   faq?: { q: string; a: string }[];
@@ -105,6 +107,23 @@ if (breadcrumbs.length) {
         item: item.url,
       })),
     ],
+  });
+}
+
+if (pageType === "product" && productName) {
+  structuredData.push({
+    "@type": "Product",
+    "@id": `${canonical}#product`,
+    name: productName,
+    description: desc,
+    category: "植物提取物、脂质体原料及功能性成分",
+    brand: { "@type": "Brand", name: "Sheerherb" },
+    url: canonical,
+    identifier: productCas && !productCas.includes("无统一") ? { "@type": "PropertyValue", propertyID: "CAS", value: productCas.split("（")[0] } : undefined,
+    additionalProperty: [
+      { "@type": "PropertyValue", name: "产品资料状态", value: "以正式规格书及对应批次 COA 为准" },
+      { "@type": "PropertyValue", name: "采购方式", value: "B2B 询价；MOQ、包装及样品条件按项目确认" }
+    ]
   });
 }
 
@@ -222,7 +241,7 @@ const jsonLd = JSON.stringify({ "@context": "https://schema.org", "@graph": stru
   <footer class="footer">
     <div class="container footer-grid">
       <div><a class="brand brand-footer" href={`/${lang}/`}><span class="brand-mark">S<span>.</span></span><span><strong>Sheerherb</strong><small>{t.tagline}</small></span></a><p class="footer-note">{t.footerNote}</p></div>
-      <div class="footer-links">{t.nav.map(([slug, label]) => <a href={`/${lang}/${slug}/`}>{label}</a>)}<a href={`/${lang}/privacy/`}>{lang === "zh" ? "隐私政策" : "Privacy"}</a><a href={`/${lang}/terms/`}>{lang === "zh" ? "法律声明" : "Terms"}</a></div>
+      <div class="footer-links">{t.nav.map(([slug, label]) => <a href={`/${lang}/${slug}/`}>{label}</a>)}{lang === "zh" && <><a href="/zh/rd-process/">研发与工艺</a><a href="/zh/faq/">采购 FAQ</a></>}<a href={`/${lang}/privacy/`}>{lang === "zh" ? "隐私政策" : "Privacy"}</a><a href={`/${lang}/terms/`}>{lang === "zh" ? "法律声明" : "Terms"}</a></div>
     </div>
     <div class="container footer-bottom"><span>© {new Date().getFullYear()} Sheerherb. All rights reserved.</span><span><a href="mailto:sales@sheerherb.com">sales@sheerherb.com</a></span></div>
   </footer>
